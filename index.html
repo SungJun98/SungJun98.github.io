@@ -53,6 +53,39 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+
+  <!-- For Career Section -->
+  <style>
+    .timeline-item {
+      position: relative;
+      padding-left: 20px;
+      border-left: 3px solid #007bff;
+    }
+  
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -9px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background-color: #007bff;
+      border-radius: 50%;
+    }
+  
+    .border-left-phd {
+      border-left: 4px solid #007bff !important;
+    }
+  
+    .border-left-ms {
+      border-left: 4px solid #17a2b8 !important;
+    }
+
+    .border-left-bs {
+      border-left: 4px solid #ffc107 !important;
+    }
+  </style>
+
 </head>
 
 <body id="page-top">
@@ -84,12 +117,12 @@
           <li class="nav-item">
             <a class="nav-link js-scroll" href="#MLAIprojects">MLAI Projects</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link js-scroll" href="#personalprojects">Personal Projects</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link js-scroll" href="#contact">Contact</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -105,7 +138,7 @@
         <div class="container">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="intro-title mb-4">Sungjun Lim</h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Bayesian Deep Learning,Bayesian Neural Network,Uncertainty,Large Language Models,Retrieval Augmented Generation,Transfer Learning</span><strong class="text-slider"></strong></p>
+          <p class="intro-subtitle"><span class="text-slider-items">Bayesian Deep Learning,Bayesian Neural Network,Probabilistic Models,Uncertainty,Large Language Models,Model Merging</span><strong class="text-slider"></strong></p>
           <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
         </div>
       </div>
@@ -119,14 +152,19 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              About Me
+            </h3>
+            <div class="line-mf"></div>
+          </div>
           <div class="box-shadow-full">
             <div class="row">
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-sm-6 col-md-5">
                     <div class="about-img">
-                      <img src="img/VB2A9103.jpg"
-                       class="img-fluid rounded b-shadow-a" alt="">
+                      <img src="img/VB2A9103.jpg" class="img-fluid rounded b-shadow-a" alt="">
                     </div>
                   </div>
                   <div class="col-sm-6 col-md-7">
@@ -135,27 +173,52 @@
                       <p><span class="title-s">Birth: </span> <span>Sep. 11, 1998</span></p>
                       <p><span class="title-s">Department: </span> <span>Statistics and Data Science, Yonsei University</span></p>
                       <p><span class="title-s">Email: </span> <span>lsj9862@gmail.com</span></p>
+                      <div class="socials" style="margin-top: 15px;">
+                        <ul style="list-style: none; padding: 0; display: flex; gap: 15px; justify-content: center;">
+                          <li>
+                            <a href="https://twitter.com/lsj9862" target="_blank">
+                              <span class="ico-circle">
+                                <i class="fa fa-twitter"></i>
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://www.linkedin.com/in/sungjun-lim-bb8b55202/" target="_blank">
+                              <span class="ico-circle">
+                                <i class="fa fa-linkedin"></i>
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ" target="_blank">
+                              <span class="ico-circle">
+                                <i class="fa fa-graduation-cap"></i>
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://drive.google.com/file/d/1O96sDMYEVpid95T0e7vF6N1efkRA7MIf/view?usp=sharing" target="_blank">
+                              <span class="ico-circle">
+                                <i class="fa fa-paperclip"></i>
+                              </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <!-- <div class="skill-mf">
-                  <p class="title-s">Skill</p>
-                  <span>Python</span> <span class="pull-right">80%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </div> -->
               </div>
               <div class="col-md-6">
                 <div class="about-me pt-4 pt-md-0">
-                  <div class="title-box-2">
-                    <h5 class="title-left">
-                      About Me
-                    </h5>
-                  </div>
                   <p class="lead">
-                    Hello! I'm Sungjun, Lim from South Korea. I'm glad to meet you in my own website.
+                    Hello! I am Sungjun Lim, a graduate researcher at Yonsei University's Statistics and Data Science department.
+                  </p>
+                  <p class="lead">
+                    My research focuses on Bayesian Deep Learning and Large Language Models, with a particular interest in developing robust and interpretable AI systems.
+                  </p>
+                  <p class="lead">
+                    I am currently working on uncertainty quantification in deep learning models and their applications in real-world scenarios.
                   </p>
                 </div>
               </div>
@@ -181,75 +244,76 @@
   </div>
 
 
-  <section id="career" class="features  gray-section  timeline" style="margin-top: 0px;">
-    <div class="container" id="i18_career">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1><span data-i18n="career.my_career">Career (To Be Fixed)</span></h1>
+  <section id="career" class="sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <div class="title-box">
+            <h3 class="title-a">Career</h3>
+            <div class="line-mf"></div>
+          </div>
         </div>
-    </div>
-    <div class="row features-block">
-        <div class="col-lg-12">
-            <div id="vertical-timeline" class="vertical-container light-timeline center-orientation">
-            
-            
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg wow rotateIn" style="visibility: visible; animation-name: rotateIn;">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <div class="vertical-timeline-content wow  rotateInUpRight" style="visibility: visible; animation-name: rotateInUpRight;">
-                        <h2><span data-i18n="career.re">Visiting Scholar @ Carnegie Mellon University</span></h2>
-                        <p><span data-i18n="career.re_des">From September 2024 to February 2025 (Scheduled). </span></p>
-                        <span class="vertical-date"><span data-i18n="career.re_date"> September. 2024 - February. 2025 (Scheduled) </span>
-                        <br> <small><span data-i18n="career.re_job">Pittsburgh, Pennsylvania, United States</span></small> </span>
-                    </div>
-                </div>
-            
-            
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg wow rotateIn" style="visibility: visible; animation-name: rotateIn;">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <div class="vertical-timeline-content wow  rotateInUpLeft" style="visibility: visible; animation-name: rotateInUpLeft;">
-                        <h2><span data-i18n="career.re">Graduate Researcher @ University of Seoul</span></h2>
-                        <p><span data-i18n="career.re_des">From March 2023 to present. </span></p>
-                        <span class="vertical-date"><span data-i18n="career.re_date"> April. 2023 - Present </span>
-                        <br> <small><span data-i18n="career.re_job">Machine Learning and Artificial Intelligence Lab</span></small> </span>
-                    </div>
-                </div>
-            
-            
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg wow rotateIn" style="visibility: visible; animation-name: rotateIn;">
-                        <i class="fa fa-book"></i>
-                    </div>
-                    <div class="vertical-timeline-content wow  rotateInUpRight" style="visibility: visible; animation-name: rotateInUpRight;">
-                        <h2><span data-i18n="career.re">Obtained B.S. @ University of Seoul</span></h2>
-                        <p><span data-i18n="career.re_des">From September 2016 to 2023. </span></p>
-                        <span class="vertical-date"><span data-i18n="career.re_date"> March. 2016 - April. 2023 </span>
-                        <br> <small><span data-i18n="career.re_job">Department of Computer Science and Engineering</span></small> </span>
-                    </div>
-                </div>
-            
-            
-                <div class="vertical-timeline-block">
-                    <div class="vertical-timeline-icon navy-bg wow rotateIn" style="visibility: visible; animation-name: rotateIn;">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <div class="vertical-timeline-content wow  rotateInUpLeft" style="visibility: visible; animation-name: rotateInUpLeft;">
-                        <h2><span data-i18n="career.re">Undergraduate Researcher @ University of Seoul</span></h2>
-                        <p><span data-i18n="career.re_des">From September 2021 to 2023. </span></p>
-                        <span class="vertical-date"><span data-i18n="career.re_date"> September. 2021 - April. 2023 </span>
-                        <br> <small><span data-i18n="career.re_job">Machine Learning and Artificial Intelligence Lab</span></small> </span>
-                    </div>
-                </div>
-            
+      </div>
+  
+      <div class="timeline">
+        <!-- 타임라인 아이템 -->
+        <div class="timeline-item mb-5">
+          <div class="card shadow-sm border-left-bs">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">B.S.</h5>
+              <p class="card-text mb-1"><strong>Statistics, University of Seoul</strong></p>
+              <p class="text-muted">Mar. 2017 – Aug. 2022</p>
             </div>
+          </div>
         </div>
+
+        <div class="timeline-item mb-5">
+          <div class="card shadow-sm border-left-bs">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Undergraduate Research Assistant</h5>
+              <p class="card-text mb-1"><strong>MLAI Lab, University of Seoul</strong></p>
+              <p class="text-muted">Jun. 2021 – Aug. 2022</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item mb-5">
+          <div class="card shadow-sm border-left-ms">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">M.S.</h5>
+              <p class="card-text mb-1"><strong>Artificial Intelligence, University of Seoul</strong></p>
+              <p class="card-text mb-1">Advisor: Kyungwoo Song</p>
+              <p class="text-muted">Sep. 2022 – Feb. 2024</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item mb-5">
+          <div class="card shadow-sm border-left-phd">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Ph.D. Student</h5>
+              <p class="card-text mb-1"><strong>Statistics and Data Science, Yonsei University</strong></p>
+              <p class="card-text mb-1">Advisor: Kyungwoo Song</p>
+              <p class="text-muted">Mar. 2024 – Present</p>
+            </div>
+          </div>
+        </div>      
+  
+  
+        <div class="timeline-item mb-5">
+          <div class="card shadow-sm border-left-phd">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Visiting Researcher (Scheduled)</h5>
+              <p class="card-text mb-1"><strong>Computer Science, Australian National University</strong></p>
+              <p class="card-text mb-1">Advisor: <a href="https://users.cecs.anu.edu.au/~xlx/" target="_blank">Lexing Xie</a></p>
+              <p class="text-muted">Jul. 2025 – Aug. 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
   </section>
+
 
   <!--/ Section Testimonials Start/-->
   <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
@@ -265,63 +329,206 @@
   </div>
 
 
-  <!-- <section id="publications" class="features  publications" style="margin-top: 0px;"> -->
-  <section id="publications" class="services-mf route">
-    <!-- <div class="container"> -->
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="title-box text-center">
-          <h3 class="title-a">
-            Publications
-          </h3>
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <!-- <p><a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ"><i class="fa fa-graduation-cap fa-3x"></i></a></p> -->
-              <p><a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ&amp;hl=ko">Google Scholar</a></p>
-            </div>
-          </div>
-          <div class="line-mf"></div>
-        </div>
-      </div>
-    </div>
+  <section id="publications" class="features publications">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <h4>Peer Reviewed</h4>
-          <ul style="list-style-type: none">
-            <li class="entry">
-              <h5><strong>Bibimbap: Ensembling Diverse Pretrained Models for Domain Generalization in Domain Shifted Task</strong></h5>
-              <b>Jinho Kang</b>, Taero Kim, Yewon Kim, Changdae Oh, Jiyoung Jung, Rakwoo Chang, and Kyungwoo Song<br>
-              Pattern Recognition 2024. (SCIE, JCR 2022 IF=8.0)
-              <!-- A link can be inserted here if available -->
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">Publications</h3>
+            <p><a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ" target="_blank">Google Scholar</a></p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Toggle Buttons -->
+      <div class="text-center mb-4">
+        <button class="btn btn-primary m-2" type="button" data-toggle="collapse" data-target="#peerReviewed" aria-expanded="true" aria-controls="peerReviewed">Peer Reviewed</button>
+        <button class="btn btn-secondary m-2" type="button" data-toggle="collapse" data-target="#underReview" aria-expanded="true" aria-controls="underReview">Under-Review</button>
+        <button class="btn btn-info m-2" type="button" data-toggle="collapse" data-target="#workshop" aria-expanded="true" aria-controls="workshop">Workshop</button>
+      </div>
+  
+      <!-- Peer Reviewed -->
+      <div class="collapse show" id="peerReviewed">
+        <div class="card card-body">
+          <h4 class="mb-3">📘 Peer Reviewed</h4>
+          <ol>
+            <li>
+              <h5><strong>Language model-guided student performance prediction with multimodal auxiliary information</strong></h5>
+              <ul>
+                <li>Changdae Oh, Minhoi Park, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>Expert Systems with Applications (ESWA) 2024</li>
+              </ul>
             </li>
-            <li class="entry">
-              <h5><strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong></h5>
-              <b>Jinho Kang</b>, Sungjun Lim, Hojun Park, Jaehun Jung, Jiyoung Jung, and Kyungwoo Song<br>
-              IJCAI 2024 Workshop (AI for Time Series Analysis), <strong style="color: red;">The Best Paper Honorable Mention Award</strong>
-              <!-- A link can be inserted here if available -->
-            </li>
-            <li class="entry">
-              <h5><strong>Few-Shot PPG Signal Generation via Guided Diffusion Models</strong></h5>
-              <b>Jinho Kang</b>, Yongtaek Lim, KyuHyung Kim, Hyeonjeong Lee, KwangYong Kim, Minseong Kim, Jiyoung Jung, and Kyungwoo Song<br>
-              IEEE Sensors Journal 2024. (SCIE, JCR 2022 IF=4.3)
-              <!-- A link can be inserted here if available -->
-            </li>
-          </ul>
 
-          <h5>Under Review</h5>
-          <ul style="list-style-type: none">
-            <li class="entry">
-              <h6><strong>Flat Posterior Does Matter For Bayesian Model Ensemble</strong></h6>
-              Sungjun Lim, Sooyon Kim, Jeyoon Yeom, Hoyoon Byun, <b>Jinho Kang</b>, and Kyungwoo Song<br>
-              Submitted to Top Tier Conference 2024.
-              <!-- A link can be inserted here if available -->
+            <br>
+
+            <li>
+              <h5><strong>GFML: Gravity Function for Metric Learning</strong></h5>
+              <ul>
+                <li>Hoyoon Byun, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>Engineering Applications of Artificial Intelligence (EAAI) 2025</li>
+              </ul>
             </li>
-          </ul>
+
+            <br>
+
+            <li>
+              <h5><strong>Robust Optimization for PPG-based Blood Pressure Estimation</strong></h5>
+              <ul>
+                <li><b>Sungjun Lim</b>, Taero Kim, Hyeonjeong Lee, Yewon Kim, Minhoi Park, Kwang-Yong Kim, Minseong Kim, Kyu Hyung Kim, Jiyoung Jung, Kyungwoo Song</li>
+                <li>Biomedical Signal Processing and Control (BSPC) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Brain-inspired L<sub>p</sub>-Convolution benefits large kernels and aligns better with visual cortex</strong></h5>
+              <ul>
+                <li>Jae Kwon, <b>Sungjun Lim</b>, Kyungwoo Song, C. Justin Lee</li>
+                <li>International Conference on Learning Representations (ICLR) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Sufficient Invariant Learning for Distribution Shift</strong></h5>
+              <ul>
+                <li>Taero Kim, Subeen Park, <b>Sungjun Lim</b>, Yonghan Jung, Krikamol Muandet, Kyungwoo Song</li>
+                <li>Computer Vision and Pattern Recognition (CVPR) 2025</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+  
+      <!-- Under-Review -->
+      <div class="collapse show" id="underReview">
+        <div class="card card-body">
+          <h4 class="mb-3">📝 Under-Review</h4>
+          <ol>
+            <li>
+              <h5><strong>Data Adaptive Stochastic Ensemble Net: Optimizing Infection Predictions for COVID-19 Cluster Analysis</strong></h5>
+              <ul>
+                <li><b>Sungjun Lim</b>, Yongtaek Lim, Hojun Park, Junggu Lee, Jaehun Jung, Kyungwoo Song</li>
+                <li>IEEE Journal of Biomedical and Health Informatics 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Flat Posterior Does Matter For Bayesian Model Averaging</strong></h5>
+              <ul>
+                <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
+                <li>Uncertainty in Artificial Intelligence (UAI) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Causal Effect Variational Transformer for Public Health Measures and COVID-19 Infection Cluster Analysis</strong></h5>
+              <ul>
+                <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>Conference on Information and Knowledge Management (CIKM) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>COVID-19 Prediction with Doubly Multi-task Gaussian Process</strong></h5>
+              <ul>
+                <li>Sooyon Kim, Yongtaek Lim, <b>Sungjun Lim</b>, Gyeongdeok Seo, Jihee Kim, Hojun Park, Jeahun Jung, Kyungwoo Song</li>
+                <li>Pattern Recognition Letters (PRL) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>DDRL: A Diffusion-Driven Reinforcement Learning Approach for Enhanced TSP Solutions</strong></h5>
+              <ul>
+                <li>Joowang Kim, Jeyoon Yeom, Gyeongdeok Seo, <b>Sungjun Lim</b>, Jae Ha Kwak, Heejun Ahn, Gyeong-moon Park, Kyungwoo Song</li>
+                <li>Knowledge Discovery and Data Mining (KDD) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>RAILL : Retrieval-Augment and Instruction Tuning for Low-resource Language Model Training</strong></h5>
+              <ul>
+                <li>Youngjun Choi, <b>Sungjun Lim</b>, Minhoi Park, Jaekyeong Jung, TaeKyung Kim, Hosik Choi, Kyungwoo Song</li>
+                <li>Computers and Education 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Uncertainty Aware Contrastive Decoding</strong></h5>
+              <ul>
+                <li>Hakyung Lee, Subeen Park, Joowang Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>Association for Computational Linguistics (ACL) 2025</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Eigen-Value : Efficient Domain-Robust Data Valuation via eigenvalue-Based Approach</strong></h5>
+              <ul>
+                <li>Youngjun Choi, Junseong Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>International Conference on Computer Vision (ICCV) 2025</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+  
+      <!-- Workshop -->
+      <div class="collapse show" id="workshop">
+        <div class="card card-body">
+          <h4 class="mb-3">🎓 Workshop</h4>
+          <ol>
+            <li>
+              <h5><strong>Sufficient Invariant Learning for Distribution Shift</strong></h5>
+              <ul>
+                <li>Taero Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>The Sixth Data Science Meets Optimisation (DSO) Workshop at IJCAI 2024</li>
+              </ul>
+            </li>
+
+            <br>
+
+            <li>
+              <h5><strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong></h5>
+              <ul>
+                <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                <li>Artificial Intelligence for Time Series Analysis (AI4TS) at IJCAI 2024</li>
+              </ul>
+            </li>
+
+            <br>
+            
+            <li>
+              <h5><strong>Flat Posterior For Bayesian Model Averaging</strong></h5>
+              <ul>
+                <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
+                <li>Frontiers in Probabilistic Inference Workshop at ICLR 2025</li>
+              </ul>
+            </li>
+          </ol>
         </div>
       </div>
     </div>
   </section>
+
+
 
   <!--/ Section Testimonials Start/-->
   <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
@@ -347,7 +554,7 @@
               MLAI Projects
             </h3>
             <p class="subtitle-a">
-              <a href="https://mlai.yonsei.ac.kr/" target="_blank">MLAI@Yonsei</a>
+              <a href="https://mlai.yonsei.ac.kr/" target="_blank" style="color: rgb(36, 119, 202);">MLAI@Yonsei</a>
             </p>
             <div class="line-mf"></div>
           </div>
@@ -357,17 +564,93 @@
         <div class="col-md-4">
           <div class="service-box">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+              <span class="ico-circle"><i class="ion-ios-pulse"></i></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Explainable AI for Blood Pressure Estimation</h2>
               <p class="s-description text-center">
-                Funded by <a href="https://www.etri.re.kr/intro.html" target="_blank">ETRI</a><br>
-                Deal with Uncertainty about Estimation of BP from AI
+                <li> Funded by <a href="https://www.etri.re.kr/intro.html" target="_blank" style="color: rgb(36, 119, 202);">ETRI</a> </li>
+                <li>Deal with Uncertainty about Estimation of BP from AI</li>
               </p>
             </div>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Causality Covid-19</h2>
+              <p class="s-description text-center">
+                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: rgb(36, 119, 202);">Ministry of Food and Drug Safety</a></li>
+                <li>Infection prediction based on causal graph</li>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Directional GNN for Infection Prediction</h2>
+              <p class="s-description text-center">
+                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: rgb(36, 119, 202);">Ministry of Food and Drug Safety</a></li>
+                <li>Infection prediction based on graphical information</li>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Infection Prediction Based on Gaussian Process</h2>
+              <p class="s-description text-center">
+                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: rgb(36, 119, 202);">Ministry of Food and Drug Safety</a></li>
+                <li>Infection prediction based on robabilistic model</li>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-ios-book"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Educational Content Relationship Analysis</h2>
+              <p class="s-description text-center">
+                <li>Funded by <a href="https://www.jointips.or.kr/about_en.php" target="_blank" style="color: rgb(36, 119, 202);">TIPS</a></li>
+                <li>Analyze educational content relationship via LLMs and RAG</li>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-plane"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Signal Processing</h2>
+              <p class="s-description text-center">
+                <li>Funded by <a href="https://www.add.re.kr/kps" target="_blank" style="color: rgb(36, 119, 202);">ADS</a></li>
+                <li>Develop class incremental algorithm to classify aviation object</li>
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -389,7 +672,7 @@
 
 
   <!--/ Section Services(Personal Project) Start /-->
-  <section id="personalprojects" class="services-mf route">
+  <!-- <section id="personalprojects" class="services-mf route">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -434,12 +717,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!--/ Section Services(Personal Project) End /-->
 
 
-  <!--/ Section Contact-Footer Star /-->
-  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
+  <!-- / Section Contact-Footer Star /-->
+  <!-- <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
@@ -539,7 +822,6 @@
                   </div>
                   <div class="socials">
                     <ul>
-                      <!-- <li><a href="https://www.instagram.com/lsj9862/" target="_blank"><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li> -->
                       <li><a href="https://twitter.com/lsj9862" target="_blank"><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
                       <li><a href="https://www.linkedin.com/in/sungjun-lim-bb8b55202/" target="_blank"><span class="ico-circle"><i class="ion-social-linkedin"></i></span></a></li>
                     </ul>
@@ -562,12 +844,10 @@
             <div class="copyright-box">
               <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
               <div class="credits">
-                <!--
                   All the links in the footer should remain intact.
                   You can delete the links only if you purchased the pro version.
                   Licensing information: https://bootstrapmade.com/license/
                   Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-                -->
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
               </div>
             </div>
@@ -575,8 +855,8 @@
         </div>
       </div>
     </footer>
-  </section>
-  <!--/ Section Contact-footer End /-->
+  </section> -->
+  <!--/ Section Contact-footer End / -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
