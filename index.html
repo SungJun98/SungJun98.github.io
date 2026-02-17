@@ -84,6 +84,44 @@
     .border-left-bs {
       border-left: 4px solid #ffc107 !important;
     }
+
+    /* Publication section custom styles */
+    .pub-link-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      color: #007bff;
+      font-size: 0.9em;
+    }
+
+    .pub-link-icon:hover {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    .peer-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .peer-filter-bar .btn-group .btn {
+      min-width: 50px;
+    }
+
+    .peer-reviewed-item {
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      .peer-filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 
 </head>
@@ -349,213 +387,318 @@
       </div>
   
       <!-- Peer Reviewed -->
-      <div class="collapse show" id="peerReviewed">
-        <div class="card card-body">
-          <h4 class="mb-3">📘 Peer Reviewed</h4>
-          <ol>
-            <li>
-              <h5><strong>Language model-guided student performance prediction with multimodal auxiliary information</strong></h5>
-              <ul>
-                <li>Changdae Oh, Minhoi Park, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <li>Expert Systems with Applications (ESWA) 2024</li>
-              </ul>
-            </li>
+      <div class="card mb-3">
+        <div class="card-header">
+          <div class="d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="mb-0">📘 Peer Reviewed</h4>
+            </div>
+            <!-- Filters -->
+            <div class="mt-3 peer-filter-bar">
+              <div>
+                <span class="mr-2 font-weight-bold">Year</span>
+                <div class="btn-group btn-group-sm" role="group" id="peerReviewed-year-toggle">
+                  <button type="button" class="btn btn-outline-primary active" data-year="">All</button>
+                  <button type="button" class="btn btn-outline-primary" data-year="2024">2024</button>
+                  <button type="button" class="btn btn-outline-primary" data-year="2025">2025</button>
+                  <button type="button" class="btn btn-outline-primary" data-year="2026">2026</button>
+                </div>
+              </div>
+              <div>
+                <span class="mr-2 font-weight-bold">Type</span>
+                <div class="form-check form-check-inline mb-0">
+                  <input class="form-check-input peer-type-filter" type="checkbox" id="filterConference" value="conference" checked>
+                  <label class="form-check-label" for="filterConference">Conference</label>
+                </div>
+                <div class="form-check form-check-inline mb-0">
+                  <input class="form-check-input peer-type-filter" type="checkbox" id="filterJournal" value="journal" checked>
+                  <label class="form-check-label" for="filterJournal">Journal</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collapse show" id="peerReviewed">
+          <div class="card-body">
+            <ol>
+              <li class="peer-reviewed-item" data-year="2024" data-category="journal">
+                <h5>
+                  <strong>Language model-guided student performance prediction with multimodal auxiliary information</strong>
+                  <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417424008261" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Changdae Oh, Minhoi Park, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <li>Expert Systems with Applications (ESWA) 2024</li>
+                </ul>
+              </li>
 
-            <br>
+              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+                <h5>
+                  <strong>GFML: Gravity Function for Metric Learning</strong>
+                  <a href="https://www.sciencedirect.com/science/article/abs/pii/S095219762401621X" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Hoyoon Byun, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <li>Engineering Applications of Artificial Intelligence (EAAI) 2025</li>
+                </ul>
+              </li>
 
-            <li>
-              <h5><strong>GFML: Gravity Function for Metric Learning</strong></h5>
-              <ul>
-                <li>Hoyoon Byun, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <li>Engineering Applications of Artificial Intelligence (EAAI) 2025</li>
-              </ul>
-            </li>
+              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+                <h5>
+                  <strong>Robust Optimization for PPG-based Blood Pressure Estimation</strong>
+                  <a href="https://www.sciencedirect.com/science/article/abs/pii/S1746809425000965" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Taero Kim, Hyeonjeong Lee, Yewon Kim, Minhoi Park, Kwang-Yong Kim, Minseong Kim, Kyu Hyung Kim, Jiyoung Jung, Kyungwoo Song</li>
+                  <li>Biomedical Signal Processing and Control (BSPC) 2025</li>
+                </ul>
+              </li>
 
-            <br>
+              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+                <h5>
+                  <strong>Brain-inspired L<sub>p</sub>-Convolution benefits large kernels and aligns better with visual cortex</strong>
+                  <a href="https://openreview.net/pdf?id=WpFCplXaLv" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Jae Kwon, <b>Sungjun Lim</b>, Kyungwoo Song, C. Justin Lee</li>
+                  <li>International Conference on Learning Representations (ICLR) 2025</li>
+                </ul>
+              </li>
 
-            <li>
-              <h5><strong>Robust Optimization for PPG-based Blood Pressure Estimation</strong></h5>
-              <ul>
-                <li><b>Sungjun Lim</b>, Taero Kim, Hyeonjeong Lee, Yewon Kim, Minhoi Park, Kwang-Yong Kim, Minseong Kim, Kyu Hyung Kim, Jiyoung Jung, Kyungwoo Song</li>
-                <li>Biomedical Signal Processing and Control (BSPC) 2025</li>
-              </ul>
-            </li>
+              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+                <h5>
+                  <strong>Sufficient Invariant Learning for Distribution Shift</strong>
+                  <a href="https://arxiv.org/abs/2210.13533" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Taero Kim, Subeen Park, <b>Sungjun Lim</b>, Yonghan Jung, Krikamol Muandet, Kyungwoo Song</li>
+                  <li>Computer Vision and Pattern Recognition (CVPR) 2025</li>
+                </ul>
+              </li>
 
-            <br>
+              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+                <h5>
+                  <strong>Flat Posterior Does Matter For Bayesian Model Averaging</strong>
+                  <a href="https://arxiv.org/abs/2406.15664" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
+                  <li>Uncertainty in Artificial Intelligence (UAI) 2025</li>
+                </ul>
+              </li>
+              
+              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+                <h5>
+                  <strong>Uncertainty Aware Contrastive Decoding</strong>
+                  <a href="https://aclanthology.org/2025.findings-acl.1352/" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Hakyung Lee, Subeen Park, Joowang Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <li>Association for Computational Linguistics (ACL) 2025 Findings</li>
+                </ul>
+              </li>
 
-            <li>
-              <h5><strong>Brain-inspired L<sub>p</sub>-Convolution benefits large kernels and aligns better with visual cortex</strong></h5>
-              <ul>
-                <li>Jae Kwon, <b>Sungjun Lim</b>, Kyungwoo Song, C. Justin Lee</li>
-                <li>International Conference on Learning Representations (ICLR) 2025</li>
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>Sufficient Invariant Learning for Distribution Shift</strong></h5>
-              <ul>
-                <li>Taero Kim, Subeen Park, <b>Sungjun Lim</b>, Yonghan Jung, Krikamol Muandet, Kyungwoo Song</li>
-                <li>Computer Vision and Pattern Recognition (CVPR) 2025</li>
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>Flat Posterior Does Matter For Bayesian Model Averaging</strong></h5>
-              <ul>
-                <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
-                <li>Uncertainty in Artificial Intelligence (UAI) 2025</li>
-              </ul>
-            </li>
-            
-            <br>
-
-            <li>
-              <h5><strong>Uncertainty Aware Contrastive Decoding</strong></h5>
-              <ul>
-                <li>Hakyung Lee, Subeen Park, Joowang Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <li>Association for Computational Linguistics (ACL) 2025 Findings</li>
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>COVID-19 Prediction with Doubly Multi-task Gaussian Process</strong></h5>
-              <ul>
-                <li>Sooyon Kim, Yongtaek Lim, <b>Sungjun Lim</b>, Gyeongdeok Seo, Jihee Kim, Hojun Park, Jeahun Jung, Kyungwoo Song</li>
-                <li>Journal of Biomedical Informatics 2025</li>
-              </ul>
-            </li>
+              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+                <h5>
+                  <strong>COVID-19 Prediction with Doubly Multi-task Gaussian Process</strong>
+                  <a href="https://www.sciencedirect.com/science/article/abs/pii/S1532046425001017" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Sooyon Kim, Yongtaek Lim, <b>Sungjun Lim</b>, Gyeongdeok Seo, Jihee Kim, Hojun Park, Jeahun Jung, Kyungwoo Song</li>
+                  <li>Journal of Biomedical Informatics 2025</li>
+                </ul>
+              </li>
         
-            <br>
+              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+                <h5>
+                  <strong>Causal Effect Variational Transformer for Public Health Measures and COVID-19 Infection Cluster Analysis</strong>
+                  <a href="https://dl.acm.org/doi/10.1145/3746252.3761040" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <li>Conference on Information and Knowledge Management (CIKM) 2025</li>
+                </ul>
+              </li>
 
-            <li>
-              <h5><strong>Causal Effect Variational Transformer for Public Health Measures and COVID-19 Infection Cluster Analysis</strong></h5>
-              <ul>
-                <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <li>Conference on Information and Knowledge Management (CIKM) 2025</li>
-              </ul>
-            </li>
+              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+                <h5>
+                  <strong>Data Adaptive Stochastic Ensemble Net: Optimizing Infection Predictions for COVID-19 Cluster Analysis</strong>
+                  <a href="https://pubmed.ncbi.nlm.nih.gov/41336165/" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Yongtaek Lim, Hojun Park, Junggu Lee, Jaehun Jung, Kyungwoo Song</li>
+                  <li>IEEE Journal of Biomedical and Health Informatics 2025</li>
+                </ul>
+              </li>
 
-            <br>
+              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+                <h5>
+                  <strong>RAILL : Retrieval-Augment and Instruction Tuning for Low-resource Language Model Training</strong>
+                  <a href="https://www.computer.org/csdl/video-library/video/2dOyw48QgXm" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Youngjun Choi, <b>Sungjun Lim</b>, Minhoi Park, Jaekyeong Jung, TaeKyung Kim, Hosik Choi, Kyungwoo Song</li>
+                  <li>IEEE Big data 2025 (Short)</li>
+                </ul>
+              </li>
 
-            <li>
-              <h5><strong>Data Adaptive Stochastic Ensemble Net: Optimizing Infection Predictions for COVID-19 Cluster Analysis</strong></h5>
-              <ul>
-                <li><b>Sungjun Lim</b>, Yongtaek Lim, Hojun Park, Junggu Lee, Jaehun Jung, Kyungwoo Song</li>
-                <li>IEEE Journal of Biomedical and Health Informatics 2025</li>
-              </ul>
-            </li>
+              <li class="peer-reviewed-item" data-year="2026" data-category="conference">
+                <h5>
+                  <strong>Semi-Supervised Preference Optimization with Limited Feedbacks</strong>
+                  <a href="https://arxiv.org/abs/2511.00040" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li>Seonggyun Lee, <b>Sungjun Lim</b>, Seojin Park, Soeun Cheon, Kyungwoo Song</li>
+                  <li>International Conference on Learning Representations (ICLR) 2026</li>
+                  <li>Oral Presentation</li>
+                </ul>
+              </li>
 
-            <br>
+              <li class="peer-reviewed-item" data-year="2026" data-category="conference">
+                <h5>
+                  <strong>Uncertainty-driven Embedding Convolution</strong>
+                  <a href="https://arxiv.org/abs/2507.20718" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                </h5>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Kangjun Noh, Youngjun Choi, Heeyoung Lee, Kyungwoo Song</li>
+                  <li>International Conference on Learning Representations (ICLR) 2026</li>
+                </ul>
+              </li>
 
-            <li>
-              <h5><strong>RAILL : Retrieval-Augment and Instruction Tuning for Low-resource Language Model Training</strong></h5>
-              <ul>
-                <li>Youngjun Choi, <b>Sungjun Lim</b>, Minhoi Park, Jaekyeong Jung, TaeKyung Kim, Hosik Choi, Kyungwoo Song</li>
-                <li>IEEE Big data 2025 (Short)</li>
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>Semi-Supervised Preference Optimization with Limited Feedbacks</strong></h5>
-              <ul>
-                <li>Seonggyun Lee, <b>Sungjun Lim</b>, Seojin Park, Soeun Cheon, Kyungwoo Song</li>
-                <li>International Conference on Learning Representations (ICLR) 2026</li>
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>Uncertainty-driven Embedding Convolution</strong></h5>
-              <ul>
-                <li><b>Sungjun Lim</b>, Kangjun Noh, Youngjun Choi, Heeyoung Lee, Kyungwoo Song</li>
-                <li>International Conference on Learning Representations (ICLR) 2026</li>
-              </ul>
-            </li>
-
-          </ol>
+            </ol>
+          </div>
         </div>
       </div>
       
   
       <!-- Under-Review -->
-      <div class="collapse show" id="underReview">
-        <div class="card card-body">
-          <h4 class="mb-3">📝 Under-Review</h4>
-          <ol>
-            <li>
-              <h5><strong>DDRL: A Diffusion-Driven Reinforcement Learning Approach for Enhanced TSP Solutions</strong></h5>
-              <ul>
-                <li>Joowang Kim, Jeyoon Yeom, Gyeongdeok Seo, <b>Sungjun Lim</b>, Jae Ha Kwak, Heejun Ahn, Gyeong-moon Park, Kyungwoo Song</li>
-                <!-- <li>Conference on Neural Information Processing Systems (NeurIPS) 2025</li> -->
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>Eigen-Value : Efficient Domain-Robust Data Valuation via eigenvalue-Based Approach</strong></h5>
-              <ul>
-                <li>Youngjun Choi, Junseong Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <!-- <li>International Conference on Computer Vision (ICCV) 2025</li> -->
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>PTD: Partial-Teacher Distillation for Efficient MoE Recovery in Large Language Models</strong></h5>
-              <ul>
-                <li>Hoyoon Byun, Kangjun Noh, SoMin Kim, Heedong Kim, <b>Sungjun Lim</b>, Jaeyoon Shim, Youngjun Choi, Kyungwoo Song</li>
-                <!-- <li>International Conference on Machine Learning (ICML) 2026</li> -->
-              </ul>
-            </li>
-  
-          </ol>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">📝 Under-Review</h4>
+        </div>
+        <div class="collapse show" id="underReview">
+          <div class="card-body">
+            <ol>
+              <li>
+                <h5>
+                  <strong>DDRL: A Diffusion-Driven Reinforcement Learning Approach for Enhanced TSP Solutions</strong>
+                </h5>
+                <ul>
+                  <li>Joowang Kim, Jeyoon Yeom, Gyeongdeok Seo, <b>Sungjun Lim</b>, Jae Ha Kwak, Heejun Ahn, Gyeong-moon Park, Kyungwoo Song</li>
+                  <!-- <li>Conference on Neural Information Processing Systems (NeurIPS) 2025</li> -->
+                </ul>
+              </li>
+ 
+              <br>
+ 
+              <li>
+                <h5>
+                  <strong>Eigen-Value : Efficient Domain-Robust Data Valuation via eigenvalue-Based Approach</strong>
+                </h5>
+                <ul>
+                  <li>Youngjun Choi, Junseong Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <!-- <li>International Conference on Computer Vision (ICCV) 2025</li> -->
+                </ul>
+              </li>
+ 
+              <br>
+ 
+              <li>
+                <h5>
+                  <strong>PTD: Partial-Teacher Distillation for Efficient MoE Recovery in Large Language Models</strong>
+                </h5>
+                <ul>
+                  <li>Hoyoon Byun, Kangjun Noh, SoMin Kim, Heedong Kim, <b>Sungjun Lim</b>, Jaeyoon Shim, Youngjun Choi, Kyungwoo Song</li>
+                  <!-- <li>International Conference on Machine Learning (ICML) 2026</li> -->
+                </ul>
+              </li>
+    
+            </ol>
+          </div>
         </div>
       </div>
   
       <!-- Workshop -->
-      <div class="collapse show" id="workshop">
-        <div class="card card-body">
-          <h4 class="mb-3">🎓 Workshop</h4>
-          <ol>
-            <li>
-              <h5><strong>Sufficient Invariant Learning for Distribution Shift</strong></h5>
-              <ul>
-                <li>Taero Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <li>The Sixth Data Science Meets Optimisation (DSO) Workshop at IJCAI 2024</li>
-              </ul>
-            </li>
-
-            <br>
-
-            <li>
-              <h5><strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong></h5>
-              <ul>
-                <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                <li>Artificial Intelligence for Time Series Analysis (AI4TS) at IJCAI 2024</li>
-              </ul>
-            </li>
-
-            <br>
-            
-            <li>
-              <h5><strong>Flat Posterior For Bayesian Model Averaging</strong></h5>
-              <ul>
-                <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
-                <li>Frontiers in Probabilistic Inference Workshop at ICLR 2025</li>
-              </ul>
-            </li>
-          </ol>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">🎓 Workshop</h4>
+        </div>
+        <div class="collapse show" id="workshop">
+          <div class="card-body">
+            <ol>
+              <li>
+                <h5>
+                  <strong>Sufficient Invariant Learning for Distribution Shift</strong>
+                </h5>
+                <ul>
+                  <li>Taero Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <li>The Sixth Data Science Meets Optimisation (DSO) Workshop at IJCAI 2024</li>
+                </ul>
+              </li>
+ 
+              <br>
+ 
+              <li>
+                <h5>
+                  <strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong>
+                </h5>
+                <ul>
+                  <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
+                  <li>Artificial Intelligence for Time Series Analysis (AI4TS) at IJCAI 2024</li>
+                </ul>
+              </li>
+ 
+              <br>
+              
+              <li>
+                <h5>
+                  <strong>Flat Posterior For Bayesian Model Averaging</strong>
+                </h5>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
+                  <li>Frontiers in Probabilistic Inference Workshop at ICLR 2025</li>
+                </ul>
+              </li>
+ 
+              <br>
+ 
+              <li>
+                <h5>
+                  <strong>A Double-Edged Sword: Benchmarking the Trade-off Between Bias Mitigation and Helpfulness of LLM Guardrails in Finance</strong>
+                </h5>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Hoyoon Byun, Jihee Kim, Kyungwoo Song</li>
+                  <li>Advances in Financial AI: Innovations, Risk, and Responsibility in the Era of LLMs at CIKM 2025</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
@@ -896,6 +1039,41 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+
+  <!-- Publications filter script -->
+  <script>
+    $(function () {
+      function applyPeerFilters() {
+        var activeYear = $('#peerReviewed-year-toggle .btn.active').data('year') || '';
+        var allowedTypes = $('.peer-type-filter:checked').map(function () {
+          return $(this).val();
+        }).get();
+
+        $('.peer-reviewed-item').each(function () {
+          var $item = $(this);
+          var itemYear = String($item.data('year') || '');
+          var itemType = String($item.data('category') || '');
+
+          var yearMatch = !activeYear || itemYear === String(activeYear);
+          // If no type is selected, hide all; otherwise show only selected types
+          var typeMatch = allowedTypes.length > 0 && allowedTypes.indexOf(itemType) !== -1;
+
+          $item.toggle(yearMatch && typeMatch);
+        });
+      }
+
+      $('#peerReviewed-year-toggle .btn').on('click', function () {
+        $('#peerReviewed-year-toggle .btn').removeClass('active');
+        $(this).addClass('active');
+        applyPeerFilters();
+      });
+
+      $('.peer-type-filter').on('change', applyPeerFilters);
+
+      // Initialize filter state
+      applyPeerFilters();
+    });
+  </script>
 
 </body>
 </html>
