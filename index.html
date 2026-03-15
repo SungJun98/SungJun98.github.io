@@ -8,8 +8,11 @@
   <meta content="Portfolio site of Sungjun Lim" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +23,9 @@
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
@@ -56,33 +62,146 @@
 
   <!-- For Career Section -->
   <style>
-    .timeline-item {
+    /* Center timeline */
+    .career-timeline {
       position: relative;
-      padding-left: 20px;
-      border-left: 3px solid #007bff;
-    }
-  
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -9px;
-      top: 0;
-      width: 16px;
-      height: 16px;
-      background-color: #007bff;
-      border-radius: 50%;
-    }
-  
-    .border-left-phd {
-      border-left: 4px solid #007bff !important;
-    }
-  
-    .border-left-ms {
-      border-left: 4px solid #17a2b8 !important;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0;
     }
 
-    .border-left-bs {
-      border-left: 4px solid #ffc107 !important;
+    .career-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #C4A661, #003876);
+      border-radius: 2px;
+    }
+
+    .career-entry {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .career-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Alternate left and right */
+    .career-entry:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .career-entry:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .career-date {
+      flex: 0 0 calc(50% - 30px);
+      text-align: right;
+      padding-right: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #6c757d;
+      padding-top: 0.6rem;
+    }
+
+    .career-entry:nth-child(even) .career-date {
+      text-align: left;
+    }
+
+    .career-dot {
+      flex: 0 0 20px;
+      display: flex;
+      justify-content: center;
+      padding-top: 0.7rem;
+      position: relative;
+      z-index: 2;
+      margin: 0 10px;
+    }
+
+    .career-dot span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #003876;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px #003876;
+      display: block;
+    }
+
+    .career-dot.gold span {
+      background: #C4A661;
+      box-shadow: 0 0 0 3px #C4A661;
+    }
+
+    .career-dot.teal span {
+      background: #1a5276;
+      box-shadow: 0 0 0 3px #1a5276;
+    }
+
+    .career-card {
+      flex: 0 0 calc(50% - 30px);
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem 1.3rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,56,118,0.06);
+      transition: all 0.3s ease;
+    }
+
+    .career-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,56,118,0.1);
+    }
+
+    .career-card h6 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #003876;
+      margin-bottom: 0.3rem;
+    }
+
+    .career-card p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      margin-bottom: 0.15rem;
+      color: #4a4a4a;
+    }
+
+    .career-card .career-advisor {
+      font-size: 0.82rem;
+      color: #6c757d;
+    }
+
+    @media (max-width: 768px) {
+      .career-timeline::before {
+        left: 20px;
+      }
+
+      .career-entry,
+      .career-entry:nth-child(even) {
+        flex-direction: row !important;
+      }
+
+      .career-date {
+        display: none;
+      }
+
+      .career-dot {
+        margin: 0 15px 0 10px;
+      }
+
+      .career-card {
+        flex: 1;
+      }
     }
 
     /* Publication section custom styles */
@@ -91,12 +210,12 @@
       align-items: center;
       justify-content: center;
       margin-left: 8px;
-      color: #007bff;
+      color: #003876;
       font-size: 0.9em;
     }
 
     .pub-link-icon:hover {
-      color: #0056b3;
+      color: #002a5c;
       text-decoration: none;
     }
 
@@ -196,90 +315,48 @@
             </h3>
             <div class="line-mf"></div>
           </div>
-          <div class="box-shadow-full">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="row">
-                  <div class="col-sm-6 col-md-5">
-                    <div class="about-img">
-                      <img src="img/VB2A9103.jpg" class="img-fluid rounded b-shadow-a" alt="">
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-7">
-                    <div class="about-info">
-                      <p><span class="title-s">Name: </span> <span>Sungjun, Lim</span></p>
-                      <p><span class="title-s">Birth: </span> <span>Sep. 11, 1998</span></p>
-                      <p><span class="title-s">Department: </span> <span>Statistics and Data Science, Yonsei University</span></p>
-                      <p><span class="title-s">Email: </span> <span>lsj9862@gmail.com</span></p>
-                      <div class="socials" style="margin-top: 15px;">
-                        <ul style="list-style: none; padding: 0; display: flex; gap: 15px; justify-content: center;">
-                          <li>
-                            <a href="https://twitter.com/lsj9862" target="_blank">
-                              <span class="ico-circle">
-                                <i class="fa fa-twitter"></i>
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="https://www.linkedin.com/in/sungjun-lim-bb8b55202/" target="_blank">
-                              <span class="ico-circle">
-                                <i class="fa fa-linkedin"></i>
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ" target="_blank">
-                              <span class="ico-circle">
-                                <i class="fa fa-graduation-cap"></i>
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="https://drive.google.com/file/d/1xY-xvs_x_ze-13GoV8dvBtVLeQLh4SYb/view?usp=sharing" target="_blank">
-                              <span class="ico-circle">
-                                <i class="fa fa-paperclip"></i>
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="about-me pt-4 pt-md-0">
-                  <p class="lead">
-                    Hello! I am Sungjun Lim, a graduate researcher at Yonsei University's Statistics and Data Science department.
-                  </p>
-                  <p class="lead">
-                    My research centers on building robust and trustworthy AI systems, focusing on uncertainty quantification, robustness under distribution shift, and mechanistic interpretability to understand model behavior in out-of-distribution settings.
-                  </p>
-                  <p class="lead">
-                    Currently, I am working on uncertainty-aware and geometry-aware interpretability methods for large-scale neural networks, aiming to improve the robustness and faithfulness of explanations in real-world scenarios.
-                  </p>
-                </div>
-              </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-lg-4 text-center mb-4 mb-lg-0">
+          <div class="about-img-wrapper">
+            <img src="img/VB2A9103.jpg" class="about-photo" alt="Sungjun Lim">
+          </div>
+          <h4 class="mt-3 mb-1" style="font-weight:600;">Sungjun Lim</h4>
+          <p class="text-muted mb-2">Ph.D. Student, Yonsei University</p>
+          <p class="text-muted mb-3" style="font-size:0.9rem;">Statistics and Data Science</p>
+          <div class="about-social-links">
+            <a href="mailto:lsj9862@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+            <a href="https://twitter.com/lsj9862" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/sungjun-lim-bb8b55202/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ" target="_blank" title="Google Scholar"><i class="fa fa-graduation-cap"></i></a>
+            <a href="https://drive.google.com/file/d/1xY-xvs_x_ze-13GoV8dvBtVLeQLh4SYb/view?usp=sharing" target="_blank" title="CV"><i class="fa fa-paperclip"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="about-text-card">
+            <p class="lead">
+              Hello! I am Sungjun Lim, a graduate researcher at Yonsei University's Statistics and Data Science department.
+            </p>
+            <p class="lead">
+              My research centers on building robust and trustworthy AI systems, focusing on uncertainty quantification, robustness under distribution shift, and mechanistic interpretability to understand model behavior in out-of-distribution settings.
+            </p>
+            <p class="lead">
+              Currently, I am working on uncertainty-aware and geometry-aware interpretability methods for large-scale neural networks, aiming to improve the robustness and faithfulness of explanations in real-world scenarios.
+            </p>
+            <div class="research-interests mt-4">
+              <span class="interest-tag">Trustworthy AI</span>
+              <span class="interest-tag">Uncertainty Quantification</span>
+              <span class="interest-tag">Distribution Shift</span>
+              <span class="interest-tag">Mechanistic Interpretability</span>
+              <span class="interest-tag">Bayesian Deep Learning</span>
+              <span class="interest-tag">Probabilistic Representations</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
-  <!--/ Section Testimonials Start/-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <div class="container">
-      <div class="row">
-          <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="row">
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
 
 
   <section id="career" class="sect-pt4 route">
@@ -293,78 +370,57 @@
         </div>
       </div>
   
-      <div class="timeline">
-        <!-- 타임라인 아이템 -->
-        <div class="timeline-item mb-5">
-          <div class="card shadow-sm border-left-bs">
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">B.S.</h5>
-              <p class="card-text mb-1"><strong>Statistics, University of Seoul</strong></p>
-              <p class="text-muted">Mar. 2017 – Aug. 2022</p>
-            </div>
+      <div class="career-timeline">
+        <div class="career-entry">
+          <div class="career-date">Mar. 2017 – Aug. 2022</div>
+          <div class="career-dot gold"><span></span></div>
+          <div class="career-card">
+            <h6>B.S. in Statistics</h6>
+            <p><strong>University of Seoul</strong></p>
           </div>
         </div>
 
-        <div class="timeline-item mb-5">
-          <div class="card shadow-sm border-left-bs">
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">Undergraduate Research Assistant</h5>
-              <p class="card-text mb-1"><strong>MLAI Lab, University of Seoul</strong></p>
-              <p class="text-muted">Jun. 2021 – Aug. 2022</p>
-            </div>
+        <div class="career-entry">
+          <div class="career-date">Jun. 2021 – Aug. 2022</div>
+          <div class="career-dot gold"><span></span></div>
+          <div class="career-card">
+            <h6>Undergraduate Research Assistant</h6>
+            <p><strong>MLAI Lab, University of Seoul</strong></p>
           </div>
         </div>
 
-        <div class="timeline-item mb-5">
-          <div class="card shadow-sm border-left-ms">
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">M.S.</h5>
-              <p class="card-text mb-1"><strong>Artificial Intelligence, University of Seoul</strong></p>
-              <p class="card-text mb-1">Advisor: Kyungwoo Song</p>
-              <p class="text-muted">Sep. 2022 – Feb. 2024</p>
-            </div>
+        <div class="career-entry">
+          <div class="career-date">Sep. 2022 – Feb. 2024</div>
+          <div class="career-dot teal"><span></span></div>
+          <div class="career-card">
+            <h6>M.S. in Artificial Intelligence</h6>
+            <p><strong>University of Seoul</strong></p>
+            <p class="career-advisor">Advisor: Kyungwoo Song</p>
           </div>
         </div>
 
-        <div class="timeline-item mb-5">
-          <div class="card shadow-sm border-left-phd">
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">Ph.D. Student</h5>
-              <p class="card-text mb-1"><strong>Statistics and Data Science, Yonsei University</strong></p>
-              <p class="card-text mb-1">Advisor: Kyungwoo Song</p>
-              <p class="text-muted">Mar. 2024 – Present</p>
-            </div>
+        <div class="career-entry">
+          <div class="career-date">Mar. 2024 – Present</div>
+          <div class="career-dot"><span></span></div>
+          <div class="career-card">
+            <h6>Ph.D. Student</h6>
+            <p><strong>Statistics and Data Science, Yonsei University</strong></p>
+            <p class="career-advisor">Advisor: Kyungwoo Song</p>
           </div>
-        </div>      
-  
-  
-        <div class="timeline-item mb-5">
-          <div class="card shadow-sm border-left-phd">
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">Visiting Researcher</h5>
-              <p class="card-text mb-1"><strong>Computer Science, Australian National University</strong></p>
-              <p class="card-text mb-1">Advisor: <a href="https://users.cecs.anu.edu.au/~xlx/" target="_blank">Lexing Xie</a></p>
-              <p class="text-muted">Jul. 2025 – Aug. 2025</p>
-            </div>
+        </div>
+
+        <div class="career-entry">
+          <div class="career-date">Jul. 2025 – Aug. 2025</div>
+          <div class="career-dot"><span></span></div>
+          <div class="career-card">
+            <h6>Visiting Researcher</h6>
+            <p><strong>Computer Science, Australian National University</strong></p>
+            <p class="career-advisor">Advisor: <a href="https://users.cecs.anu.edu.au/~xlx/" target="_blank">Lexing Xie</a></p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
-  <!--/ Section Testimonials Start/-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <div class="container">
-      <div class="row">
-          <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="row">
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
 
 
   <section id="publications" class="features publications">
@@ -730,7 +786,7 @@
               MLAI Projects
             </h3>
             <p class="subtitle-a">
-              <a href="https://mlai.yonsei.ac.kr/" target="_blank" style="color: rgb(36, 119, 202);">MLAI@Yonsei</a>
+              <a href="https://mlai.yonsei.ac.kr/" target="_blank" style="color: #003876;">MLAI@Yonsei</a>
             </p>
             <div class="line-mf"></div>
           </div>
@@ -745,7 +801,7 @@
             <div class="service-content">
               <h2 class="s-title">Explainable AI for Blood Pressure Estimation</h2>
               <p class="s-description text-center">
-                <li> Funded by <a href="https://www.etri.re.kr/intro.html" target="_blank" style="color: rgb(36, 119, 202);">ETRI</a> </li>
+                <li> Funded by <a href="https://www.etri.re.kr/intro.html" target="_blank" style="color: #003876;">ETRI</a> </li>
                 <li>Deal with Uncertainty about Estimation of BP from AI</li>
               </p>
             </div>
@@ -760,7 +816,7 @@
             <div class="service-content">
               <h2 class="s-title">Causality Covid-19</h2>
               <p class="s-description text-center">
-                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: rgb(36, 119, 202);">Ministry of Food and Drug Safety</a></li>
+                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: #003876;">Ministry of Food and Drug Safety</a></li>
                 <li>Infection prediction based on causal graph</li>
               </p>
             </div>
@@ -775,7 +831,7 @@
             <div class="service-content">
               <h2 class="s-title">Directional GNN for Infection Prediction</h2>
               <p class="s-description text-center">
-                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: rgb(36, 119, 202);">Ministry of Food and Drug Safety</a></li>
+                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: #003876;">Ministry of Food and Drug Safety</a></li>
                 <li>Infection prediction based on graphical information</li>
               </p>
             </div>
@@ -790,7 +846,7 @@
             <div class="service-content">
               <h2 class="s-title">Infection Prediction Based on Gaussian Process</h2>
               <p class="s-description text-center">
-                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: rgb(36, 119, 202);">Ministry of Food and Drug Safety</a></li>
+                <li>Funded by <a href="https://www.mfds.go.kr/eng/index.do" target="_blank" style="color: #003876;">Ministry of Food and Drug Safety</a></li>
                 <li>Infection prediction based on robabilistic model</li>
               </p>
             </div>
@@ -805,7 +861,7 @@
             <div class="service-content">
               <h2 class="s-title">Educational Content Relationship Analysis</h2>
               <p class="s-description text-center">
-                <li>Funded by <a href="https://www.jointips.or.kr/about_en.php" target="_blank" style="color: rgb(36, 119, 202);">TIPS</a></li>
+                <li>Funded by <a href="https://www.jointips.or.kr/about_en.php" target="_blank" style="color: #003876;">TIPS</a></li>
                 <li>Analyze educational content relationship via LLMs and RAG</li>
               </p>
             </div>
@@ -820,7 +876,7 @@
             <div class="service-content">
               <h2 class="s-title">Signal Processing</h2>
               <p class="s-description text-center">
-                <li>Funded by <a href="https://www.add.re.kr/kps" target="_blank" style="color: rgb(36, 119, 202);">ADS</a></li>
+                <li>Funded by <a href="https://www.add.re.kr/kps" target="_blank" style="color: #003876;">ADS</a></li>
                 <li>Develop class incremental algorithm to classify aviation object</li>
               </p>
             </div>
@@ -833,18 +889,6 @@
   <!--/ Section MLAI Project End /-->
 
 
- <!--/ Section Testimonials Start/-->
- <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
-  <div class="overlay-mf"></div>
-  <div class="container">
-    <div class="row">
-        <div id="testimonial-mf" class="owl-carousel owl-theme">
-          <div class="row">
-          </div>
-        </div>
-    </div>
-  </div>
-</div>
 
 
   <!--/ Section Services(Personal Project) Start /-->
@@ -897,142 +941,12 @@
   <!--/ Section Services(Personal Project) End /-->
 
 
-  <!-- / Section Contact-Footer Star /-->
-  <!-- <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="contact-mf">
-            <div id="contact" class="box-shadow-full">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="title-box-2">
-                    <h5 class="title-left">
-                      Send Message
-                    </h5>
-                  </div>
-                  <div>
-                      <form method="post" role="form" class="contactForm">
-                        <div id="sendmessage">Your message has been sent. Thank you!</div>
-                        <div id="errormessage"></div>
-                        <div class="row">
-                          <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                              <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validation"></div>
-                              </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <input type="button" name="email_submit" value="Send Message" class="button button-a button-big button-rouded"/>
-                          </div>
-                          <script type="text/javascript">
-                            var clearText = function(){
-                              $('input[name=name]').val("");
-                              $('input[name=email]').val("");
-                              $('input[name=subject]').val("");
-                              $('textarea[name=message]').val("");
-                            }
-                            $(document).ready(function() {
-                              emailjs.init("user_CInynfllCKZ7fxUX26kKH");	// Go EmailJS dashboard > integration > browser and copy/paste your user ID. 
-                              $('input[name=email_submit]').click(function(){       	 
-                                    
-                              //Each element should have identical name with your EmailJS template.
-                              var templateParams = { 
-                                    name: $('input[name=name]').val(),
-                                    email: $('input[name=email]').val(), 
-                                    subject : $('input[name=subject]').val(),
-                                    message : $('textarea[name=message]').val()
-                              };
-                                          
-                              //emailjs.send('service ID', 'template ID', params)
-                              emailjs.send('service_xzi3bcb', 'template_anlzr4c', templateParams)                                
-                              .then(function(response) {
-                                console.log('SUCCESS!', response.status, response.text);
-                                clearText();
-                                alert("Thank you for reaching out to me!  I’ll reply to you as soon as I check it.");
-                              }, function(error) {
-                                console.log('FAILED...', error);
-                                clearText();
-                                alert("Your mail went wrong. Please try again.");
-                                });
-                              });
-                            });
-                          </script>
-                        </div>
-                      </form>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="title-box-2 pt-4 pt-md-0">
-                    <h5 class="title-left">
-                      Get in Touch
-                    </h5>
-                  </div>
-                  <div class="more-info">
-                    <p class="lead">
-                      Don't hesitate to get in touch with me if you need!
-                    </p>
-                    <ul class="list-ico">
-                      <li><span class="ion-ios-location"></span>204, Engineering 2, University of Seoul</li>
-                      <li><span class="ion-email"></span> lsj9862@gmail.com</li>
-                    </ul>
-                  </div>
-                  <div class="socials">
-                    <ul>
-                      <li><a href="https://twitter.com/lsj9862" target="_blank"><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
-                      <li><a href="https://www.linkedin.com/in/sungjun-lim-bb8b55202/" target="_blank"><span class="ico-circle"><i class="ion-social-linkedin"></i></span></a></li>
-                    </ul>
-                  </div>
-                  <div style="position: relative;width: 100%;height: 50%">
-                    <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=2&bgcolor=%23ffffff&ctz=Asia%2FSeoul&showTitle=0&showNav=0&showPrint=0&showCalendars=0&showTz=0&showTabs=0&mode=WEEK&src=bHNqOTg2MkBnbWFpbC5jb20&color=%237986CB"
-                    frameborder="0" style="border:solid 1px #777;position: absolute;width: 100%;height: 100%;"></iframe>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Footer -->
+  <footer style="background-color: #003876; padding: 2rem 0;">
+    <div class="container text-center">
+      <p class="text-white mb-0">&copy; 2024 Sungjun Lim. All Rights Reserved</p>
     </div>
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="copyright-box">
-              <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
-              <div class="credits">
-                  All the links in the footer should remain intact.
-                  You can delete the links only if you purchased the pro version.
-                  Licensing information: https://bootstrapmade.com/license/
-                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </section> -->
-  <!--/ Section Contact-footer End / -->
+  </footer>
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
