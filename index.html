@@ -12,7 +12,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
   <link rel="shortcut icon" href="img/favicon.png">
-  <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +24,7 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
@@ -60,188 +59,6 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
 
-  <!-- For Career Section -->
-  <style>
-    /* Center timeline */
-    .career-timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0;
-    }
-
-    .career-timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, #C4A661, #003876);
-      border-radius: 2px;
-    }
-
-    .career-entry {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-
-    .career-entry:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Alternate left and right */
-    .career-entry:nth-child(odd) {
-      flex-direction: row;
-    }
-
-    .career-entry:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-
-    .career-date {
-      flex: 0 0 calc(50% - 30px);
-      text-align: right;
-      padding-right: 0;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      color: #6c757d;
-      padding-top: 0.6rem;
-    }
-
-    .career-entry:nth-child(even) .career-date {
-      text-align: left;
-    }
-
-    .career-dot {
-      flex: 0 0 20px;
-      display: flex;
-      justify-content: center;
-      padding-top: 0.7rem;
-      position: relative;
-      z-index: 2;
-      margin: 0 10px;
-    }
-
-    .career-dot span {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #003876;
-      border: 3px solid #fff;
-      box-shadow: 0 0 0 3px #003876;
-      display: block;
-    }
-
-    .career-dot.gold span {
-      background: #C4A661;
-      box-shadow: 0 0 0 3px #C4A661;
-    }
-
-    .career-dot.teal span {
-      background: #1a5276;
-      box-shadow: 0 0 0 3px #1a5276;
-    }
-
-    .career-card {
-      flex: 0 0 calc(50% - 30px);
-      background: #fff;
-      border-radius: 12px;
-      padding: 1rem 1.3rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,56,118,0.06);
-      transition: all 0.3s ease;
-    }
-
-    .career-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,56,118,0.1);
-    }
-
-    .career-card h6 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #003876;
-      margin-bottom: 0.3rem;
-    }
-
-    .career-card p {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      margin-bottom: 0.15rem;
-      color: #4a4a4a;
-    }
-
-    .career-card .career-advisor {
-      font-size: 0.82rem;
-      color: #6c757d;
-    }
-
-    @media (max-width: 768px) {
-      .career-timeline::before {
-        left: 20px;
-      }
-
-      .career-entry,
-      .career-entry:nth-child(even) {
-        flex-direction: row !important;
-      }
-
-      .career-date {
-        display: none;
-      }
-
-      .career-dot {
-        margin: 0 15px 0 10px;
-      }
-
-      .career-card {
-        flex: 1;
-      }
-    }
-
-    /* Publication section custom styles */
-    .pub-link-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 8px;
-      color: #003876;
-      font-size: 0.9em;
-    }
-
-    .pub-link-icon:hover {
-      color: #002a5c;
-      text-decoration: none;
-    }
-
-    .peer-filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .peer-filter-bar .btn-group .btn {
-      min-width: 50px;
-    }
-
-    .peer-reviewed-item {
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 576px) {
-      .peer-filter-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
 
 </head>
 
@@ -287,8 +104,7 @@
   <!--/ Nav End /-->
 
   <!--/ Intro Skew Star /-->
-  <div id="home" class="intro route bg-image"
-  style="background-image: url(https://i.pinimg.com/originals/af/dc/8c/afdc8cf2d156d0d2a2728d816fac194c.jpg)">
+  <div id="home" class="intro route">
     <div class="overlay-itro"></div>
     <div class="intro-content display-table">
       <div class="table-cell">
@@ -303,13 +119,18 @@
   </div>
   <!--/ Intro Skew End /-->
 
-
+  <!-- Wave divider -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#faf8f5"/>
+    </svg>
+  </div>
 
   <section id="about" class="about-mf sect-pt4 route">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="title-box text-center">
+          <div class="title-box text-center reveal">
             <h3 class="title-a">
               About Me
             </h3>
@@ -318,7 +139,7 @@
         </div>
       </div>
       <div class="row align-items-center">
-        <div class="col-lg-4 text-center mb-4 mb-lg-0">
+        <div class="col-lg-4 text-center mb-4 mb-lg-0 reveal reveal-delay-1">
           <div class="about-img-wrapper">
             <img src="img/VB2A9103.jpg" class="about-photo" alt="Sungjun Lim">
           </div>
@@ -333,7 +154,7 @@
             <a href="https://drive.google.com/file/d/1xY-xvs_x_ze-13GoV8dvBtVLeQLh4SYb/view?usp=sharing" target="_blank" title="CV"><i class="fa fa-paperclip"></i></a>
           </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8 reveal reveal-delay-2">
           <div class="about-text-card">
             <p class="lead">
               Hello! I am Sungjun Lim, a graduate researcher at Yonsei University's Statistics and Data Science department.
@@ -363,7 +184,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 text-center">
-          <div class="title-box">
+          <div class="title-box reveal">
             <h3 class="title-a">Career</h3>
             <div class="line-mf"></div>
           </div>
@@ -371,7 +192,7 @@
       </div>
   
       <div class="career-timeline">
-        <div class="career-entry">
+        <div class="career-entry reveal">
           <div class="career-date">Mar. 2017 – Aug. 2022</div>
           <div class="career-dot gold"><span></span></div>
           <div class="career-card">
@@ -380,7 +201,7 @@
           </div>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry reveal">
           <div class="career-date">Jun. 2021 – Aug. 2022</div>
           <div class="career-dot gold"><span></span></div>
           <div class="career-card">
@@ -389,7 +210,7 @@
           </div>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry reveal">
           <div class="career-date">Sep. 2022 – Feb. 2024</div>
           <div class="career-dot teal"><span></span></div>
           <div class="career-card">
@@ -399,7 +220,7 @@
           </div>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry reveal current">
           <div class="career-date">Mar. 2024 – Present</div>
           <div class="career-dot"><span></span></div>
           <div class="career-card">
@@ -409,7 +230,7 @@
           </div>
         </div>
 
-        <div class="career-entry">
+        <div class="career-entry reveal">
           <div class="career-date">Jul. 2025 – Aug. 2025</div>
           <div class="career-dot"><span></span></div>
           <div class="career-card">
@@ -427,7 +248,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="title-box text-center">
+          <div class="title-box text-center reveal">
             <h3 class="title-a">Publications</h3>
             <p><a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ" target="_blank">Google Scholar</a></p>
             <div class="line-mf"></div>
@@ -454,7 +275,7 @@
               <div>
                 <span class="mr-2 font-weight-bold">Year</span>
                 <div class="btn-group btn-group-sm" role="group" id="peerReviewed-year-toggle">
-                  <button type="button" class="btn btn-outline-primary active" data-year="">All</button>
+                  <button type="button" class="btn btn-outline-primary active" data-year="all">All</button>
                   <button type="button" class="btn btn-outline-primary" data-year="2024">2024</button>
                   <button type="button" class="btn btn-outline-primary" data-year="2025">2025</button>
                   <button type="button" class="btn btn-outline-primary" data-year="2026">2026</button>
@@ -762,26 +583,12 @@
 
 
 
-  <!--/ Section Testimonials Start/-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
-    <div class="container">
-      <div class="row">
-          <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="row">
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-
   <!--/ Section Services(MLAI Project) Start /-->
   <section id="MLAIprojects" class="services-mf route">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="title-box text-center">
+          <div class="title-box text-center reveal">
             <h3 class="title-a">
               MLAI Projects
             </h3>
@@ -794,7 +601,7 @@
       </div>
       <div class="row">
         <div class="col-md-4">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-ios-pulse"></i></span>
             </div>
@@ -809,7 +616,7 @@
         </div>
 
         <div class="col-md-4">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
             </div>
@@ -824,7 +631,7 @@
         </div>
 
         <div class="col-md-4">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
             </div>
@@ -839,7 +646,7 @@
         </div>
 
         <div class="col-md-4">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
             </div>
@@ -854,7 +661,7 @@
         </div>
 
         <div class="col-md-4">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-ios-book"></i></span>
             </div>
@@ -869,7 +676,7 @@
         </div>
 
         <div class="col-md-4">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-plane"></i></span>
             </div>
@@ -907,7 +714,7 @@
       <div class="row">
         <div class="col-md-4">
           <a href="https://github.com/SungJun98/CleanPureJeju" target="_blank">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-ios-trash"></i></span>
             </div>
@@ -922,7 +729,7 @@
         </div>
         <div class="col-md-4">
           <a href="https://github.com/SungJun98/Seoul_Viz" target="_blank">
-          <div class="service-box">
+          <div class="service-box reveal">
             <div class="service-ico">
               <span class="ico-circle"><i class="ion-information-circled"></i></span>
             </div>
@@ -942,8 +749,22 @@
 
 
   <!-- Footer -->
-  <footer style="background-color: #003876; padding: 2rem 0;">
-    <div class="container text-center">
+  <footer>
+    <div class="container">
+      <div class="footer-nav">
+        <a href="#home" class="js-scroll">Home</a>
+        <a href="#about" class="js-scroll">About</a>
+        <a href="#career" class="js-scroll">Career</a>
+        <a href="#publications" class="js-scroll">Publications</a>
+        <a href="#MLAIprojects" class="js-scroll">Projects</a>
+      </div>
+      <div class="footer-social">
+        <a href="mailto:lsj9862@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+        <a href="https://twitter.com/lsj9862" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/sungjun-lim-bb8b55202/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+        <a href="https://scholar.google.com/citations?hl=ko&user=0ZGqpfkAAAAJ" target="_blank" title="Google Scholar"><i class="fa fa-graduation-cap"></i></a>
+      </div>
+      <div class="footer-divider"></div>
       <p class="text-white mb-0">&copy; 2024 Sungjun Lim. All Rights Reserved</p>
     </div>
   </footer>
@@ -954,11 +775,41 @@
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
 
+  <!-- Scroll reveal (Intersection Observer) -->
+  <script>
+    (function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
   <!-- Publications filter script -->
   <script>
     $(function () {
       function applyPeerFilters() {
-        var activeYear = $('#peerReviewed-year-toggle .btn.active').data('year') || '';
+        var $allBtn = $('#peerReviewed-year-toggle .btn[data-year="all"]');
+        var isAll = $allBtn.hasClass('active');
+
+        // Collect selected years
+        var selectedYears = [];
+        if (!isAll) {
+          $('#peerReviewed-year-toggle .btn').not('[data-year="all"]').each(function () {
+            if ($(this).hasClass('active')) {
+              selectedYears.push(String($(this).data('year')));
+            }
+          });
+        }
+
         var allowedTypes = $('.peer-type-filter:checked').map(function () {
           return $(this).val();
         }).get();
@@ -968,8 +819,7 @@
           var itemYear = String($item.data('year') || '');
           var itemType = String($item.data('category') || '');
 
-          var yearMatch = !activeYear || itemYear === String(activeYear);
-          // If no type is selected, hide all; otherwise show only selected types
+          var yearMatch = isAll || selectedYears.indexOf(itemYear) !== -1;
           var typeMatch = allowedTypes.length > 0 && allowedTypes.indexOf(itemType) !== -1;
 
           $item.toggle(yearMatch && typeMatch);
@@ -977,8 +827,31 @@
       }
 
       $('#peerReviewed-year-toggle .btn').on('click', function () {
-        $('#peerReviewed-year-toggle .btn').removeClass('active');
-        $(this).addClass('active');
+        var $this = $(this);
+        var year = $this.data('year');
+        var $allBtn = $('#peerReviewed-year-toggle .btn[data-year="all"]');
+        var $yearBtns = $('#peerReviewed-year-toggle .btn').not('[data-year="all"]');
+
+        if (year === 'all') {
+          // Click "All": activate All, deactivate individual years
+          $yearBtns.removeClass('active');
+          $allBtn.addClass('active');
+        } else {
+          // Toggle this year
+          $allBtn.removeClass('active');
+          $this.toggleClass('active');
+
+          // If no year is selected, revert to All
+          if ($yearBtns.filter('.active').length === 0) {
+            $allBtn.addClass('active');
+          }
+          // If all years are selected, switch to All
+          if ($yearBtns.filter('.active').length === $yearBtns.length) {
+            $yearBtns.removeClass('active');
+            $allBtn.addClass('active');
+          }
+        }
+
         applyPeerFilters();
       });
 
