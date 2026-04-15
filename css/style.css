@@ -34,6 +34,26 @@
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Dark theme overrides — applied when html[data-theme="dark"] */
+html[data-theme="dark"] {
+  --bg-primary:   #0f1b2e;
+  --bg-warm:      #0a1628;
+  --bg-white:     #142847;
+  --text-primary: #e8eaed;
+  --text-body:    #c4cbd4;
+  --text-muted:   #8b94a3;
+  --blue-deep:    #5a9fdb;       /* brightened for links/accents on dark */
+  --blue-mid:     #4a7fb8;
+  --teal:         #5fae9e;
+  --gold:         #d4b97a;       /* slightly lifted for contrast */
+  --gold-light:   #2a2417;
+  --navy-dark:    #050d1a;
+  --border-light: rgba(196, 166, 97, 0.12);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
 /* ======================================
    GLOBAL STYLES
    ====================================== */
@@ -660,20 +680,7 @@ section:nth-of-type(odd) {
   }
 }
 
-/* Floating geometric accents */
-.intro::before {
-  content: '';
-  position: absolute;
-  top: 15%;
-  right: 10%;
-  width: 300px;
-  height: 300px;
-  border: 1px solid rgba(196, 166, 97, 0.12);
-  border-radius: 50%;
-  animation: floatCircle 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
+/* Floating square accent (top-right circle removed per user request) */
 .intro::after {
   content: '';
   position: absolute;
@@ -685,11 +692,6 @@ section:nth-of-type(odd) {
   transform: rotate(45deg);
   animation: floatSquare 10s ease-in-out infinite;
   pointer-events: none;
-}
-
-@keyframes floatCircle {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-20px, 15px); }
 }
 
 @keyframes floatSquare {
@@ -784,8 +786,10 @@ section:nth-of-type(odd) {
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: calc(var(--i, 0) * 100ms);
+  will-change: opacity, transform;
 }
 
 .reveal.revealed {
@@ -793,11 +797,20 @@ section:nth-of-type(odd) {
   transform: translateY(0);
 }
 
+/* Legacy manual delay hooks (kept for backwards compat) */
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* ======================================
    ABOUT SECTION
@@ -1200,6 +1213,17 @@ section:nth-of-type(odd) {
   overflow: hidden;
 }
 
+/* Per-subsection header accents — mirror the toggle buttons */
+.publications .card-header--navy {
+  background: linear-gradient(135deg, var(--navy-dark), var(--blue-deep));
+}
+.publications .card-header--gold {
+  background: linear-gradient(135deg, #8a7338, var(--gold));
+}
+.publications .card-header--teal {
+  background: linear-gradient(135deg, #0f3b4f, var(--teal));
+}
+
 /* Subtle pattern in card headers */
 .publications .card-header::after {
   content: '';
@@ -1370,8 +1394,16 @@ section:nth-of-type(odd) {
 }
 
 .publications .text-center .btn-secondary {
-  background: var(--blue-mid);
-  border-color: var(--blue-mid);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy-dark);
+}
+
+.publications .text-center .btn-secondary:hover,
+.publications .text-center .btn-secondary:focus {
+  background: #b0904d;
+  border-color: #b0904d;
+  color: var(--navy-dark);
 }
 
 .publications .text-center .btn-info {
@@ -1447,9 +1479,28 @@ section:nth-of-type(odd) {
   font-size: 2rem;
   height: 68px;
   width: 68px;
-  line-height: 1.7;
+  line-height: 1;
   box-shadow: 0 0 0 6px rgba(0, 56, 118, 0.08);
-  color: var(--blue-deep);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.service-box .service-ico {
+  text-align: center;
+}
+
+.service-ico-svg {
+  width: 34px;
+  height: 34px;
+  color: inherit;
+  transition: color 400ms ease;
+}
+
+.service-box:hover .ico-circle .service-ico-svg {
+  color: #fff;
 }
 
 .service-box .service-content {
@@ -1478,26 +1529,7 @@ section:nth-of-type(odd) {
   margin-bottom: 0.3rem;
 }
 
-/* Vary accent bar colors per card */
-.col-md-4:nth-child(2) .service-box::before {
-  background: linear-gradient(90deg, var(--teal), var(--blue-mid));
-}
-
-.col-md-4:nth-child(3) .service-box::before {
-  background: linear-gradient(90deg, var(--gold), #d4a84a);
-}
-
-.col-md-4:nth-child(4) .service-box::before {
-  background: linear-gradient(90deg, var(--blue-mid), var(--teal));
-}
-
-.col-md-4:nth-child(5) .service-box::before {
-  background: linear-gradient(90deg, #2D6A9F, var(--gold));
-}
-
-.col-md-4:nth-child(6) .service-box::before {
-  background: linear-gradient(90deg, var(--navy-dark), var(--blue-deep));
-}
+/* All MLAI cards share the default blue-deep → gold accent bar */
 
 /* ======================================
    COUNTER
@@ -2006,7 +2038,6 @@ footer .credits a { color: var(--gold); }
     font-size: 2.5rem;
   }
 
-  .intro::before,
   .intro::after {
     display: none;
   }
@@ -2033,4 +2064,70 @@ footer .credits a { color: var(--gold); }
   .intro .intro-subtitle {
     font-size: 1.1rem;
   }
+}
+
+/* ======================================
+   THEME TOGGLE
+   ====================================== */
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 0.5rem 0.9rem;
+  color: inherit;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition), transform var(--transition);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  color: var(--gold);
+  outline: none;
+  box-shadow: none;
+}
+
+.theme-toggle .theme-icon {
+  width: 20px;
+  height: 20px;
+}
+
+html[data-theme="light"] .theme-toggle .theme-icon-light { display: inline-block; }
+html[data-theme="light"] .theme-toggle .theme-icon-dark  { display: none; }
+html[data-theme="dark"]  .theme-toggle .theme-icon-light { display: none; }
+html[data-theme="dark"]  .theme-toggle .theme-icon-dark  { display: inline-block; }
+
+/* ======================================
+   DARK MODE TWEAKS
+   ====================================== */
+
+html[data-theme="dark"] body {
+  background-color: var(--bg-warm);
+  color: var(--text-body);
+}
+
+html[data-theme="dark"] .service-box,
+html[data-theme="dark"] .publications .card {
+  background-color: var(--bg-white);
+}
+
+html[data-theme="dark"] .publications .card-body ol > li {
+  border-bottom-color: rgba(196, 166, 97, 0.12);
+}
+
+html[data-theme="dark"] .navbar-b.navbar-reduce {
+  background-color: rgba(10, 22, 40, 0.95);
+}
+
+html[data-theme="dark"] .overlay-itro {
+  background-color: rgba(5, 10, 20, 0.75);
+}
+
+html[data-theme="dark"] body::before {
+  opacity: 0.04;
 }

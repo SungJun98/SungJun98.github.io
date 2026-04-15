@@ -3,6 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>Sungjun Lim</title>
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (e) {}
+      var prefersDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute(
+        'data-theme',
+        stored || (prefersDark ? 'dark' : 'light')
+      );
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="Portfolio site of Sungjun Lim" name="description">
@@ -97,6 +109,24 @@
           <!-- <li class="nav-item">
             <a class="nav-link js-scroll" href="#contact">Contact</a>
           </li> -->
+          <li class="nav-item">
+            <button id="theme-toggle" class="nav-link theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+              <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="12" y1="2.5" x2="12" y2="5"/>
+                <line x1="12" y1="19" x2="12" y2="21.5"/>
+                <line x1="2.5" y1="12" x2="5" y2="12"/>
+                <line x1="19" y1="12" x2="21.5" y2="12"/>
+                <line x1="5" y1="5" x2="6.8" y2="6.8"/>
+                <line x1="17.2" y1="17.2" x2="19" y2="19"/>
+                <line x1="5" y1="19" x2="6.8" y2="17.2"/>
+                <line x1="17.2" y1="6.8" x2="19" y2="5"/>
+              </svg>
+              <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+              </svg>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -265,7 +295,7 @@
   
       <!-- Peer Reviewed -->
       <div class="card mb-3">
-        <div class="card-header">
+        <div class="card-header card-header--navy">
           <div class="d-flex flex-column">
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="mb-0">📘 Peer Reviewed</h4>
@@ -298,7 +328,7 @@
         <div class="collapse show" id="peerReviewed">
           <div class="card-body">
             <ol>
-              <li class="peer-reviewed-item" data-year="2024" data-category="journal">
+              <li class="peer-reviewed-item reveal" data-year="2024" data-category="journal">
                 <h5>
                   <strong>Language model-guided student performance prediction with multimodal auxiliary information</strong>
                   <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417424008261" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -311,7 +341,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="journal">
                 <h5>
                   <strong>GFML: Gravity Function for Metric Learning</strong>
                   <a href="https://www.sciencedirect.com/science/article/abs/pii/S095219762401621X" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -324,7 +354,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="journal">
                 <h5>
                   <strong>Robust Optimization for PPG-based Blood Pressure Estimation</strong>
                   <a href="https://www.sciencedirect.com/science/article/abs/pii/S1746809425000965" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -337,7 +367,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="conference">
                 <h5>
                   <strong>Brain-inspired L<sub>p</sub>-Convolution benefits large kernels and aligns better with visual cortex</strong>
                   <a href="https://openreview.net/pdf?id=WpFCplXaLv" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -350,7 +380,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="conference">
                 <h5>
                   <strong>Sufficient Invariant Learning for Distribution Shift</strong>
                   <a href="https://arxiv.org/abs/2210.13533" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -363,7 +393,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="conference">
                 <h5>
                   <strong>Flat Posterior Does Matter For Bayesian Model Averaging</strong>
                   <a href="https://arxiv.org/abs/2406.15664" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -376,7 +406,7 @@
                 </ul>
               </li>
               
-              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="conference">
                 <h5>
                   <strong>Uncertainty Aware Contrastive Decoding</strong>
                   <a href="https://aclanthology.org/2025.findings-acl.1352/" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -389,7 +419,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="journal">
                 <h5>
                   <strong>COVID-19 Prediction with Doubly Multi-task Gaussian Process</strong>
                   <a href="https://www.sciencedirect.com/science/article/abs/pii/S1532046425001017" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -402,7 +432,7 @@
                 </ul>
               </li>
         
-              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="conference">
                 <h5>
                   <strong>Causal Effect Variational Transformer for Public Health Measures and COVID-19 Infection Cluster Analysis</strong>
                   <a href="https://dl.acm.org/doi/10.1145/3746252.3761040" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -415,7 +445,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="journal">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="journal">
                 <h5>
                   <strong>Data Adaptive Stochastic Ensemble Net: Optimizing Infection Predictions for COVID-19 Cluster Analysis</strong>
                   <a href="https://pubmed.ncbi.nlm.nih.gov/41336165/" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -428,7 +458,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2025" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2025" data-category="conference">
                 <h5>
                   <strong>RAILL : Retrieval-Augment and Instruction Tuning for Low-resource Language Model Training</strong>
                   <a href="https://www.computer.org/csdl/video-library/video/2dOyw48QgXm" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -441,7 +471,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2026" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2026" data-category="conference">
                 <h5>
                   <strong>Semi-Supervised Preference Optimization with Limited Feedbacks</strong>
                   <a href="https://arxiv.org/abs/2511.00040" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -455,7 +485,7 @@
                 </ul>
               </li>
 
-              <li class="peer-reviewed-item" data-year="2026" data-category="conference">
+              <li class="peer-reviewed-item reveal" data-year="2026" data-category="conference">
                 <h5>
                   <strong>Uncertainty-driven Embedding Convolution</strong>
                   <a href="https://arxiv.org/abs/2507.20718" class="pub-link-icon" target="_blank" title="View paper (link to be added)">
@@ -476,13 +506,13 @@
   
       <!-- Under-Review -->
       <div class="card mb-3">
-        <div class="card-header">
+        <div class="card-header card-header--gold">
           <h4 class="mb-0">📝 Under-Review</h4>
         </div>
         <div class="collapse show" id="underReview">
           <div class="card-body">
             <ol>
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>DDRL: A Diffusion-Driven Reinforcement Learning Approach for Enhanced TSP Solutions</strong>
                 </h5>
@@ -494,7 +524,7 @@
  
               <br>
  
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>Eigen-Value : Efficient Domain-Robust Data Valuation via eigenvalue-Based Approach</strong>
                 </h5>
@@ -506,7 +536,7 @@
  
               <br>
  
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>PTD: Partial-Teacher Distillation for Efficient MoE Recovery in Large Language Models</strong>
                 </h5>
@@ -523,13 +553,13 @@
   
       <!-- Workshop -->
       <div class="card mb-3">
-        <div class="card-header">
+        <div class="card-header card-header--teal">
           <h4 class="mb-0">🎓 Workshop</h4>
         </div>
         <div class="collapse show" id="workshop">
           <div class="card-body">
             <ol>
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>Sufficient Invariant Learning for Distribution Shift</strong>
                 </h5>
@@ -541,7 +571,7 @@
  
               <br>
  
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong>
                 </h5>
@@ -553,7 +583,7 @@
  
               <br>
               
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>Flat Posterior For Bayesian Model Averaging</strong>
                 </h5>
@@ -565,7 +595,7 @@
  
               <br>
  
-              <li>
+              <li class="reveal">
                 <h5>
                   <strong>A Double-Edged Sword: Benchmarking the Trade-off Between Bias Mitigation and Helpfulness of LLM Guardrails in Finance</strong>
                 </h5>
@@ -603,7 +633,7 @@
         <div class="col-md-4">
           <div class="service-box reveal">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-ios-pulse"></i></span>
+              <span class="ico-circle"><svg class="service-ico-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 36 C 14 30, 22 38, 32 32 C 42 26, 50 34, 60 30" opacity="0.35"/><path d="M4 44 C 14 38, 22 46, 32 40 C 42 34, 50 42, 60 38" opacity="0.35"/><path d="M4 40 L 16 40 L 20 32 L 24 48 L 28 24 L 32 40 L 44 40 L 48 34 L 52 40 L 60 40"/></svg></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Explainable AI for Blood Pressure Estimation</h2>
@@ -618,7 +648,7 @@
         <div class="col-md-4">
           <div class="service-box reveal">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+              <span class="ico-circle"><svg class="service-ico-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="18" r="5"/><circle cx="50" cy="18" r="5"/><circle cx="32" cy="48" r="5"/><line x1="19" y1="19" x2="43" y2="19"/><polyline points="40,15 45,19 40,23"/><line x1="17" y1="23" x2="29" y2="43"/><polyline points="25,40 30,44 30,38"/><line x1="47" y1="23" x2="35" y2="43"/><polyline points="39,40 34,44 34,38"/></svg></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Causality Covid-19</h2>
@@ -633,7 +663,7 @@
         <div class="col-md-4">
           <div class="service-box reveal">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+              <span class="ico-circle"><svg class="service-ico-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="4"/><circle cx="52" cy="14" r="4"/><circle cx="32" cy="32" r="4"/><circle cx="12" cy="50" r="4"/><circle cx="52" cy="50" r="4"/><line x1="16" y1="16" x2="28" y2="28"/><polyline points="25,26 29,29 26,31"/><line x1="48" y1="16" x2="36" y2="28"/><polyline points="39,26 35,29 38,31"/><line x1="36" y1="36" x2="48" y2="46"/><polyline points="45,44 49,47 45,48"/><line x1="28" y1="36" x2="16" y2="46"/><polyline points="19,44 15,47 19,48"/></svg></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Directional GNN for Infection Prediction</h2>
@@ -648,7 +678,7 @@
         <div class="col-md-4">
           <div class="service-box reveal">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-ios-medkit"></i></span>
+              <span class="ico-circle"><svg class="service-ico-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 24 Q 16 12, 32 22 T 60 18" opacity="0.3"/><path d="M4 48 Q 16 44, 32 42 T 60 46" opacity="0.3"/><path d="M4 36 Q 16 28, 32 32 T 60 32"/><circle cx="14" cy="33" r="1.6" fill="currentColor" stroke="none"/><circle cx="28" cy="31" r="1.6" fill="currentColor" stroke="none"/><circle cx="44" cy="32" r="1.6" fill="currentColor" stroke="none"/><circle cx="56" cy="32" r="1.6" fill="currentColor" stroke="none"/></svg></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Infection Prediction Based on Gaussian Process</h2>
@@ -663,7 +693,7 @@
         <div class="col-md-4">
           <div class="service-box reveal">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-ios-book"></i></span>
+              <span class="ico-circle"><svg class="service-ico-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="24" y="22" width="16" height="20" rx="1.5"/><line x1="27" y1="28" x2="37" y2="28"/><line x1="27" y1="32" x2="37" y2="32"/><line x1="27" y1="36" x2="34" y2="36"/><rect x="6" y="10" width="10" height="12" rx="1"/><rect x="48" y="10" width="10" height="12" rx="1"/><rect x="6" y="42" width="10" height="12" rx="1"/><rect x="48" y="42" width="10" height="12" rx="1"/><path d="M16 16 Q 22 18, 26 24" opacity="0.6"/><path d="M48 16 Q 42 18, 38 24" opacity="0.6"/><path d="M16 48 Q 22 44, 26 40" opacity="0.6"/><path d="M48 48 Q 42 44, 38 40" opacity="0.6"/></svg></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Educational Content Relationship Analysis</h2>
@@ -678,7 +708,7 @@
         <div class="col-md-4">
           <div class="service-box reveal">
             <div class="service-ico">
-              <span class="ico-circle"><i class="ion-plane"></i></span>
+              <span class="ico-circle"><svg class="service-ico-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="32" x2="60" y2="32" opacity="0.3"/><path d="M4 32 Q 10 14, 16 32 T 28 32 Q 34 50, 40 32 T 52 32 Q 56 22, 60 32"/><line x1="10" y1="22" x2="10" y2="42" opacity="0.6"/><line x1="22" y1="22" x2="22" y2="42" opacity="0.6"/><line x1="34" y1="22" x2="34" y2="42" opacity="0.6"/><line x1="46" y1="22" x2="46" y2="42" opacity="0.6"/><circle cx="10" cy="22" r="1.5" fill="currentColor" stroke="none"/><circle cx="22" cy="42" r="1.5" fill="currentColor" stroke="none"/><circle cx="34" cy="22" r="1.5" fill="currentColor" stroke="none"/><circle cx="46" cy="42" r="1.5" fill="currentColor" stroke="none"/></svg></span>
             </div>
             <div class="service-content">
               <h2 class="s-title">Signal Processing</h2>
@@ -861,6 +891,9 @@
       applyPeerFilters();
     });
   </script>
+
+  <script src="js/theme.js"></script>
+  <script src="js/reveal.js"></script>
 
 </body>
 </html>
