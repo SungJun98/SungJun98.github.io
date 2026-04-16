@@ -111,7 +111,7 @@ a:hover {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .revealed {
@@ -241,15 +241,6 @@ html[data-theme="dark"] .theme-icon--moon {
   opacity: 0.95;
 }
 
-.authors a {
-  color: #ffffff;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.authors a:hover {
-  color: var(--gold-light);
-}
 
 .affiliation {
   font-size: 0.9rem;
@@ -300,7 +291,6 @@ html[data-theme="dark"] .theme-icon--moon {
 }
 
 .page-section h2 {
-  font-family: var(--font-display);
   font-size: 1.7rem;
   margin-bottom: 20px;
   padding-bottom: 10px;
