@@ -126,23 +126,30 @@
   <section class="page-section reveal">
     <div class="container">
       <h2>Experimental Results</h2>
-      <div class="results-grid">
-        <figure class="result-card">
-          <img src="img/miracl.png" loading="lazy" alt="MIRACL retrieval benchmark results showing UEC achieving performance comparable to the oracle model, with strong gains in AUC@10.">
-          <figcaption><strong>MIRACL (Retrieval)</strong> — UEC achieves performance comparable to the oracle and even surpasses in some cases, with particularly strong gains in AUC@10.</figcaption>
-        </figure>
-        <figure class="result-card">
-          <img src="img/mmteb.png" loading="lazy" alt="MMTEB benchmark results showing UEC achieving the highest average performance across retrieval, classification, and uncertainty metrics.">
-          <figcaption><strong>MMTEB Benchmark</strong> — UEC achieves the highest average performance across all retrieval, classification, and uncertainty metrics.</figcaption>
-        </figure>
-        <figure class="result-card">
-          <img src="img/ablation.png" loading="lazy" alt="Ablation study results showing both uncertainty convolution and uncertainty-aware similarity are essential components.">
-          <figcaption><strong>Ablation Study</strong> — Both uncertainty convolution and uncertainty-aware similarity are essential components of the framework.</figcaption>
-        </figure>
-        <figure class="result-card">
-          <img src="img/robustness.png" loading="lazy" alt="Robustness analysis showing UEC corrects individual model failures by leveraging cross-model uncertainty.">
-          <figcaption><strong>Robustness</strong> — UEC corrects individual model failures by leveraging cross-model uncertainty.</figcaption>
-        </figure>
+      <div class="results-carousel">
+        <div class="carousel-track">
+          <figure class="result-slide active">
+            <img src="img/miracl.png" loading="lazy" alt="MIRACL retrieval benchmark results showing UEC achieving performance comparable to the oracle model, with strong gains in AUC@10.">
+            <figcaption><strong>MIRACL (Retrieval)</strong> — UEC achieves performance comparable to the oracle and even surpasses in some cases, with particularly strong gains in AUC@10.</figcaption>
+          </figure>
+          <figure class="result-slide">
+            <img src="img/mmteb.png" loading="lazy" alt="MMTEB benchmark results showing UEC achieving the highest average performance across retrieval, classification, and uncertainty metrics.">
+            <figcaption><strong>MMTEB Benchmark</strong> — UEC achieves the highest average performance across all retrieval, classification, and uncertainty metrics.</figcaption>
+          </figure>
+          <figure class="result-slide">
+            <img src="img/ablation.png" loading="lazy" alt="Ablation study results showing both uncertainty convolution and uncertainty-aware similarity are essential components.">
+            <figcaption><strong>Ablation Study</strong> — Both uncertainty convolution and uncertainty-aware similarity are essential components of the framework.</figcaption>
+          </figure>
+          <figure class="result-slide">
+            <img src="img/robustness.png" loading="lazy" alt="Robustness analysis showing UEC corrects individual model failures by leveraging cross-model uncertainty.">
+            <figcaption><strong>Robustness</strong> — UEC corrects individual model failures by leveraging cross-model uncertainty.</figcaption>
+          </figure>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn carousel-prev" aria-label="Previous result">&larr;</button>
+          <span class="carousel-indicator">1 / 4</span>
+          <button class="carousel-btn carousel-next" aria-label="Next result">&rarr;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -192,6 +199,22 @@
         setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
       });
     }
+
+    (function () {
+      var slides = document.querySelectorAll('.result-slide');
+      var indicator = document.querySelector('.carousel-indicator');
+      var current = 0;
+
+      function show(index) {
+        slides[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        indicator.textContent = (current + 1) + ' / ' + slides.length;
+      }
+
+      document.querySelector('.carousel-prev').addEventListener('click', function () { show(current - 1); });
+      document.querySelector('.carousel-next').addEventListener('click', function () { show(current + 1); });
+    })();
   </script>
 
 </body>
