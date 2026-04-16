@@ -5,3 +5,8 @@ Thumbs.db
 node_modules/
 .vscode/
 .idea/
+.superpowers/
+.claude/
+HANDOFF-*.md
+references/
+docs/superpowers/
