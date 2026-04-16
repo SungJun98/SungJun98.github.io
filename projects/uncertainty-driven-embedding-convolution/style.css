@@ -1,0 +1,516 @@
+/*
+  UEC Project Page — Standalone CSS
+  Palette & variables inherited from main portfolio site
+*/
+
+/* ======================================
+   CSS VARIABLES
+   ====================================== */
+
+:root {
+  --blue-deep: #003876;
+  --blue-mid: #2D6A9F;
+  --navy-dark: #0A1628;
+  --teal: #1a5276;
+  --gold: #C4A661;
+  --gold-light: #E8DCC8;
+  --bg-primary: #f8f9fa;
+  --bg-warm: #faf8f5;
+  --bg-white: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-body: #3d3d4e;
+  --text-muted: #6c757d;
+  --border-light: rgba(0, 56, 118, 0.08);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme overrides */
+html[data-theme="dark"] {
+  --bg-primary: #0f1b2e;
+  --bg-warm: #0a1628;
+  --bg-white: #142847;
+  --text-primary: #e8eaed;
+  --text-body: #c4cbd4;
+  --text-muted: #8b94a3;
+  --blue-deep: #5a9fdb;
+  --blue-mid: #4a7fb8;
+  --teal: #5fae9e;
+  --gold: #d4b97a;
+  --gold-light: #2a2417;
+  --navy-dark: #050d1a;
+  --border-light: rgba(196, 166, 97, 0.12);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* ======================================
+   GLOBAL STYLES
+   ====================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-warm);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--blue-deep);
+  transition: all var(--transition);
+}
+
+a:hover {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* ======================================
+   CONTAINER
+   ====================================== */
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ======================================
+   SCROLL REVEAL
+   ====================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ======================================
+   HEADER
+   ====================================== */
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--blue-deep);
+}
+
+/* ======================================
+   THEME TOGGLE
+   ====================================== */
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: var(--border-light);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+/* Light mode: show moon, hide sun */
+.theme-icon--sun {
+  display: none;
+}
+
+.theme-icon--moon {
+  display: block;
+}
+
+/* Dark mode: show sun, hide moon */
+html[data-theme="dark"] .theme-icon--sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-icon--moon {
+  display: none;
+}
+
+/* ======================================
+   HERO
+   ====================================== */
+
+.hero {
+  background: linear-gradient(135deg, var(--blue-deep), var(--teal));
+  color: #ffffff;
+  text-align: center;
+  padding: 64px 24px 56px;
+  border-radius: var(--radius-lg);
+  margin: 0 auto 48px;
+  max-width: 900px;
+}
+
+.venue-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 5px 16px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0 0 20px;
+}
+
+.authors {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  opacity: 0.95;
+}
+
+.authors a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.authors a:hover {
+  color: var(--gold-light);
+}
+
+.affiliation {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 28px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all var(--transition);
+}
+
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.hero-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ======================================
+   SECTIONS
+   ====================================== */
+
+.page-section {
+  margin-bottom: 56px;
+}
+
+.page-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-light);
+}
+
+/* ======================================
+   ABSTRACT
+   ====================================== */
+
+.abstract-text {
+  border-left: 3px solid var(--gold);
+  padding: 16px 0 16px 24px;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-body);
+}
+
+/* ======================================
+   VIDEO
+   ====================================== */
+
+.video-container {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  background: #000;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.video-container video,
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ======================================
+   METHOD FIGURE
+   ====================================== */
+
+.method-figure {
+  text-align: center;
+  margin: 0;
+}
+
+.method-figure img {
+  background: var(--bg-white);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  max-width: 100%;
+}
+
+.method-figure figcaption {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ======================================
+   KEY RESULTS
+   ====================================== */
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.result-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.result-card img {
+  width: 100%;
+  display: block;
+}
+
+.result-card figcaption {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+
+.result-card figcaption strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+/* ======================================
+   BIBTEX
+   ====================================== */
+
+.bibtex-wrapper {
+  position: relative;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.bibtex-wrapper pre {
+  margin: 0;
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  color: var(--text-body);
+}
+
+.copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--gold);
+  color: var(--navy-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.copy-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* ======================================
+   FOOTER
+   ====================================== */
+
+.site-footer {
+  background: var(--navy-dark);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 36px 24px;
+  font-size: 0.88rem;
+  margin-top: 64px;
+}
+
+.site-footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+/* ======================================
+   RESPONSIVE
+   ====================================== */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 44px 18px 40px;
+    border-radius: var(--radius-md);
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .site-header {
+    padding: 16px;
+  }
+
+  .page-section h2 {
+    font-size: 1.4rem;
+  }
+}
