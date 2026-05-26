@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css?v=20260526-publication-toggle-refined" rel="stylesheet">
 
 
   <!-- JavaScript Libraries -->
@@ -93,6 +93,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#news">News</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll" href="#career">Career</a>
@@ -206,6 +209,139 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <section id="news" class="news-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center reveal">
+            <h3 class="title-a">News</h3>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-filter-panel reveal" aria-label="Filter news">
+        <div class="news-filter-row">
+          <span class="news-filter-label">Category</span>
+          <div class="btn-group btn-group-sm news-filter-group" role="group" aria-label="Filter news by category">
+            <button class="btn active news-filter-btn news-filter-category news-filter-all" type="button" data-filter-type="category" data-filter-value="all" aria-pressed="true">All</button>
+            <button class="btn news-filter-btn news-filter-category news-filter-career" type="button" data-filter-type="category" data-filter-value="career" aria-pressed="false">Career</button>
+            <button class="btn news-filter-btn news-filter-category news-filter-publications" type="button" data-filter-type="category" data-filter-value="publications" aria-pressed="false">Publications</button>
+            <button class="btn news-filter-btn news-filter-category news-filter-projects" type="button" data-filter-type="category" data-filter-value="projects" aria-pressed="false">Projects</button>
+            <button class="btn news-filter-btn news-filter-category news-filter-etc" type="button" data-filter-type="category" data-filter-value="etc" aria-pressed="false">Etc.</button>
+          </div>
+        </div>
+        <div class="news-filter-row">
+          <span class="news-filter-label">Year</span>
+          <div class="btn-group btn-group-sm news-filter-group" role="group" aria-label="Filter news by year">
+            <button class="btn btn-outline-primary active news-filter-btn" type="button" data-filter-type="year" data-filter-value="all" aria-pressed="true">All</button>
+            <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="2026" aria-pressed="false">2026</button>
+            <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="2025" aria-pressed="false">2025</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-timeline">
+        <div class="news-year-group" data-year="2026">
+          <h4 class="news-year reveal">2026</h4>
+
+          <article class="news-item reveal" data-category="career" data-year="2026">
+            <time class="news-date" datetime="2026-05">May 2026</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-career">Career</span>
+              <h5>Started an internship at RIKEN AIP</h5>
+              <p>Joined the Adaptive Bayesian Intelligence Team at RIKEN AIP as an intern.</p>
+              <div class="news-links">
+                <a href="#career" class="js-scroll"><i class="fa fa-briefcase"></i> Career</a>
+                <a href="https://adaptive-bayesian.ai/" target="_blank"><i class="fa fa-users"></i> Team</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-item reveal" data-category="etc" data-year="2026">
+            <time class="news-date" datetime="2026-05-01">May 2026</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-etc">Etc.</span>
+              <h5>Joined the organizing committee for the Mechanistic Interpretability Workshop at ICML 2026</h5>
+              <p>The workshop will be held at ICML 2026 in Seoul, South Korea.</p>
+              <div class="news-links">
+                <a href="https://mechinterpworkshop.com/" target="_blank"><i class="fa fa-globe"></i> Workshop</a>
+              </div>
+            </div>
+          </article>
+          
+          <article class="news-item reveal" data-category="publications" data-year="2026">
+            <time class="news-date" datetime="2026">2026</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-publications">Publications</span>
+              <h5>Uncertainty-driven Embedding Convolution accepted to ICLR 2026</h5>
+              <p>Our work on uncertainty-aware embedding ensembles was accepted to the ICLR 2026.</p>
+              <div class="news-links">
+                <a href="https://arxiv.org/abs/2507.20718" target="_blank"><i class="fa fa-file-text-o"></i> arXiv</a>
+                <a href="projects/uncertainty-driven-embedding-convolution/"><i class="fa fa-globe"></i> Project page</a>
+                <a href="#publications" class="js-scroll"><i class="fa fa-book"></i> Publications</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-item reveal" data-category="publications" data-year="2026">
+            <time class="news-date" datetime="2026">2026</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-publications">Publications</span>
+              <h5>Semi-Supervised Preference Optimization with Limited Feedbacks accepted to ICLR 2026</h5>
+              <p>The paper was accepted to ICLR 2026 as an oral presentation.</p>
+              <div class="news-links">
+                <a href="https://arxiv.org/abs/2511.00040" target="_blank"><i class="fa fa-file-text-o"></i> arXiv</a>
+                <a href="#publications" class="js-scroll"><i class="fa fa-book"></i> Publications</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="news-year-group" data-year="2025">
+          <h4 class="news-year reveal">2025</h4>
+
+          <article class="news-item reveal" data-category="career" data-year="2025">
+            <time class="news-date" datetime="2025-07">Jul 2025</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-career">Career</span>
+              <h5>Visited Australian National University as a visiting researcher</h5>
+              <p>Worked with Lexing Xie in Computer Science at ANU.</p>
+              <div class="news-links">
+                <a href="#career" class="js-scroll"><i class="fa fa-briefcase"></i> Career</a>
+                <a href="https://users.cecs.anu.edu.au/~xlx/" target="_blank"><i class="fa fa-user"></i> Advisor</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-item reveal" data-category="publications" data-year="2025">
+            <time class="news-date" datetime="2025">2025</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-publications">Publications</span>
+              <h5>Flat Posterior Does Matter For Bayesian Model Averaging accepted to UAI 2025</h5>
+              <p>Our paper on flat posterior behavior in Bayesian model averaging was accepted to UAI 2025.</p>
+              <div class="news-links">
+                <a href="https://arxiv.org/abs/2406.15664" target="_blank"><i class="fa fa-file-text-o"></i> arXiv</a>
+                <a href="#publications" class="js-scroll"><i class="fa fa-book"></i> Publications</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <p class="news-empty">No news in this category yet.</p>
     </div>
   </section>
 
@@ -809,6 +945,7 @@
       <div class="footer-nav">
         <a href="#home" class="js-scroll">Home</a>
         <a href="#about" class="js-scroll">About</a>
+        <a href="#news" class="js-scroll">News</a>
         <a href="#career" class="js-scroll">Career</a>
         <a href="#publications" class="js-scroll">Publications</a>
         <a href="#MLAIprojects" class="js-scroll">Projects</a>
@@ -845,6 +982,97 @@
       document.querySelectorAll('.reveal').forEach(function(el) {
         observer.observe(el);
       });
+    })();
+  </script>
+
+  <!-- News filter script -->
+  <script>
+    (function () {
+      var selectedCategories = [];
+      var selectedYears = [];
+
+      function toggleValue(list, value) {
+        var index = list.indexOf(value);
+        if (index === -1) {
+          list.push(value);
+        } else {
+          list.splice(index, 1);
+        }
+      }
+
+      function updateButtons(type, selectedValues) {
+        var buttons = document.querySelectorAll('.news-filter-btn[data-filter-type="' + type + '"]');
+        var allActive = selectedValues.length === 0;
+
+        buttons.forEach(function (btn) {
+          var value = btn.getAttribute('data-filter-value');
+          var active = value === 'all' ? allActive : selectedValues.indexOf(value) !== -1;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      function applyNewsFilter() {
+        var visibleCount = 0;
+        var items = document.querySelectorAll('.news-item');
+
+        items.forEach(function (item) {
+          var itemCategory = item.getAttribute('data-category') || '';
+          var itemYear = item.getAttribute('data-year') || '';
+          var categoryMatch = selectedCategories.length === 0 || selectedCategories.indexOf(itemCategory) !== -1;
+          var yearMatch = selectedYears.length === 0 || selectedYears.indexOf(itemYear) !== -1;
+          var shouldShow = categoryMatch && yearMatch;
+
+          item.classList.toggle('news-hidden', !shouldShow);
+          if (shouldShow) visibleCount += 1;
+        });
+
+        document.querySelectorAll('.news-year-group').forEach(function (group) {
+          var hasVisibleItems = !!group.querySelector('.news-item:not(.news-hidden)');
+          group.classList.toggle('news-hidden', !hasVisibleItems);
+        });
+
+        var empty = document.querySelector('.news-empty');
+        if (empty) empty.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+
+      function initNewsFilters() {
+        var panel = document.querySelector('.news-filter-panel');
+        if (!panel) return;
+
+        panel.addEventListener('click', function (event) {
+          var btn = event.target.closest('.news-filter-btn');
+          if (!btn) return;
+
+          var type = btn.getAttribute('data-filter-type');
+          var value = btn.getAttribute('data-filter-value');
+          var selectedValues = type === 'year' ? selectedYears : selectedCategories;
+          var individualCount = panel.querySelectorAll('.news-filter-btn[data-filter-type="' + type + '"]:not([data-filter-value="all"])').length;
+
+          if (value === 'all') {
+            selectedValues.length = 0;
+          } else {
+            toggleValue(selectedValues, value);
+
+            if (selectedValues.length === individualCount) {
+              selectedValues.length = 0;
+            }
+          }
+
+          updateButtons(type, selectedValues);
+          applyNewsFilter();
+        });
+
+        updateButtons('category', selectedCategories);
+        updateButtons('year', selectedYears);
+        applyNewsFilter();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNewsFilters);
+      } else {
+        initNewsFilters();
+      }
     })();
   </script>
 
