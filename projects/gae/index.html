@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GAE — Geometry-Adaptive Explainer</title>
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (e) {}
+      var prefersDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute(
+        'data-theme',
+        stored || (prefersDark ? 'dark' : 'light')
+      );
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift.">
+  <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 1. Header -->
+  <header class="site-header">
+    <a href="../../index.html" class="back-link">← Back to Portfolio</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+      <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+  <!-- 2. Hero -->
+  <section class="hero reveal">
+    <span class="venue-badge">arXiv 2026</span>
+    <h1>Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift</h1>
+    <p class="authors">
+      <strong>Sungjun Lim</strong>, Heedong Kim, Andrew Lee, Kyungwoo Song
+    </p>
+    <p class="affiliation">Yonsei University</p>
+    <div class="hero-buttons">
+      <a href="https://arxiv.org/abs/2605.21849" class="hero-btn" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        arXiv
+      </a>
+      <a href="https://github.com/MLAI-Yonsei/GAE" class="hero-btn" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        Code
+      </a>
+      <a href="#" class="hero-btn" aria-disabled="true" title="X link to be added">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        X TBA
+      </a>
+      <a href="#" class="hero-btn" aria-disabled="true" title="LinkedIn link to be added">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        LinkedIn TBA
+      </a>
+    </div>
+  </section>
+
+  <!-- 3. Abstract -->
+  <section class="page-section reveal">
+    <div class="container">
+      <h2>Abstract</h2>
+      <p class="abstract-text">
+        Mechanistic interpretability seeks to explain model behavior by identifying internal structures that are causally responsible for its outputs. Dictionary-based explainers, including sparse autoencoders and transcoders, have become central tools for this purpose, but their faithfulness under out-of-distribution shifts remains underexplored. This work shows that distribution shift can rotate the subspace actively used by a model, causing dictionaries trained on in-distribution activations to become geometrically misaligned with the OOD-active subspace. We formalize this mismatch as a <strong>faithfulness gap</strong> and introduce the <strong>Geometry-Adaptive Explainer (GAE)</strong>, which realigns the dictionary to the OOD-active subspace while preserving the original feature structure. GAE uses only unlabeled OOD activations and requires no gradient updates, improving OOD faithfulness both theoretically and empirically across multiple models and shift settings.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Slides
+  <section class="page-section reveal">
+    <div class="container">
+      <h2>Slides</h2>
+      <div class="pdf-viewer">
+        <div class="pdf-canvas-wrapper" tabindex="0" aria-label="Slide viewer, use left and right arrow keys to navigate">
+          <canvas id="pdf-canvas"></canvas>
+          <div class="pdf-loading">Loading slides…</div>
+        </div>
+        <div class="pdf-controls">
+          <button class="carousel-btn pdf-prev" aria-label="Previous slide">&larr;</button>
+          <span class="carousel-indicator pdf-indicator">– / –</span>
+          <button class="carousel-btn pdf-next" aria-label="Next slide">&rarr;</button>
+          <a href="pdf/short_slide.pdf" download class="pdf-download-btn" aria-label="Download slides as PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- 5. Method -->
+  <section class="page-section reveal">
+    <div class="container">
+      <h2>Method</h2>
+      <div class="method-carousel">
+        <div class="method-track">
+          <figure class="method-slide active">
+            <img src="img/intro_figure.jpg" alt="Faithfulness gap and GAE overview figure.">
+            <figcaption>
+              <strong>Faithfulness gap and GAE.</strong> Distribution shift rotates the OOD-active subspace away from the ID-trained explainer subspace. GAE closes this gap by aligning the decoder to OOD geometry and refitting feature directions while preserving the original feature structure.
+            </figcaption>
+          </figure>
+          <figure class="method-slide">
+            <div class="algorithm-card" aria-label="GAE algorithm overview">
+              <div class="algorithm-io">
+                <div>
+                  <span>Input</span>
+                  <strong>ID dictionary + unlabeled OOD activations</strong>
+                </div>
+                <div>
+                  <span>Output</span>
+                  <strong>OOD-faithful adapted dictionary</strong>
+                </div>
+              </div>
+              <ol class="algorithm-steps">
+                <li>
+                  <span class="algorithm-step-index">1</span>
+                  <div>
+                    <h3>Estimate OOD geometry</h3>
+                    <p>Use unlabeled OOD activations to identify the active subspace that matters under the shifted distribution.</p>
+                    <span class="algorithm-tagline">Find where OOD activations concentrate.</span>
+                  </div>
+                </li>
+                <li>
+                  <span class="algorithm-step-index">2</span>
+                  <div>
+                    <h3>Align the decoder subspace</h3>
+                    <p>Rotate the ID decoder toward the OOD-active subspace with an orthogonal Procrustes update.</p>
+                    <span class="algorithm-tagline">Move the dictionary into the shifted geometry.</span>
+                  </div>
+                </li>
+                <li>
+                  <span class="algorithm-step-index">3</span>
+                  <div>
+                    <h3>Refit feature directions</h3>
+                    <p>Keep the encoder fixed and solve a closed-form constrained ridge problem inside the aligned subspace.</p>
+                    <span class="algorithm-tagline">Preserve feature identity while improving OOD reconstruction.</span>
+                  </div>
+                </li>
+              </ol>
+              <div class="algorithm-benefits" aria-label="GAE practical advantages">
+                <div class="algorithm-benefit">
+                  <span>Benefit 01</span>
+                  <strong>No gradients</strong>
+                </div>
+                <div class="algorithm-benefit">
+                  <span>Benefit 02</span>
+                  <strong>~2K OOD tokens</strong>
+                </div>
+                <div class="algorithm-benefit">
+                  <span>Benefit 03</span>
+                  <strong>Closed-form update</strong>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <strong>GAE algorithm.</strong> Estimate the OOD-active subspace, align the decoder to that geometry, then refit feature directions with the encoder fixed.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn method-prev" aria-label="Previous method figure">&larr;</button>
+          <span class="carousel-indicator method-indicator">1 / 2</span>
+          <button class="carousel-btn method-next" aria-label="Next method figure">&rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Key Results -->
+  <section class="page-section reveal">
+    <div class="container">
+      <h2>Experimental Results</h2>
+      <p class="section-intro">
+        GAE restores faithfulness under temporal, domain, and adversarial distribution shifts without gradient training.
+      </p>
+      <div class="results-carousel">
+        <div class="carousel-track">
+          <figure class="result-slide active">
+            <div class="result-slide-inner">
+              <p class="result-kicker">Controlled Validation</p>
+              <h3>Faithfulness remains stable as OOD severity increases.</h3>
+              <div class="result-figure-grid">
+                <img src="img/results/controlled_validation_a.png" loading="lazy" alt="Faithfulness gap under increasing OOD severity.">
+                <img src="img/results/controlled_validation_b.png" loading="lazy" alt="Reconstruction error under increasing OOD severity.">
+              </div>
+              <p class="result-caption">
+                GAE keeps the faithfulness gap near zero and reconstruction error nearly flat, while the fixed ID explainer degrades as the shift becomes stronger.
+              </p>
+            </div>
+          </figure>
+          <article class="result-slide">
+            <div class="result-slide-inner">
+              <p class="result-kicker">Faithfulness Benchmarks</p>
+              <h3>Training-free adaptation beats training-based baselines.</h3>
+              <div class="training-contrast" aria-label="Training-free GAE compared with training-based baselines">
+                <div>
+                  <span class="contrast-label">Training-based baselines</span>
+                  <strong>5M-100M tokens</strong>
+                  <span>Gradient updates, minutes to hours</span>
+                </div>
+                <div class="contrast-winner">
+                  <span class="contrast-label">GAE (ours)</span>
+                  <strong>2K tokens</strong>
+                  <span>No gradients, closed-form adaptation</span>
+                </div>
+              </div>
+              <div class="benchmark-panel" id="faithfulness-benchmark">
+                <div class="benchmark-controls" aria-label="Benchmark filters">
+                  <div class="benchmark-control-group">
+                    <span>Explainer</span>
+                    <div class="benchmark-toggle" role="tablist" aria-label="Explainer">
+                      <button type="button" class="active" data-filter="explainer" data-value="transcoder">Transcoder</button>
+                      <button type="button" data-filter="explainer" data-value="sae">SAE</button>
+                    </div>
+                  </div>
+                  <div class="benchmark-control-group">
+                    <span>Model</span>
+                    <div class="benchmark-toggle" role="tablist" aria-label="Model">
+                      <button type="button" class="active" data-filter="model" data-value="gpt2">GPT-2</button>
+                      <button type="button" data-filter="model" data-value="pythia">Pythia-1.4B</button>
+                    </div>
+                  </div>
+                  <div class="benchmark-control-group">
+                    <span>Dataset</span>
+                    <div class="benchmark-toggle" role="tablist" aria-label="Dataset">
+                      <button type="button" class="active" data-filter="dataset" data-value="fineweb">FineWeb</button>
+                      <button type="button" data-filter="dataset" data-value="edgar">Edgar</button>
+                      <button type="button" data-filter="dataset" data-value="halueval">HaluEval</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="benchmark-status" id="benchmark-status"></div>
+                <div class="benchmark-metric-grid" id="benchmark-metric-grid"></div>
+              </div>
+              <p class="result-note">
+                Bars show absolute metric values for every baseline in the selected setting. GAE is highlighted in blue; the best method for each metric is marked on the right.
+              </p>
+            </div>
+          </article>
+          <article class="result-slide">
+            <div class="result-slide-inner">
+              <p class="result-kicker">Compute Efficiency</p>
+              <h3>GAE adapts on the fly instead of retraining the explainer.</h3>
+              <div class="cost-table-wrap">
+                <table class="cost-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>Tokens</th>
+                      <th>GPT-2</th>
+                      <th>Pythia-1.4B</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Finetune</td>
+                      <td>5M</td>
+                      <td>~2 min</td>
+                      <td>~12 min</td>
+                    </tr>
+                    <tr>
+                      <td>Retrain / SAEBoost / FaithfulSAE</td>
+                      <td>100M</td>
+                      <td>~39 min</td>
+                      <td>~4 hrs</td>
+                    </tr>
+                    <tr class="gae-row">
+                      <td>GAE (ours)</td>
+                      <td>2K</td>
+                      <td>0.5 s</td>
+                      <td>2.9 s</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="result-note">
+                The benchmark advantage is not purchased with extra training: GAE uses only unlabeled OOD activations and a closed-form update.
+              </p>
+            </div>
+          </article>
+          <figure class="result-slide">
+            <div class="result-slide-inner">
+              <p class="result-kicker">Mechanism Analysis</p>
+              <h3>Subspace alignment explains the faithfulness gain.</h3>
+              <div class="result-figure-grid">
+                <img src="img/results/geometric_analysis_sorted_angles.png" loading="lazy" alt="Principal angles between explainer subspaces and the OOD-active subspace.">
+                <img src="img/results/step_ablation_halu.png" loading="lazy" alt="GAE step ablation on HaluEval.">
+              </div>
+              <p class="result-caption">
+                GAE aligns the decoder subspace with OOD geometry. Step 1 closes the subspace gap, and Step 2 restores feature-level causal coherence.
+              </p>
+            </div>
+          </figure>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn carousel-prev" aria-label="Previous result">&larr;</button>
+          <span class="carousel-indicator">1 / 4</span>
+          <button class="carousel-btn carousel-next" aria-label="Next result">&rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Interactive Qualitative Analysis -->
+  <section class="page-section reveal">
+    <div class="container">
+      <h2>Interactive Qualitative Analysis</h2>
+      <p class="section-intro">
+        Explore how GAE changes each feature's direct logit attribution across semantically related candidate tokens while keeping the encoder activations fixed.
+      </p>
+
+      <div class="qual-explorer" id="qual-explorer">
+        <div class="qual-tooltip" id="qual-tooltip" role="tooltip" aria-hidden="true"></div>
+        <div class="qual-tabs" role="tablist" aria-label="Qualitative analysis cases">
+          <button class="qual-tab active" type="button" data-case="template" role="tab" aria-selected="true">Nationality</button>
+          <button class="qual-tab" type="button" data-case="firstName" role="tab" aria-selected="false">First Names</button>
+          <button class="qual-tab" type="button" data-case="profession" role="tab" aria-selected="false">Professions</button>
+        </div>
+
+        <div class="qual-summary">
+          <div>
+            <span class="qual-label">Prompt prefix</span>
+            <p class="qual-prompt" id="qual-prompt"></p>
+          </div>
+          <div class="qual-metrics" aria-label="Class specificity summary">
+            <div>
+              <span class="qual-label">Fixed class score</span>
+              <strong id="qual-fixed-score">-</strong>
+            </div>
+            <div>
+              <span class="qual-label">GAE class score</span>
+              <strong id="qual-gae-score">-</strong>
+            </div>
+            <div>
+              <span class="qual-label">Delta</span>
+              <strong id="qual-delta-score">-</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="qual-feature-strip" id="qual-feature-strip" aria-label="Selected features"></div>
+
+        <section class="qual-panel">
+          <div class="qual-panel-header">
+            <h3>Per-token Fixed vs GAE comparison</h3>
+            <span>Rows are candidate tokens; paired cells show each feature's DLA before and after adaptation.</span>
+          </div>
+          <div class="qual-comparison-scroll" id="qual-comparison-table"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. BibTeX -->
+  <section class="page-section reveal">
+    <div class="container">
+      <h2>Citation</h2>
+      <div class="bibtex-wrapper">
+        <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+        <pre><code id="bibtex">@article{lim2026geometry,
+  title={Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift},
+  author={Lim, Sungjun and Kim, Heedong and Lee, Andrew and Song, Kyungwoo},
+  journal={arXiv preprint arXiv:2605.21849},
+  year={2026},
+  url={https://arxiv.org/abs/2605.21849}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- 8. Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Sungjun Lim. All rights reserved.</p>
+    <a href="../../index.html" class="back-link">← Back to Portfolio</a>
+  </footer>
+
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/reveal.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    (function () {
+      if (!window.pdfjsLib) return;
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      var url = 'pdf/short_slide.pdf';
+      var canvas = document.getElementById('pdf-canvas');
+      if (!canvas) return;
+
+      var ctx = canvas.getContext('2d');
+      var wrapper = document.querySelector('.pdf-canvas-wrapper');
+      if (!wrapper) return;
+
+      var loadingEl = wrapper.querySelector('.pdf-loading');
+      var indicator = document.querySelector('.pdf-indicator');
+      var prevBtn = document.querySelector('.pdf-prev');
+      var nextBtn = document.querySelector('.pdf-next');
+      if (!indicator || !prevBtn || !nextBtn) return;
+
+      var pdfDoc = null;
+      var pageNum = 1;
+      var rendering = false;
+      var pendingPage = null;
+
+      function renderPage(num) {
+        if (!pdfDoc) return;
+        rendering = true;
+        pdfDoc.getPage(num).then(function (page) {
+          var baseViewport = page.getViewport({ scale: 1 });
+          var containerWidth = wrapper.clientWidth;
+          var cssScale = containerWidth / baseViewport.width;
+          var dpr = window.devicePixelRatio || 1;
+          var viewport = page.getViewport({ scale: cssScale * dpr });
+
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          canvas.style.width = containerWidth + 'px';
+          canvas.style.height = (baseViewport.height * cssScale) + 'px';
+
+          page.render({ canvasContext: ctx, viewport: viewport }).promise.then(function () {
+            rendering = false;
+            if (loadingEl) loadingEl.style.display = 'none';
+            if (pendingPage !== null) {
+              var next = pendingPage;
+              pendingPage = null;
+              renderPage(next);
+            }
+          });
+          indicator.textContent = num + ' / ' + pdfDoc.numPages;
+        });
+      }
+
+      function queueRender(num) {
+        if (rendering) pendingPage = num;
+        else renderPage(num);
+      }
+
+      function goTo(delta) {
+        if (!pdfDoc) return;
+        var target = pageNum + delta;
+        if (target < 1 || target > pdfDoc.numPages) return;
+        pageNum = target;
+        queueRender(pageNum);
+      }
+
+      prevBtn.addEventListener('click', function () { goTo(-1); });
+      nextBtn.addEventListener('click', function () { goTo(1); });
+
+      wrapper.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(-1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); goTo(1); }
+      });
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () { queueRender(pageNum); }, 150);
+      });
+
+      pdfjsLib.getDocument(url).promise.then(function (doc) {
+        pdfDoc = doc;
+        indicator.textContent = '1 / ' + doc.numPages;
+        renderPage(pageNum);
+      }).catch(function (err) {
+        if (loadingEl) loadingEl.textContent = 'Failed to load slides.';
+        console.error('PDF load error:', err);
+      });
+    })();
+
+    function copyBibtex() {
+      var text = document.getElementById('bibtex').textContent;
+      var btn = document.querySelector('.copy-btn');
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
+      }).catch(function () {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
+      });
+    }
+
+    (function () {
+      var root = document.getElementById('faithfulness-benchmark');
+      if (!root) return;
+
+      var statusEl = document.getElementById('benchmark-status');
+      var gridEl = document.getElementById('benchmark-metric-grid');
+      var buttons = root.querySelectorAll('[data-filter]');
+      var state = {
+        explainer: 'transcoder',
+        model: 'gpt2',
+        dataset: 'fineweb'
+      };
+
+      var labels = {
+        explainer: { transcoder: 'Transcoder', sae: 'SAE' },
+        model: { gpt2: 'GPT-2', pythia: 'Pythia-1.4B' },
+        dataset: { fineweb: 'FineWeb', edgar: 'Edgar', halueval: 'HaluEval' }
+      };
+
+      var metrics = [
+        { key: 'aopc', label: 'nAOPC', direction: 'higher is better', higher: true, digits: 3 },
+        { key: 'ncomp', label: 'nComp', direction: 'higher is better', higher: true, digits: 3 },
+        { key: 'dce', label: '|Delta CE|', direction: 'lower is better', higher: false, digits: 4 }
+      ];
+
+      var benchmarkData = {
+        transcoder: {
+          gpt2: {
+            fineweb: [
+              ['Fixed', 0.857, 1.017, 0.0281],
+              ['TERM', 0.853, 0.993, 0.0283],
+              ['Finetune', 0.856, 0.984, 0.0172],
+              ['Retrain', 0.895, 1.118, 0.0218],
+              ['SAEBoost', 0.958, 1.476, 0.0177],
+              ['FaithfulSAE', 0.936, 1.186, 0.0213],
+              ['GAE', 0.960, 1.494, 0.0167]
+            ],
+            edgar: [
+              ['Fixed', 0.975, 1.025, 0.0201],
+              ['TERM', 0.964, 0.999, 0.0198],
+              ['Finetune', 0.971, 1.117, 0.0047],
+              ['Retrain', 0.936, 1.034, 0.0015],
+              ['SAEBoost', 0.979, 1.542, 0.0072],
+              ['FaithfulSAE', 0.976, 1.134, 0.0197],
+              ['GAE', 0.981, 1.618, 0.0009]
+            ],
+            halueval: [
+              ['Fixed', 0.735, 0.737, 0.0473],
+              ['TERM', 0.730, 0.732, 0.0523],
+              ['Finetune', 0.579, 0.579, 0.0105],
+              ['Retrain', 0.521, 0.528, 0.2763],
+              ['SAEBoost', 0.840, 0.921, 0.0212],
+              ['FaithfulSAE', 0.738, 0.740, 0.0586],
+              ['GAE', 0.871, 0.963, 0.0014]
+            ]
+          },
+          pythia: {
+            fineweb: [
+              ['Fixed', 0.839, 1.091, 0.0278],
+              ['TERM', 0.845, 1.043, 0.0271],
+              ['Finetune', 0.859, 1.249, 0.0264],
+              ['Retrain', 0.894, 1.315, 0.0405],
+              ['SAEBoost', 0.908, 1.296, 0.0284],
+              ['FaithfulSAE', 0.858, 1.056, 0.0272],
+              ['GAE', 0.915, 1.354, 0.0269]
+            ],
+            edgar: [
+              ['Fixed', 0.725, 0.828, 0.0300],
+              ['TERM', 0.895, 0.981, 0.0298],
+              ['Finetune', 0.684, 0.860, 0.0282],
+              ['Retrain', 0.746, 0.821, 0.0329],
+              ['SAEBoost', 0.903, 1.297, 0.0296],
+              ['FaithfulSAE', 0.724, 0.822, 0.0323],
+              ['GAE', 0.988, 1.652, 0.0230]
+            ],
+            halueval: [
+              ['Fixed', 0.899, 1.021, 0.0354],
+              ['TERM', 0.896, 1.104, 0.0349],
+              ['Finetune', 0.925, 1.502, 0.0280],
+              ['Retrain', 0.894, 1.393, 0.0305],
+              ['SAEBoost', 0.965, 1.530, 0.0283],
+              ['FaithfulSAE', 0.899, 1.171, 0.0307],
+              ['GAE', 0.968, 1.693, 0.0276]
+            ]
+          }
+        },
+        sae: {
+          gpt2: {
+            fineweb: [
+              ['Fixed', 0.735, 0.796, 0.0185],
+              ['TERM', 0.741, 0.790, 0.0183],
+              ['Finetune', 0.725, 0.802, 0.0015],
+              ['Retrain', 0.766, 0.856, 0.0375],
+              ['SAEBoost', 0.704, 0.786, 0.0120],
+              ['FaithfulSAE', 0.725, 0.760, 0.0262],
+              ['GAE', 0.768, 0.871, 0.0011]
+            ],
+            edgar: [
+              ['Fixed', 0.650, 0.667, 0.0089],
+              ['TERM', 0.655, 0.682, 0.0145],
+              ['Finetune', 0.658, 0.687, 0.0068],
+              ['Retrain', 0.715, 0.797, 0.0065],
+              ['SAEBoost', 0.604, 0.650, 0.0098],
+              ['FaithfulSAE', 0.657, 0.683, 0.0074],
+              ['GAE', 0.723, 0.809, 0.0037]
+            ],
+            halueval: [
+              ['Fixed', 0.930, 1.134, 0.0406],
+              ['TERM', 0.898, 0.987, 0.0401],
+              ['Finetune', 0.932, 1.155, 0.0218],
+              ['Retrain', 0.930, 1.276, 0.0300],
+              ['SAEBoost', 0.909, 1.243, 0.0448],
+              ['FaithfulSAE', 0.908, 1.082, 0.0278],
+              ['GAE', 0.953, 1.303, 0.0017]
+            ]
+          },
+          pythia: {
+            fineweb: [
+              ['Fixed', 0.962, 1.536, 0.0216],
+              ['TERM', 0.965, 1.486, 0.0237],
+              ['Finetune', 0.963, 1.618, 0.0216],
+              ['Retrain', 0.983, 1.681, 0.0563],
+              ['SAEBoost', 0.971, 1.451, 0.0211],
+              ['FaithfulSAE', 0.982, 1.642, 0.0307],
+              ['GAE', 0.985, 1.677, 0.0207]
+            ],
+            edgar: [
+              ['Fixed', 0.953, 1.690, 0.0170],
+              ['TERM', 0.959, 1.787, 0.0167],
+              ['Finetune', 0.959, 1.832, 0.0131],
+              ['Retrain', 0.970, 1.848, 0.0261],
+              ['SAEBoost', 0.955, 1.598, 0.0152],
+              ['FaithfulSAE', 0.953, 1.769, 0.0205],
+              ['GAE', 0.968, 1.946, 0.0098]
+            ],
+            halueval: [
+              ['Fixed', 0.985, 1.425, 0.0252],
+              ['TERM', 0.984, 1.762, 0.0292],
+              ['Finetune', 0.988, 1.880, 0.0174],
+              ['Retrain', 1.000, 1.855, 0.0209],
+              ['SAEBoost', 1.000, 1.830, 0.0166],
+              ['FaithfulSAE', 1.000, 1.678, 0.0514],
+              ['GAE', 1.000, 1.885, 0.0163]
+            ]
+          }
+        }
+      };
+
+      function escapeBenchmarkHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (char) {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+          }[char];
+        });
+      }
+
+      function rowsForState() {
+        return benchmarkData[state.explainer][state.model][state.dataset].map(function (row) {
+          return { method: row[0], aopc: row[1], ncomp: row[2], dce: row[3] };
+        });
+      }
+
+      function formatMetric(value, digits) {
+        return Number(value).toFixed(digits);
+      }
+
+      function renderMetric(rows, metric) {
+        var values = rows.map(function (row) { return row[metric.key]; });
+        var maxValue = Math.max.apply(null, values);
+        var bestValue = metric.higher ? maxValue : Math.min.apply(null, values);
+        var html = '<section class="metric-card">';
+
+        html += '<div class="metric-card-header"><h4>' + escapeBenchmarkHtml(metric.label)
+          + '</h4><span>' + escapeBenchmarkHtml(metric.direction) + '</span></div>';
+        html += '<div class="metric-bars">';
+
+        rows.forEach(function (row) {
+          var value = row[metric.key];
+          var width = maxValue === 0 ? 0 : Math.max(2, (value / maxValue) * 100);
+          var isGae = row.method === 'GAE';
+          var isBest = Math.abs(value - bestValue) < 0.0000001;
+          var classes = 'metric-row' + (isGae ? ' is-gae' : '') + (isBest ? ' is-best' : '');
+
+          html += '<div class="' + classes + '">';
+          html += '<span class="metric-method">' + escapeBenchmarkHtml(row.method) + '</span>';
+          html += '<span class="metric-track"><i class="metric-fill" style="width: ' + width.toFixed(2) + '%;"></i></span>';
+          html += '<span class="metric-value">' + formatMetric(value, metric.digits) + '</span>';
+          html += '<span class="metric-badge">' + (isBest ? 'best' : '') + '</span>';
+          html += '</div>';
+        });
+
+        html += '</div></section>';
+        return html;
+      }
+
+      function renderBenchmark() {
+        var rows = rowsForState();
+        statusEl.innerHTML = '<strong>' + escapeBenchmarkHtml(labels.explainer[state.explainer]) + '</strong>'
+          + '<span>' + escapeBenchmarkHtml(labels.model[state.model]) + '</span>'
+          + '<span>' + escapeBenchmarkHtml(labels.dataset[state.dataset]) + '</span>'
+          + '<span>absolute values</span>';
+
+        gridEl.innerHTML = metrics.map(function (metric) {
+          return renderMetric(rows, metric);
+        }).join('');
+
+        buttons.forEach(function (button) {
+          var filter = button.getAttribute('data-filter');
+          var active = button.getAttribute('data-value') === state[filter];
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          state[button.getAttribute('data-filter')] = button.getAttribute('data-value');
+          renderBenchmark();
+        });
+      });
+
+      renderBenchmark();
+    })();
+
+    (function () {
+      var root = document.getElementById('qual-explorer');
+      if (!root) return;
+
+      var cases = {
+        template: {
+          label: 'Nationality',
+          path: 'data/dla_template_variation.json'
+        },
+        firstName: {
+          label: 'First Names',
+          path: 'data/dla_first_name.json'
+        },
+        profession: {
+          label: 'Professions',
+          path: 'data/dla_profession.json'
+        }
+      };
+
+      var state = {
+        active: 'template',
+        data: {}
+      };
+
+      var promptEl = document.getElementById('qual-prompt');
+      var fixedScoreEl = document.getElementById('qual-fixed-score');
+      var gaeScoreEl = document.getElementById('qual-gae-score');
+      var deltaScoreEl = document.getElementById('qual-delta-score');
+      var featureStripEl = document.getElementById('qual-feature-strip');
+      var comparisonTableEl = document.getElementById('qual-comparison-table');
+      var tooltipEl = document.getElementById('qual-tooltip');
+      var tabs = root.querySelectorAll('.qual-tab');
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function isClassCandidate(candidate) {
+        if (typeof candidate.is_class_member === 'boolean') return candidate.is_class_member;
+        return !!candidate.is_nationality;
+      }
+
+      function mean(values) {
+        if (!values.length) return 0;
+        return values.reduce(function (acc, value) { return acc + value; }, 0) / values.length;
+      }
+
+      function specificity(caseData, method) {
+        var scores = caseData[method].dla.map(function (row) {
+          var classVals = [];
+          var controlVals = [];
+
+          row.forEach(function (value, index) {
+            if (isClassCandidate(caseData.candidates[index])) classVals.push(value);
+            else controlVals.push(value);
+          });
+
+          return mean(classVals) - mean(controlVals);
+        });
+
+        return {
+          perFeature: scores,
+          total: scores.reduce(function (acc, value) { return acc + value; }, 0)
+        };
+      }
+
+      function formatScore(value) {
+        var sign = value > 0 ? '+' : '';
+        return sign + value.toFixed(2);
+      }
+
+      function maxAbsDla(caseData) {
+        var values = [];
+        ['fixed', 'gae'].forEach(function (method) {
+          caseData[method].dla.forEach(function (row) {
+            row.forEach(function (value) { values.push(Math.abs(value)); });
+          });
+        });
+        return Math.max.apply(null, values.concat([1]));
+      }
+
+      function cellColor(value, maxAbs, method) {
+        var alpha = Math.min(0.88, 0.12 + Math.abs(value) / maxAbs * 0.76);
+        if (value < 0) return 'rgba(164, 63, 63, ' + alpha.toFixed(3) + ')';
+        if (method === 'gae') return 'rgba(8, 127, 91, ' + alpha.toFixed(3) + ')';
+        return 'rgba(0, 56, 118, ' + alpha.toFixed(3) + ')';
+      }
+
+      function comparisonCell(caseData, tokenIndex, featureIndex, method, maxAbs) {
+        var value = caseData[method].dla[featureIndex][tokenIndex];
+        var color = cellColor(value, maxAbs, method);
+        var textColor = Math.abs(value) / maxAbs > 0.52 ? '#fff' : 'var(--text-primary)';
+        var token = caseData.candidates[tokenIndex].token_str.trim();
+        var tokenType = isClassCandidate(caseData.candidates[tokenIndex]) ? 'class token' : 'control token';
+        var featureId = caseData.feature_ids[featureIndex];
+
+        return '<td class="qual-cell qual-cell--' + method + '" style="background:' + color + ';color:' + textColor + '"'
+          + ' tabindex="0"'
+          + ' data-method="' + escapeHtml(method.toUpperCase()) + '"'
+          + ' data-feature="f' + escapeHtml(featureId) + '"'
+          + ' data-token="' + escapeHtml(token) + '"'
+          + ' data-token-type="' + escapeHtml(tokenType) + '"'
+          + ' data-value="' + value.toFixed(4) + '"'
+          + '>' + value.toFixed(2) + '</td>';
+      }
+
+      function deltaBar(delta, maxAbsDelta) {
+        var width = Math.min(100, Math.abs(delta) / maxAbsDelta * 100);
+        var signClass = delta >= 0 ? 'positive' : 'negative';
+
+        return '<div class="qual-delta-cell ' + signClass + '">'
+          + '<span>' + formatScore(delta) + '</span>'
+          + '<div class="qual-delta-track"><i style="width:' + width.toFixed(1) + '%"></i></div>'
+          + '</div>';
+      }
+
+      function renderComparisonTable(container, caseData, maxAbs) {
+        var tokenDeltas = caseData.candidates.map(function (_, tokenIndex) {
+          var fixedTotal = 0;
+          var gaeTotal = 0;
+          caseData.feature_ids.forEach(function (_, featureIndex) {
+            fixedTotal += caseData.fixed.dla[featureIndex][tokenIndex];
+            gaeTotal += caseData.gae.dla[featureIndex][tokenIndex];
+          });
+          return gaeTotal - fixedTotal;
+        });
+        var maxAbsDelta = Math.max.apply(null, tokenDeltas.map(Math.abs).concat([1]));
+
+        var html = '<table class="qual-comparison-table"><thead><tr>'
+          + '<th rowspan="2">Token</th>'
+          + '<th rowspan="2">Type</th>';
+
+        caseData.feature_ids.forEach(function (featureId) {
+          html += '<th colspan="2">f' + escapeHtml(featureId) + '</th>';
+        });
+
+        html += '<th rowspan="2">Delta total</th></tr><tr>';
+
+        caseData.feature_ids.forEach(function () {
+          html += '<th class="method-fixed">Fixed</th><th class="method-gae">GAE</th>';
+        });
+
+        html += '</tr></thead><tbody>';
+
+        caseData.candidates.forEach(function (candidate, tokenIndex) {
+          var isClass = isClassCandidate(candidate);
+          var token = candidate.token_str.trim();
+
+          html += '<tr class="' + (isClass ? 'class-row' : 'control-row') + '">'
+            + '<td class="token-cell">' + escapeHtml(token) + '</td>'
+            + '<td><span class="token-badge ' + (isClass ? 'class-token' : 'control-token') + '">'
+            + (isClass ? 'class' : 'control') + '</span></td>';
+
+          caseData.feature_ids.forEach(function (_, featureIndex) {
+            html += comparisonCell(caseData, tokenIndex, featureIndex, 'fixed', maxAbs);
+            html += comparisonCell(caseData, tokenIndex, featureIndex, 'gae', maxAbs);
+          });
+
+          html += '<td>' + deltaBar(tokenDeltas[tokenIndex], maxAbsDelta) + '</td></tr>';
+        });
+
+        html += '</tbody></table>';
+        container.innerHTML = html;
+      }
+
+      function render(caseKey) {
+        var caseData = state.data[caseKey];
+        if (!caseData) return;
+
+        var fixed = specificity(caseData, 'fixed');
+        var gae = specificity(caseData, 'gae');
+        var delta = gae.total - fixed.total;
+        var maxAbs = maxAbsDla(caseData);
+
+        promptEl.textContent = caseData.trunc_text;
+        fixedScoreEl.textContent = formatScore(fixed.total);
+        gaeScoreEl.textContent = formatScore(gae.total);
+        deltaScoreEl.textContent = formatScore(delta);
+
+        featureStripEl.innerHTML = caseData.feature_ids.map(function (featureId, index) {
+          return '<span class="qual-feature-chip">f' + escapeHtml(featureId)
+            + '<span>z=' + caseData.z_activations[index].toFixed(2) + '</span></span>';
+        }).join('');
+
+        renderComparisonTable(comparisonTableEl, caseData, maxAbs);
+
+        tabs.forEach(function (tab) {
+          var active = tab.getAttribute('data-case') === caseKey;
+          tab.classList.toggle('active', active);
+          tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          state.active = tab.getAttribute('data-case');
+          render(state.active);
+        });
+      });
+
+      function positionTooltip(event) {
+        if (!tooltipEl) return;
+        var offset = 14;
+        var rect = tooltipEl.getBoundingClientRect();
+        var left = event.clientX + offset;
+        var top = event.clientY + offset;
+
+        if (left + rect.width > window.innerWidth - 12) {
+          left = event.clientX - rect.width - offset;
+        }
+        if (top + rect.height > window.innerHeight - 12) {
+          top = event.clientY - rect.height - offset;
+        }
+
+        tooltipEl.style.left = Math.max(12, left) + 'px';
+        tooltipEl.style.top = Math.max(12, top) + 'px';
+      }
+
+      function showTooltip(cell, event) {
+        if (!tooltipEl) return;
+
+        tooltipEl.innerHTML =
+          '<strong>' + escapeHtml(cell.dataset.method + ' · ' + cell.dataset.feature) + '</strong>' +
+          '<span>Candidate: ' + escapeHtml(cell.dataset.token) + '</span>' +
+          '<span>Type: ' + escapeHtml(cell.dataset.tokenType) + '</span>' +
+          '<div class="tooltip-value">DLA ' + escapeHtml(cell.dataset.value) + '</div>';
+        tooltipEl.classList.add('visible');
+        tooltipEl.setAttribute('aria-hidden', 'false');
+        positionTooltip(event);
+      }
+
+      function hideTooltip() {
+        if (!tooltipEl) return;
+        tooltipEl.classList.remove('visible');
+        tooltipEl.setAttribute('aria-hidden', 'true');
+      }
+
+      root.addEventListener('mouseover', function (event) {
+        var cell = event.target.closest('.qual-cell');
+        if (!cell || !root.contains(cell)) return;
+        showTooltip(cell, event);
+      });
+
+      root.addEventListener('mousemove', function (event) {
+        if (!tooltipEl || !tooltipEl.classList.contains('visible')) return;
+        positionTooltip(event);
+      });
+
+      root.addEventListener('mouseout', function (event) {
+        var cell = event.target.closest('.qual-cell');
+        if (!cell || cell.contains(event.relatedTarget)) return;
+        hideTooltip();
+      });
+
+      root.addEventListener('focusin', function (event) {
+        var cell = event.target.closest('.qual-cell');
+        if (!cell) return;
+        showTooltip(cell, { clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 });
+      });
+
+      root.addEventListener('focusout', hideTooltip);
+
+      Promise.all(Object.keys(cases).map(function (key) {
+        return fetch(cases[key].path)
+          .then(function (response) {
+            if (!response.ok) throw new Error('Failed to load ' + cases[key].path);
+            return response.json();
+          })
+          .then(function (data) {
+            state.data[key] = data;
+          });
+      })).then(function () {
+        render(state.active);
+      }).catch(function (error) {
+        console.error(error);
+        promptEl.textContent = 'Failed to load qualitative analysis data.';
+      });
+    })();
+
+    (function () {
+      var carousel = document.querySelector('.method-carousel');
+      if (!carousel) return;
+
+      var slides = carousel.querySelectorAll('.method-slide');
+      var indicator = carousel.querySelector('.method-indicator');
+      var prevBtn = carousel.querySelector('.method-prev');
+      var nextBtn = carousel.querySelector('.method-next');
+      var current = 0;
+
+      if (!slides.length || !indicator || !prevBtn || !nextBtn) return;
+
+      function show(index) {
+        slides[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        indicator.textContent = (current + 1) + ' / ' + slides.length;
+      }
+
+      prevBtn.addEventListener('click', function () { show(current - 1); });
+      nextBtn.addEventListener('click', function () { show(current + 1); });
+    })();
+
+    (function () {
+      var carousel = document.querySelector('.results-carousel');
+      if (!carousel) return;
+
+      var slides = carousel.querySelectorAll('.result-slide');
+      var indicator = carousel.querySelector('.carousel-indicator');
+      var prevBtn = carousel.querySelector('.carousel-prev');
+      var nextBtn = carousel.querySelector('.carousel-next');
+      var current = 0;
+
+      if (!slides.length || !indicator || !prevBtn || !nextBtn) return;
+
+      function show(index) {
+        slides[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        indicator.textContent = (current + 1) + ' / ' + slides.length;
+      }
+
+      prevBtn.addEventListener('click', function () { show(current - 1); });
+      nextBtn.addEventListener('click', function () { show(current + 1); });
+    })();
+  </script>
+
+</body>
+</html>
