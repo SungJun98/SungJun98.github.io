@@ -202,9 +202,16 @@ section:nth-of-type(odd) {
 }
 
 #news,
-#career,
 #MLAIprojects {
   background-color: var(--bg-white);
+}
+
+#career {
+  background:
+    linear-gradient(180deg, rgba(0, 56, 118, 0.035), rgba(196, 166, 97, 0.06)),
+    var(--bg-warm);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 #publications {
@@ -946,6 +953,244 @@ section:nth-of-type(odd) {
   border-color: var(--blue-deep);
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 56, 118, 0.2);
+}
+
+.research-philosophy {
+  position: relative;
+  margin-top: 1.45rem;
+}
+
+.philosophy-heading {
+  text-align: left;
+  margin-bottom: 0.95rem;
+}
+
+.philosophy-kicker {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.philosophy-heading h4 {
+  margin-bottom: 0;
+  color: var(--blue-deep);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.philosophy-compass {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: center;
+  padding: 1rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(196, 166, 97, 0.12), transparent 31%),
+    radial-gradient(circle at 84% 75%, rgba(0, 56, 118, 0.08), transparent 36%),
+    var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.philosophy-orbit {
+  position: relative;
+  width: min(260px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.philosophy-constellation {
+  position: absolute;
+  inset: 4%;
+  width: 92%;
+  height: 92%;
+  color: var(--gold);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.philosophy-constellation circle,
+.philosophy-constellation path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 7;
+  vector-effect: non-scaling-stroke;
+}
+
+.axis-node {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  min-height: 46px;
+  padding: 0.38rem 0.5rem;
+  border: 1px solid rgba(0, 56, 118, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+  appearance: none;
+}
+
+.axis-node:hover,
+.axis-node:focus,
+.axis-node.active {
+  background: var(--blue-deep);
+  border-color: var(--gold);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0, 56, 118, 0.22);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.axis-node span {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.axis-node strong {
+  margin-top: 0.2rem;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.axis-node-uncertainty {
+  top: 8%;
+  left: 50%;
+}
+
+.axis-node-robustness {
+  top: 38%;
+  left: 86%;
+}
+
+.axis-node-reasoning {
+  top: 82%;
+  left: 70%;
+}
+
+.axis-node-interpretability {
+  top: 82%;
+  left: 30%;
+}
+
+.axis-node-efficiency {
+  top: 38%;
+  left: 14%;
+}
+
+.philosophy-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 118px;
+  aspect-ratio: 1;
+  padding: 0.8rem;
+  background:
+    linear-gradient(135deg, rgba(10, 22, 40, 0.98), rgba(0, 56, 118, 0.94));
+  border: 1px solid rgba(196, 166, 97, 0.55);
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.philosophy-core span {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.philosophy-core strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.philosophy-detail {
+  position: relative;
+  min-height: 138px;
+  padding: 1rem 1.1rem;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.philosophy-detail-index {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.philosophy-detail h5 {
+  margin-bottom: 0.55rem;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.philosophy-detail p {
+  margin-bottom: 0;
+  color: var(--text-body);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+html[data-theme="dark"] .axis-node {
+  background: rgba(20, 40, 71, 0.9);
+  border-color: rgba(196, 166, 97, 0.16);
+}
+
+html[data-theme="dark"] .axis-node:hover,
+html[data-theme="dark"] .axis-node:focus,
+html[data-theme="dark"] .axis-node.active {
+  background: var(--blue-deep);
+  color: var(--navy-dark);
+}
+
+html[data-theme="dark"] .philosophy-detail {
+  background: rgba(20, 40, 71, 0.72);
 }
 
 .skill-mf span { color: var(--text-body); }
@@ -1723,6 +1968,85 @@ html[data-theme="dark"] .news-links a[target="_blank"] {
   transform: translateY(-1px);
 }
 
+.pub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.35rem 0 0.55rem;
+}
+
+.pub-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0.18rem 0.55rem;
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  background: var(--bg-warm);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.pub-tag-uncertainty {
+  color: #7a6128;
+  background: rgba(196, 166, 97, 0.18);
+  border-color: rgba(196, 166, 97, 0.45);
+}
+
+.pub-tag-robustness {
+  color: var(--blue-deep);
+  background: rgba(0, 56, 118, 0.08);
+  border-color: rgba(0, 56, 118, 0.24);
+}
+
+.pub-tag-interpretability {
+  color: #5b4b7a;
+  background: rgba(91, 75, 122, 0.11);
+  border-color: rgba(91, 75, 122, 0.28);
+}
+
+.pub-tag-efficiency {
+  color: #087f5b;
+  background: rgba(8, 127, 91, 0.11);
+  border-color: rgba(8, 127, 91, 0.28);
+}
+
+.pub-tag-probabilistic {
+  color: var(--text-primary);
+  background: rgba(108, 117, 125, 0.1);
+  border-color: rgba(108, 117, 125, 0.25);
+}
+
+.pub-tag-applications {
+  color: #8a3d3d;
+  background: rgba(138, 61, 61, 0.1);
+  border-color: rgba(138, 61, 61, 0.28);
+}
+
+html[data-theme="dark"] .pub-tag-uncertainty {
+  color: var(--gold);
+  background: rgba(196, 166, 97, 0.14);
+}
+
+html[data-theme="dark"] .pub-tag-robustness {
+  color: var(--blue-deep);
+}
+
+html[data-theme="dark"] .pub-tag-interpretability {
+  color: #b6a4dc;
+}
+
+html[data-theme="dark"] .pub-tag-efficiency {
+  color: var(--teal);
+}
+
+html[data-theme="dark"] .pub-tag-applications {
+  color: #f0aaaa;
+}
+
 .peer-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -1744,6 +2068,33 @@ html[data-theme="dark"] .news-links a[target="_blank"] {
 
 .peer-filter-bar .btn-group .btn {
   min-width: 50px;
+}
+
+.peer-theme-filter {
+  flex: 1 1 100%;
+}
+
+.peer-theme-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  vertical-align: middle;
+}
+
+.peer-theme-toggle.btn-group > .btn {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.peer-filter-empty {
+  display: none;
+  margin: 1rem 0 0;
+  padding: 1rem;
+  color: var(--text-muted);
+  background: var(--bg-warm);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  text-align: center;
 }
 
 .peer-reviewed-item {
@@ -1839,6 +2190,19 @@ html[data-theme="dark"] .publications .text-center .btn-secondary[aria-expanded=
   .peer-filter-bar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .peer-theme-filter {
+    width: 100%;
+  }
+
+  .peer-theme-toggle {
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -2450,12 +2814,53 @@ footer .credits a { color: var(--gold); }
     margin-top: 1rem;
   }
 
+  .philosophy-heading h4 {
+    font-size: 1rem;
+  }
+
+  .philosophy-compass {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 0.85rem;
+  }
+
+  .philosophy-orbit {
+    width: min(265px, 100%);
+  }
+
+  .axis-node {
+    width: 82px;
+    min-height: 48px;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .axis-node strong {
+    font-size: 0.68rem;
+  }
+
+  .philosophy-core {
+    width: 122px;
+  }
+
+  .philosophy-core strong {
+    font-size: 0.82rem;
+  }
+
+  .philosophy-detail {
+    min-height: 0;
+    padding: 1rem;
+  }
+
   .title-a {
     font-size: 1.8rem;
   }
 
   .publications .card-body {
     padding: 1rem;
+  }
+
+  .pub-tag {
+    font-size: 0.68rem;
   }
 
   .intro .intro-title {

@@ -144,7 +144,7 @@
         <div class="container">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="intro-title mb-4">Sungjun Lim</h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Trustworthy AI,Bayesian Deep Learning,Uncertainty Quantification,Mechanistic Explainability,Distribution Shift Robustness,Probabilistic Representations</span><strong class="text-slider"></strong></p>
+          <p class="intro-subtitle"><span class="text-slider-items">Trustworthy AI,Reliable AI,Reasoning Models,Uncertainty Quantification,Robustness,Mechanistic Interpretability,Probabilistic Machine Learning</span><strong class="text-slider"></strong></p>
           <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
         </div>
       </div>
@@ -190,21 +190,57 @@
         <div class="col-lg-8 reveal reveal-delay-2">
           <div class="about-text-card">
             <p class="lead">
-              Hello! I am Sungjun Lim, a graduate researcher at Yonsei University's Statistics and Data Science department.
+              Hello! I am Sungjun Lim, a PhD student at Yonsei University's Statistics and Data Science department.
             </p>
             <p class="lead">
-              My research centers on building robust and trustworthy AI systems, focusing on uncertainty quantification, robustness under distribution shift, and mechanistic interpretability to understand model behavior in out-of-distribution settings.
+              My ultimate goal is to build AI systems that remain trustworthy under uncertainty: models that can recognize what they do not know, reason over alternatives, adapt beyond training conditions, and make their decisions understandable to humans.
             </p>
-            <p class="lead">
-              Currently, I am working on uncertainty-aware and geometry-aware interpretability methods for large-scale neural networks, aiming to improve the robustness and faithfulness of explanations in real-world scenarios.
-            </p>
-            <div class="research-interests mt-4">
-              <span class="interest-tag">Trustworthy AI</span>
-              <span class="interest-tag">Uncertainty Quantification</span>
-              <span class="interest-tag">Distribution Shift</span>
-              <span class="interest-tag">Mechanistic Interpretability</span>
-              <span class="interest-tag">Bayesian Deep Learning</span>
-              <span class="interest-tag">Probabilistic Representations</span>
+            <div class="research-philosophy">
+              <div class="philosophy-heading">
+                <span class="philosophy-kicker">Research Philosophy</span>
+                <h4>Five research axes toward one goal</h4>
+              </div>
+              <div class="philosophy-compass" data-active-axis="uncertainty">
+                <div class="philosophy-orbit" role="tablist" aria-label="Research philosophy axes">
+                  <svg class="philosophy-constellation" viewBox="0 0 320 320" aria-hidden="true">
+                    <circle cx="160" cy="160" r="112"/>
+                    <circle cx="160" cy="160" r="66"/>
+                    <path d="M160 160 L160 48 M160 160 L267 125 M160 160 L226 251 M160 160 L94 251 M160 160 L53 125"/>
+                  </svg>
+
+                  <button class="axis-node axis-node-uncertainty active" type="button" role="tab" aria-selected="true" data-axis="uncertainty" data-index="01" data-title="Uncertainty as a Signal" data-text="Use uncertainty not only to measure confidence, but to guide prediction, selection, and exploration.">
+                    <span>01</span>
+                    <strong>Uncertainty</strong>
+                  </button>
+                  <button class="axis-node axis-node-robustness" type="button" role="tab" aria-selected="false" data-axis="robustness" data-index="02" data-title="Reliability Beyond Training Data" data-text="Build models that remain useful when distributions shift, environments change, or evidence is incomplete.">
+                    <span>02</span>
+                    <strong>Robustness</strong>
+                  </button>
+                  <button class="axis-node axis-node-reasoning" type="button" role="tab" aria-selected="false" data-axis="reasoning" data-index="03" data-title="Reasoning With Multiple Hypotheses" data-text="Move beyond a single deterministic path by exploring diverse plausible solutions before deciding.">
+                    <span>03</span>
+                    <strong>Reasoning</strong>
+                  </button>
+                  <button class="axis-node axis-node-interpretability" type="button" role="tab" aria-selected="false" data-axis="interpretability" data-index="04" data-title="Faithful Interpretability" data-text="Develop explanations that reflect internal model behavior rather than post-hoc stories.">
+                    <span>04</span>
+                    <strong>Interpretability</strong>
+                  </button>
+                  <button class="axis-node axis-node-efficiency" type="button" role="tab" aria-selected="false" data-axis="efficiency" data-index="05" data-title="Efficient Decision-Making" data-text="Let models decide when to spend more computation and when the available evidence is enough.">
+                    <span>05</span>
+                    <strong>Efficiency</strong>
+                  </button>
+
+                  <div class="philosophy-core">
+                    <span>Ultimate Goal</span>
+                    <strong>Trustworthy AI under uncertainty</strong>
+                  </div>
+                </div>
+
+                <div class="philosophy-detail" aria-live="polite">
+                  <span class="philosophy-detail-index">Axis 01</span>
+                  <h5>Uncertainty as a Signal</h5>
+                  <p>Use uncertainty not only to measure confidence, but to guide prediction, selection, and exploration.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -238,8 +274,8 @@
         <div class="news-filter-row">
           <span class="news-filter-label">Year</span>
           <div class="btn-group btn-group-sm news-filter-group" role="group" aria-label="Filter news by year">
-            <button class="btn btn-outline-primary active news-filter-btn" type="button" data-filter-type="year" data-filter-value="all" aria-pressed="true">All</button>
-            <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="2026" aria-pressed="false">2026</button>
+            <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="all" aria-pressed="false">All</button>
+            <button class="btn btn-outline-primary active news-filter-btn" type="button" data-filter-type="year" data-filter-value="2026" aria-pressed="true">2026</button>
             <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="2025" aria-pressed="false">2025</button>
           </div>
         </div>
@@ -470,6 +506,18 @@
                   <label class="form-check-label" for="filterJournal">Journal</label>
                 </div>
               </div>
+              <div class="peer-theme-filter">
+                <span class="mr-2 font-weight-bold">Theme</span>
+                <div class="btn-group btn-group-sm peer-theme-toggle" role="group" aria-label="Filter publications by theme">
+                  <button type="button" class="btn btn-outline-primary active" data-theme="all">All</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="uncertainty">Uncertainty</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="robustness">Robustness</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="interpretability">Interpretability</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="efficiency">Efficiency</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="probabilistic">Probabilistic ML</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="applications">Applications</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -483,6 +531,9 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li>Changdae Oh, Minhoi Park, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>Expert Systems with Applications (ESWA) 2024</li>
@@ -496,6 +547,9 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                </div>
                 <ul>
                   <li>Hoyoon Byun, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>Engineering Applications of Artificial Intelligence (EAAI) 2025</li>
@@ -509,6 +563,10 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Taero Kim, Hyeonjeong Lee, Yewon Kim, Minhoi Park, Kwang-Yong Kim, Minseong Kim, Kyu Hyung Kim, Jiyoung Jung, Kyungwoo Song</li>
                   <li>Biomedical Signal Processing and Control (BSPC) 2025</li>
@@ -535,6 +593,9 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                </div>
                 <ul>
                   <li>Taero Kim, Subeen Park, <b>Sungjun Lim</b>, Yonghan Jung, Krikamol Muandet, Kyungwoo Song</li>
                   <li>Computer Vision and Pattern Recognition (CVPR) 2025</li>
@@ -548,6 +609,10 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                  <span class="pub-tag pub-tag-probabilistic">Probabilistic ML</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
                   <li>Uncertainty in Artificial Intelligence (UAI) 2025</li>
@@ -561,6 +626,9 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                </div>
                 <ul>
                   <li>Hakyung Lee, Subeen Park, Joowang Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>Association for Computational Linguistics (ACL) 2025 Findings</li>
@@ -574,6 +642,10 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-probabilistic">Probabilistic ML</span>
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li>Sooyon Kim, Yongtaek Lim, <b>Sungjun Lim</b>, Gyeongdeok Seo, Jihee Kim, Hojun Park, Jeahun Jung, Kyungwoo Song</li>
                   <li>Journal of Biomedical Informatics 2025</li>
@@ -587,6 +659,10 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-probabilistic">Probabilistic ML</span>
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>Conference on Information and Knowledge Management (CIKM) 2025</li>
@@ -600,6 +676,10 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Yongtaek Lim, Hojun Park, Junggu Lee, Jaehun Jung, Kyungwoo Song</li>
                   <li>IEEE Journal of Biomedical and Health Informatics 2025</li>
@@ -613,6 +693,9 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                </div>
                 <ul>
                   <li>Youngjun Choi, <b>Sungjun Lim</b>, Minhoi Park, Jaekyeong Jung, TaeKyung Kim, Hosik Choi, Kyungwoo Song</li>
                   <li>IEEE Big data 2025 (Short)</li>
@@ -643,6 +726,10 @@
                     <i class="fa fa-globe"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                  <span class="pub-tag pub-tag-probabilistic">Probabilistic ML</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Kangjun Noh, Youngjun Choi, Heeyoung Lee, Kyungwoo Song</li>
                   <li>International Conference on Learning Representations (ICLR) 2026</li>
@@ -652,7 +739,14 @@
               <li class="peer-reviewed-item reveal" data-year="2026" data-category="conference">
                 <h5>
                   <strong>Eigen-Value : Efficient Domain-Robust Data Valuation via eigenvalue-Based Approach</strong>
+                  <a href="https://arxiv.org/pdf/2510.23409" class="pub-link-icon" target="_blank" title="View paper on arXiv">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                  <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                </div>
                 <ul>
                   <li>Youngjun Choi, Junseong Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>Computer Vision and Pattern Recognition (CVPR) 2026 Findings</li>
@@ -660,6 +754,7 @@
               </li>
 
             </ol>
+            <p class="peer-filter-empty">No peer-reviewed publications match the selected filters.</p>
           </div>
         </div>
       </div>
@@ -677,25 +772,27 @@
                 <h5>
                   <strong>DDRL: A Diffusion-Driven Reinforcement Learning Approach for Enhanced TSP Solutions</strong>
                 </h5>
+                <!-- <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div> -->
                 <ul>
                   <li>Joowang Kim, Jeyoon Yeom, Gyeongdeok Seo, <b>Sungjun Lim</b>, Jae Ha Kwak, Heejun Ahn, Gyeong-moon Park, Kyungwoo Song</li>
                   <!-- <li>Conference on Neural Information Processing Systems (NeurIPS) 2025</li> -->
                 </ul>
               </li>
  
-              <br>
- 
               <li class="reveal">
                 <h5>
                   <strong>RRD: Routing-and-Residual Distillation for Efficient MoE Recovery in Large Language Models</strong>
                 </h5>
+                <!-- <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                </div> -->
                 <ul>
                   <li>Hoyoon Byun, Kangjun Noh, SoMin Kim, Heedong Kim, Jaeyoon Shim, <b>Sungjun Lim</b>, Youngjun Choi, Kyungwoo Song</li>
                   <!-- <li>Conference on Neural Information Processing Systems (NeurIPS) 2026</li> -->
                 </ul>
               </li>
-
-              <br>
 
               <li class="reveal">
                 <h5>
@@ -707,9 +804,25 @@
                     <i class="fa fa-globe"></i>
                   </a>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-interpretability">Interpretability</span>
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Heedong Kim, Andrew Lee, Kyungwoo Song</li>
                   <!-- <li>Conference on Neural Information Processing Systems (NeurIPS) 2026</li> -->
+                </ul>
+              </li>
+
+              <li class="reveal">
+                <h5>
+                  <strong>SPHERE: Signal-Aware Prototype Harmonization for Continual Specific Emitter Identification</strong>
+                </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Sumin Park, Gyungmin Kim, Kyuha Song, Kyungwoo Song</li>
                 </ul>
               </li>
     
@@ -730,47 +843,76 @@
                 <h5>
                   <strong>Sufficient Invariant Learning for Distribution Shift</strong>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                </div>
                 <ul>
                   <li>Taero Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>The Sixth Data Science Meets Optimisation (DSO) Workshop at IJCAI 2024</li>
                 </ul>
               </li>
  
-              <br>
- 
               <li class="reveal">
                 <h5>
                   <strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-probabilistic">Probabilistic ML</span>
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
                   <li>Artificial Intelligence for Time Series Analysis (AI4TS) at IJCAI 2024</li>
                 </ul>
               </li>
- 
-              <br>
               
               <li class="reveal">
                 <h5>
                   <strong>Flat Posterior For Bayesian Model Averaging</strong>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                  <span class="pub-tag pub-tag-probabilistic">Probabilistic ML</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
                   <li>Frontiers in Probabilistic Inference Workshop at ICLR 2025</li>
                 </ul>
               </li>
  
-              <br>
- 
               <li class="reveal">
                 <h5>
                   <strong>A Double-Edged Sword: Benchmarking the Trade-off Between Bias Mitigation and Helpfulness of LLM Guardrails in Finance</strong>
                 </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Hoyoon Byun, Jihee Kim, Kyungwoo Song</li>
                   <li>Advances in Financial AI: Innovations, Risk, and Responsibility in the Era of LLMs at CIKM 2025</li>
                 </ul>
               </li>
+
+              <li class="reveal">
+                <h5>
+                  <strong>Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift</strong>
+                  <a href="https://arxiv.org/abs/2605.21849" class="pub-link-icon" target="_blank" title="View paper on arXiv">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                  <a href="projects/gae/" class="pub-link-icon" title="Project page">
+                    <i class="fa fa-globe"></i>
+                  </a>
+                </h5>
+                <div class="pub-tags" aria-label="Research themes">
+                  <span class="pub-tag pub-tag-interpretability">Interpretability</span>
+                  <span class="pub-tag pub-tag-robustness">Robustness</span>
+                </div>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Heedong Kim, Andrew Lee, Kyungwoo Song</li>
+                  <li>Mechanistic Interpretability Workshop at ICML 2026</li>
+                </ul>
+              </li>
+
             </ol>
           </div>
         </div>
@@ -991,11 +1133,53 @@
     })();
   </script>
 
+  <!-- Research philosophy compass -->
+  <script>
+    (function () {
+      function initPhilosophyCompass() {
+        var compass = document.querySelector('.philosophy-compass');
+        if (!compass) return;
+
+        var nodes = compass.querySelectorAll('.axis-node');
+        var detailIndex = compass.querySelector('.philosophy-detail-index');
+        var detailTitle = compass.querySelector('.philosophy-detail h5');
+        var detailText = compass.querySelector('.philosophy-detail p');
+
+        function setActive(node) {
+          if (!node) return;
+
+          nodes.forEach(function (item) {
+            var active = item === node;
+            item.classList.toggle('active', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+
+          compass.setAttribute('data-active-axis', node.getAttribute('data-axis') || '');
+          if (detailIndex) detailIndex.textContent = 'Axis ' + (node.getAttribute('data-index') || '');
+          if (detailTitle) detailTitle.textContent = node.getAttribute('data-title') || '';
+          if (detailText) detailText.textContent = node.getAttribute('data-text') || '';
+        }
+
+        nodes.forEach(function (node) {
+          node.addEventListener('click', function () { setActive(node); });
+          node.addEventListener('focus', function () { setActive(node); });
+          node.addEventListener('mouseenter', function () { setActive(node); });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPhilosophyCompass);
+      } else {
+        initPhilosophyCompass();
+      }
+    })();
+  </script>
+
   <!-- News filter script -->
   <script>
     (function () {
       var selectedCategories = [];
-      var selectedYears = [];
+      var selectedYears = ['2026'];
 
       function toggleValue(list, value) {
         var index = list.indexOf(value);
@@ -1088,6 +1272,8 @@
       function applyPeerFilters() {
         var $allBtn = $('#peerReviewed-year-toggle .btn[data-year="all"]');
         var isAll = $allBtn.hasClass('active');
+        var $themeAllBtn = $('.peer-theme-toggle .btn[data-theme="all"]');
+        var isThemeAll = $themeAllBtn.hasClass('active');
 
         // Collect selected years
         var selectedYears = [];
@@ -1103,6 +1289,17 @@
           return $(this).val();
         }).get();
 
+        var selectedThemes = [];
+        if (!isThemeAll) {
+          $('.peer-theme-toggle .btn').not('[data-theme="all"]').each(function () {
+            if ($(this).hasClass('active')) {
+              selectedThemes.push(String($(this).data('theme')));
+            }
+          });
+        }
+
+        var visibleCount = 0;
+
         $('.peer-reviewed-item').each(function () {
           var $item = $(this);
           var itemYear = String($item.data('year') || '');
@@ -1110,9 +1307,16 @@
 
           var yearMatch = isAll || selectedYears.indexOf(itemYear) !== -1;
           var typeMatch = allowedTypes.length > 0 && allowedTypes.indexOf(itemType) !== -1;
+          var themeMatch = isThemeAll || selectedThemes.some(function (theme) {
+            return $item.find('.pub-tag-' + theme).length > 0;
+          });
+          var shouldShow = yearMatch && typeMatch && themeMatch;
 
-          $item.toggle(yearMatch && typeMatch);
+          $item.toggle(shouldShow);
+          if (shouldShow) visibleCount += 1;
         });
+
+        $('.peer-filter-empty').toggle(visibleCount === 0);
       }
 
       $('#peerReviewed-year-toggle .btn').on('click', function () {
@@ -1146,7 +1350,40 @@
 
       $('.peer-type-filter').on('change', applyPeerFilters);
 
+      $('.peer-theme-toggle .btn').on('click', function () {
+        var $this = $(this);
+        var theme = $this.data('theme');
+        var $allBtn = $('.peer-theme-toggle .btn[data-theme="all"]');
+        var $themeBtns = $('.peer-theme-toggle .btn').not('[data-theme="all"]');
+
+        if (theme === 'all') {
+          $themeBtns.removeClass('active');
+          $allBtn.addClass('active');
+        } else {
+          $allBtn.removeClass('active');
+          $this.toggleClass('active');
+
+          if ($themeBtns.filter('.active').length === 0) {
+            $allBtn.addClass('active');
+          }
+
+          if ($themeBtns.filter('.active').length === $themeBtns.length) {
+            $themeBtns.removeClass('active');
+            $allBtn.addClass('active');
+          }
+        }
+
+        $('.peer-theme-toggle .btn').each(function () {
+          $(this).attr('aria-pressed', $(this).hasClass('active') ? 'true' : 'false');
+        });
+
+        applyPeerFilters();
+      });
+
       // Initialize filter state
+      $('.peer-theme-toggle .btn').each(function () {
+        $(this).attr('aria-pressed', $(this).hasClass('active') ? 'true' : 'false');
+      });
       applyPeerFilters();
     });
   </script>
