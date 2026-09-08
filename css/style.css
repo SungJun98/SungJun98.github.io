@@ -968,6 +968,24 @@ section:nth-of-type(odd) {
   font-size: 1.1rem;
 }
 
+.research-approach {
+  margin: 1.4rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.research-approach > span {
+  display: inline-block;
+  margin-right: 0.65rem;
+  color: var(--blue-deep);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .philosophy-compass {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -1092,14 +1110,14 @@ section:nth-of-type(odd) {
   font-size: clamp(0.73rem, 1.25vw, 0.95rem);
   font-weight: 600;
   line-height: 1.2;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
 }
 
-.axis-node-uncertainty { top: 12%; left: 50%; }
-.axis-node-robustness { top: 39%; left: 84%; }
-.axis-node-reasoning { top: 84%; left: 71%; }
-.axis-node-interpretability { top: 84%; left: 29%; }
-.axis-node-efficiency { top: 39%; left: 16%; }
+.axis-node-uncertainty { top: 18%; left: 18%; }
+.axis-node-robustness { top: 18%; left: 82%; }
+.axis-node-interpretability { top: 82%; left: 82%; }
+.axis-node-alignment-safety { top: 82%; left: 18%; }
 
 .philosophy-core {
   position: absolute;
@@ -2537,11 +2555,23 @@ html[data-theme="dark"] .news-links a[target="_blank"] {
   transform: translateY(-1px);
 }
 
-.pub-tags {
+.pub-tags,
+.pub-topics {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   margin: 0.35rem 0 0.55rem;
+}
+
+.pub-topic {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.3;
 }
 
 .pub-tag {
@@ -2577,16 +2607,10 @@ html[data-theme="dark"] .news-links a[target="_blank"] {
   border-color: rgba(91, 75, 122, 0.28);
 }
 
-.pub-tag-efficiency {
+.pub-tag-alignment-safety {
   color: #087f5b;
   background: rgba(8, 127, 91, 0.11);
   border-color: rgba(8, 127, 91, 0.28);
-}
-
-.pub-tag-reasoning {
-  color: #9a4c13;
-  background: rgba(190, 104, 38, 0.1);
-  border-color: rgba(190, 104, 38, 0.3);
 }
 
 .pub-tag-applications {
@@ -2608,10 +2632,6 @@ html[data-theme="dark"] .pub-tag-interpretability {
   color: #b6a4dc;
 }
 
-html[data-theme="dark"] .pub-tag-reasoning {
-  color: #f0b17b;
-}
-
 #publication-ddrl {
   scroll-margin-top: 100px;
 }
@@ -2621,7 +2641,7 @@ html[data-theme="dark"] .pub-tag-reasoning {
   outline-offset: 6px;
 }
 
-html[data-theme="dark"] .pub-tag-efficiency {
+html[data-theme="dark"] .pub-tag-alignment-safety {
   color: var(--teal);
 }
 

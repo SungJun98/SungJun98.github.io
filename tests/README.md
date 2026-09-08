@@ -1,6 +1,6 @@
 # Browser checks
 
-These tests cover representative-paper links, publication filters, heading and button collapse controls, keyboard access, and responsive layouts.
+These tests cover four-axis navigation, representative-paper links, publication categories and secondary topics, heading and button collapse controls, keyboard access, and responsive layouts.
 They use Node.js's test runner and Playwright with Chromium.
 
 Install the browser test dependency locally:

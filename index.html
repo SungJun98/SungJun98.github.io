@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css?v=20260908-publication-headers" rel="stylesheet">
+  <link href="css/style.css?v=20260908-four-axes" rel="stylesheet">
 
 
   <!-- JavaScript Libraries -->
@@ -206,7 +206,7 @@
     <div class="container">
       <div class="title-box text-center reveal">
         <h3 class="title-a" id="research-heading">Research Philosophy</h3>
-        <p class="research-intro">Five research axes toward one goal.</p>
+        <p class="research-intro">Four research axes toward one goal.</p>
         <div class="line-mf"></div>
       </div>
 
@@ -215,26 +215,22 @@
           <svg class="philosophy-constellation" viewBox="0 0 500 500" aria-hidden="true">
             <circle class="philosophy-ring" cx="250" cy="250" r="182"/>
             <circle class="philosophy-inner-ring" cx="250" cy="250" r="117"/>
-            <path class="philosophy-spokes" d="M250 250 L250 60 M250 250 L420 195 M250 250 L355 420 M250 250 L145 420 M250 250 L80 195"/>
+            <path class="philosophy-spokes" d="M250 250 L90 90 M250 250 L410 90 M250 250 L410 410 M250 250 L90 410"/>
             <g class="philosophy-connection active" data-axis="uncertainty">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L250 60"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L250 60"/>
+              <path class="philosophy-ray" pathLength="1" d="M250 250 L90 90"/>
+              <path class="philosophy-flow" pathLength="1" d="M250 250 L90 90"/>
             </g>
             <g class="philosophy-connection" data-axis="robustness">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L420 195"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L420 195"/>
-            </g>
-            <g class="philosophy-connection" data-axis="reasoning">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L355 420"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L355 420"/>
+              <path class="philosophy-ray" pathLength="1" d="M250 250 L410 90"/>
+              <path class="philosophy-flow" pathLength="1" d="M250 250 L410 90"/>
             </g>
             <g class="philosophy-connection" data-axis="interpretability">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L145 420"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L145 420"/>
+              <path class="philosophy-ray" pathLength="1" d="M250 250 L410 410"/>
+              <path class="philosophy-flow" pathLength="1" d="M250 250 L410 410"/>
             </g>
-            <g class="philosophy-connection" data-axis="efficiency">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L80 195"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L80 195"/>
+            <g class="philosophy-connection" data-axis="alignment-safety">
+              <path class="philosophy-ray" pathLength="1" d="M250 250 L90 410"/>
+              <path class="philosophy-flow" pathLength="1" d="M250 250 L90 410"/>
             </g>
           </svg>
 
@@ -244,14 +240,11 @@
           <button id="axis-robustness" class="axis-node axis-node-robustness" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-robustness" tabindex="-1" data-axis="robustness">
             <span>02</span><strong>Robustness</strong>
           </button>
-          <button id="axis-reasoning" class="axis-node axis-node-reasoning" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-reasoning" tabindex="-1" data-axis="reasoning">
-            <span>03</span><strong>Reasoning</strong>
-          </button>
           <button id="axis-interpretability" class="axis-node axis-node-interpretability" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-interpretability" tabindex="-1" data-axis="interpretability">
-            <span>04</span><strong>Interpretability</strong>
+            <span>03</span><strong>Interpretability</strong>
           </button>
-          <button id="axis-efficiency" class="axis-node axis-node-efficiency" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-efficiency" tabindex="-1" data-axis="efficiency">
-            <span>05</span><strong>Efficiency</strong>
+          <button id="axis-alignment-safety" class="axis-node axis-node-alignment-safety" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-alignment-safety" tabindex="-1" data-axis="alignment-safety">
+            <span>04</span><strong>Alignment<br> &amp; Safety</strong>
           </button>
 
           <div class="philosophy-core">
@@ -263,7 +256,7 @@
 
         <div class="philosophy-reading">
           <div class="philosophy-detail" id="axis-panel-uncertainty" role="tabpanel" aria-labelledby="axis-uncertainty" tabindex="0">
-            <span class="philosophy-detail-index">Axis 01 <span>/ 05</span></span>
+            <span class="philosophy-detail-index">Axis 01 <span>/ 04</span></span>
             <h4>Uncertainty as a Signal</h4>
             <p>Use uncertainty not only to measure confidence, but to guide prediction, selection, and exploration.</p>
             <a class="axis-paper" href="https://arxiv.org/abs/2507.20718" target="_blank" rel="noopener noreferrer">
@@ -273,7 +266,7 @@
             </a>
           </div>
           <div class="philosophy-detail" id="axis-panel-robustness" role="tabpanel" aria-labelledby="axis-robustness" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 02 <span>/ 05</span></span>
+            <span class="philosophy-detail-index">Axis 02 <span>/ 04</span></span>
             <h4>Reliability Beyond Training Data</h4>
             <p>Build models that remain useful when distributions shift, environments change, or evidence is incomplete.</p>
             <a class="axis-paper" href="https://arxiv.org/abs/2406.15664" target="_blank" rel="noopener noreferrer">
@@ -282,13 +275,8 @@
               <span class="axis-paper-meta">UAI 2025</span>
             </a>
           </div>
-          <div class="philosophy-detail" id="axis-panel-reasoning" role="tabpanel" aria-labelledby="axis-reasoning" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 03 <span>/ 05</span></span>
-            <h4>Reasoning With Multiple Hypotheses</h4>
-            <p>Move beyond a single deterministic path by exploring diverse plausible solutions before deciding.</p>
-          </div>
           <div class="philosophy-detail" id="axis-panel-interpretability" role="tabpanel" aria-labelledby="axis-interpretability" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 04 <span>/ 05</span></span>
+            <span class="philosophy-detail-index">Axis 03 <span>/ 04</span></span>
             <h4>Faithful Interpretability</h4>
             <p>Develop explanations that reflect internal model behavior rather than post-hoc stories.</p>
             <a class="axis-paper" href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer">
@@ -297,10 +285,10 @@
               <span class="axis-paper-meta">Preprint 2026</span>
             </a>
           </div>
-          <div class="philosophy-detail" id="axis-panel-efficiency" role="tabpanel" aria-labelledby="axis-efficiency" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 05 <span>/ 05</span></span>
-            <h4>Efficient Decision-Making</h4>
-            <p>Let models decide when to spend more computation and when the available evidence is enough.</p>
+          <div class="philosophy-detail" id="axis-panel-alignment-safety" role="tabpanel" aria-labelledby="axis-alignment-safety" tabindex="0" hidden>
+            <span class="philosophy-detail-index">Axis 04 <span>/ 04</span></span>
+            <h4>Human-Aligned and Safe Behavior</h4>
+            <p>Align model behavior with human preferences, and assess safety risks and guardrail trade-offs.</p>
             <a class="axis-paper" href="https://arxiv.org/abs/2511.00040" target="_blank" rel="noopener noreferrer">
               <span class="axis-paper-label">Representative paper</span>
               <span class="axis-paper-title">Semi-Supervised Preference Optimization with Limited Feedback (SSPO) <i class="fa fa-external-link" aria-hidden="true"></i></span>
@@ -316,6 +304,7 @@
           </div>
         </div>
       </div>
+      <p class="research-approach"><span>Shared approach</span> Evaluation &amp; benchmarking across all four axes.</p>
     </div>
   </section>
 
@@ -608,9 +597,8 @@
                   <button type="button" class="btn btn-outline-primary active" data-theme="all">All</button>
                   <button type="button" class="btn btn-outline-primary" data-theme="uncertainty">Uncertainty</button>
                   <button type="button" class="btn btn-outline-primary" data-theme="robustness">Robustness</button>
-                  <button type="button" class="btn btn-outline-primary" data-theme="reasoning">Reasoning</button>
                   <button type="button" class="btn btn-outline-primary" data-theme="interpretability">Interpretability</button>
-                  <button type="button" class="btn btn-outline-primary" data-theme="efficiency">Efficiency</button>
+                  <button type="button" class="btn btn-outline-primary" data-theme="alignment-safety">Alignment &amp; Safety</button>
                   <button type="button" class="btn btn-outline-primary" data-theme="applications">Applications</button>
                 </div>
               </div>
@@ -627,7 +615,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-applications">Applications</span>
                 </div>
                 <ul>
@@ -643,7 +631,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-robustness">Robustness</span>
                 </div>
                 <ul>
@@ -659,7 +647,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-robustness">Robustness</span>
                   <span class="pub-tag pub-tag-applications">Applications</span>
                 </div>
@@ -689,7 +677,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-robustness">Robustness</span>
                 </div>
                 <ul>
@@ -708,7 +696,7 @@
                   <h5><a href="https://arxiv.org/abs/2406.15664" target="_blank" rel="noopener noreferrer">Flat Posterior Does Matter For Bayesian Model Averaging</a></h5>
                   <p class="publication-summary">We train Bayesian neural networks to favor flat posteriors, improving generalization in model averaging and transfer learning.</p>
                   <p class="publication-authors"><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</p>
-                  <div class="pub-tags" aria-label="Research themes">
+                  <div class="pub-tags" role="group" aria-label="Research categories">
                     <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
                     <span class="pub-tag pub-tag-robustness">Robustness</span>
                   </div>
@@ -726,7 +714,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
                 </div>
                 <ul>
@@ -742,7 +730,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-<div class="pub-tags" aria-label="Research themes">
+<div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
                   <span class="pub-tag pub-tag-applications">Applications</span>
                 </div>
@@ -759,7 +747,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-<div class="pub-tags" aria-label="Research themes">
+<div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
                   <span class="pub-tag pub-tag-applications">Applications</span>
                 </div>
@@ -776,7 +764,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
                   <span class="pub-tag pub-tag-applications">Applications</span>
                 </div>
@@ -793,8 +781,8 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
-                  <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Efficiency</span>
                 </div>
                 <ul>
                   <li>Youngjun Choi, <b>Sungjun Lim</b>, Minhoi Park, Jaekyeong Jung, TaeKyung Kim, Hosik Choi, Kyungwoo Song</li>
@@ -812,8 +800,11 @@
                   <h5><a href="https://arxiv.org/abs/2511.00040" target="_blank" rel="noopener noreferrer">Semi-Supervised Preference Optimization with Limited Feedback</a></h5>
                   <p class="publication-summary">We align language models with fewer preference labels by learning from paired feedback and pseudo-labeled unpaired responses.</p>
                   <p class="publication-authors">Seonggyun Lee, <b>Sungjun Lim</b>, Seojin Park, Soeun Cheon, Kyungwoo Song</p>
-                  <div class="pub-tags" aria-label="Research themes">
-                    <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                  <div class="pub-tags" role="group" aria-label="Research categories">
+                    <span class="pub-tag pub-tag-alignment-safety">Alignment &amp; Safety</span>
+                  </div>
+                  <div class="pub-topics" role="group" aria-label="Additional research topics">
+                    <span class="pub-topic">Data efficiency</span>
                   </div>
                   <div class="publication-links">
                     <a href="https://arxiv.org/abs/2511.00040" target="_blank" rel="noopener noreferrer"><i class="fa fa-file-text-o" aria-hidden="true"></i> Paper</a>
@@ -832,7 +823,7 @@
                   <h5><a href="https://arxiv.org/abs/2507.20718" target="_blank" rel="noopener noreferrer">Uncertainty-driven Embedding Convolution</a></h5>
                   <p class="publication-summary">We combine embedding models using their uncertainty to improve retrieval and classification across tasks and languages.</p>
                   <p class="publication-authors"><b>Sungjun Lim</b>, Kangjun Noh, Youngjun Choi, Heeyoung Lee, Kyungwoo Song</p>
-<div class="pub-tags" aria-label="Research themes">
+<div class="pub-tags" role="group" aria-label="Research categories">
                     <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
                   </div>
                   <div class="publication-links">
@@ -850,9 +841,11 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-robustness">Robustness</span>
-                  <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                </div>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Efficiency</span>
                 </div>
                 <ul>
                   <li>Youngjun Choi, Junseong Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
@@ -884,9 +877,11 @@
                 <h5>
                   <strong>DDRL: A Diffusion-Driven Reinforcement Learning Approach for Enhanced TSP Solutions</strong>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
-                  <span class="pub-tag pub-tag-reasoning">Reasoning</span>
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Reasoning</span>
                 </div>
                 <ul>
                   <li>Joowang Kim, Jeyoon Yeom, Gyeongdeok Seo, <b>Sungjun Lim</b>, Jae Ha Kwak, Heejun Ahn, Gyeong-moon Park, Kyungwoo Song</li>
@@ -898,8 +893,8 @@
                 <h5>
                   <strong>RRD: Routing-and-Residual Distillation for Efficient MoE Recovery in Large Language Models</strong>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
-                  <span class="pub-tag pub-tag-efficiency">Efficiency</span>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Efficiency</span>
                 </div>
                 <ul>
                   <li>Hoyoon Byun, Kangjun Noh, SoMin Kim, Heedong Kim, Jaeyoon Shim, <b>Sungjun Lim</b>, Youngjun Choi, Kyungwoo Song</li>
@@ -917,7 +912,7 @@
                   <h5><a href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer">Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift</a></h5>
                   <p class="publication-summary">We realign explainer dictionaries to shifted activation geometry, restoring faithful explanations without gradient updates.</p>
                   <p class="publication-authors"><b>Sungjun Lim</b>, Heedong Kim, Andrew Lee, Kyungwoo Song</p>
-                  <div class="pub-tags" aria-label="Research themes">
+                  <div class="pub-tags" role="group" aria-label="Research categories">
                     <span class="pub-tag pub-tag-interpretability">Interpretability</span>
                     <span class="pub-tag pub-tag-robustness">Robustness</span>
                   </div>
@@ -933,7 +928,7 @@
                 <h5>
                   <strong>SPHERE: Signal-Aware Prototype Harmonization for Continual Specific Emitter Identification</strong>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-applications">Applications</span>
                 </div>
                 <ul>
@@ -961,51 +956,14 @@
             <ol>
               <li class="reveal">
                 <h5>
-                  <strong>Sufficient Invariant Learning for Distribution Shift</strong>
-                </h5>
-                <div class="pub-tags" aria-label="Research themes">
-                  <span class="pub-tag pub-tag-robustness">Robustness</span>
-                </div>
-                <ul>
-                  <li>Taero Kim, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                  <li>The Sixth Data Science Meets Optimisation (DSO) Workshop at IJCAI 2024</li>
-                </ul>
-              </li>
- 
-              <li class="reveal">
-                <h5>
-                  <strong>Sequential Treatment Effect Estimation with Variational Transformers: Application to COVID-19 Infection Clusters</strong>
-                </h5>
-<div class="pub-tags" aria-label="Research themes">
-                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
-                  <span class="pub-tag pub-tag-applications">Applications</span>
-                </div>
-                <ul>
-                  <li>Jinho Kang, <b>Sungjun Lim</b>, Kyungwoo Song</li>
-                  <li>Artificial Intelligence for Time Series Analysis (AI4TS) at IJCAI 2024</li>
-                </ul>
-              </li>
-              
-              <li class="reveal">
-                <h5>
-                  <strong>Flat Posterior For Bayesian Model Averaging</strong>
-                </h5>
-                <div class="pub-tags" aria-label="Research themes">
-                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
-                  <span class="pub-tag pub-tag-robustness">Robustness</span>
-                </div>
-                <ul>
-                  <li><b>Sungjun Lim</b>, Jeyoon Yeom, Sooyon Kim, Hoyoon Byun, Jinho Kang, Yohan Jung, Jiyoung Jung, Kyungwoo Song</li>
-                  <li>Frontiers in Probabilistic Inference Workshop at ICLR 2025</li>
-                </ul>
-              </li>
- 
-              <li class="reveal">
-                <h5>
                   <strong>A Double-Edged Sword: Benchmarking the Trade-off Between Bias Mitigation and Helpfulness of LLM Guardrails in Finance</strong>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
+                  <span class="pub-tag pub-tag-alignment-safety">Alignment &amp; Safety</span>
                   <span class="pub-tag pub-tag-applications">Applications</span>
+                </div>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Evaluation</span>
                 </div>
                 <ul>
                   <li><b>Sungjun Lim</b>, Hoyoon Byun, Jihee Kim, Kyungwoo Song</li>
@@ -1023,7 +981,7 @@
                     <i class="fa fa-globe"></i>
                   </a>
                 </h5>
-                <div class="pub-tags" aria-label="Research themes">
+                <div class="pub-tags" role="group" aria-label="Research categories">
                   <span class="pub-tag pub-tag-interpretability">Interpretability</span>
                   <span class="pub-tag pub-tag-robustness">Robustness</span>
                 </div>
@@ -1119,7 +1077,7 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js?v=20260908-research-motion"></script>
-  <script src="js/portfolio.js?v=20260908-research-categories"></script>
+  <script src="js/portfolio.js?v=20260908-four-axes"></script>
 
 
   <!-- News filter script -->
