@@ -1114,10 +1114,9 @@ section:nth-of-type(odd) {
   text-align: center;
 }
 
-.axis-node-uncertainty { top: 18%; left: 18%; }
-.axis-node-robustness { top: 18%; left: 82%; }
-.axis-node-interpretability { top: 82%; left: 82%; }
-.axis-node-alignment-safety { top: 82%; left: 18%; }
+.axis-node-learning { top: 18%; left: 50%; }
+.axis-node-reasoning { top: 82%; left: 82%; }
+.axis-node-behavior { top: 82%; left: 18%; }
 
 .philosophy-core {
   position: absolute;
@@ -1237,6 +1236,10 @@ section:nth-of-type(odd) {
   border-color: var(--gold);
   background: var(--gold-light);
   color: var(--blue-deep);
+}
+
+.axis-paper + .axis-paper {
+  margin-top: 0.75rem;
 }
 
 .axis-paper-label,
@@ -1693,6 +1696,17 @@ html[data-theme="dark"] .news-links a:not([target="_blank"]) {
 
 html[data-theme="dark"] .news-links a[target="_blank"] {
   color: var(--teal);
+}
+
+.news-pagination {
+  margin: 1.5rem auto 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.news-pagination .btn {
+  min-height: 44px;
 }
 
 .news-empty {
@@ -2632,13 +2646,19 @@ html[data-theme="dark"] .pub-tag-interpretability {
   color: #b6a4dc;
 }
 
-#publication-ddrl {
+#publication-archive li[tabindex="-1"] {
   scroll-margin-top: 100px;
 }
 
-#publication-ddrl:focus {
+#publication-archive li[tabindex="-1"]:focus {
   outline: 2px solid var(--gold) !important;
   outline-offset: 6px;
+}
+
+#publication-archive .reveal:focus-within {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 html[data-theme="dark"] .pub-tag-alignment-safety {

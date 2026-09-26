@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css?v=20260908-four-axes" rel="stylesheet">
+  <link href="css/style.css?v=20260926-news-batches" rel="stylesheet">
 
 
   <!-- JavaScript Libraries -->
@@ -193,7 +193,8 @@
               Hello! I am Sungjun Lim, a PhD student at Yonsei University's Statistics and Data Science department.
             </p>
             <p class="lead">
-              My ultimate goal is to build AI systems that remain trustworthy under uncertainty: models that can recognize what they do not know, reason over alternatives, adapt beyond training conditions, and make their decisions understandable to humans.
+              My goal is to build trustworthy AI that makes reliable decisions under uncertainty.
+              I pursue this through probabilistic learning, reliable and efficient inference, and the study of model behavior.
             </p>
           </div>
         </div>
@@ -206,45 +207,38 @@
     <div class="container">
       <div class="title-box text-center reveal">
         <h3 class="title-a" id="research-heading">Research Philosophy</h3>
-        <p class="research-intro">Four research axes toward one goal.</p>
+        <p class="research-intro">Three research questions toward trustworthy AI.</p>
         <div class="line-mf"></div>
       </div>
 
-      <div class="philosophy-compass reveal" data-active-axis="uncertainty">
+      <div class="philosophy-compass reveal" data-active-axis="learning">
         <div class="philosophy-orbit" role="tablist" aria-label="Research philosophy axes">
           <svg class="philosophy-constellation" viewBox="0 0 500 500" aria-hidden="true">
             <circle class="philosophy-ring" cx="250" cy="250" r="182"/>
             <circle class="philosophy-inner-ring" cx="250" cy="250" r="117"/>
-            <path class="philosophy-spokes" d="M250 250 L90 90 M250 250 L410 90 M250 250 L410 410 M250 250 L90 410"/>
-            <g class="philosophy-connection active" data-axis="uncertainty">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L90 90"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L90 90"/>
+            <path class="philosophy-spokes" d="M250 250 L250 90 M250 250 L410 410 M250 250 L90 410"/>
+            <g class="philosophy-connection active" data-axis="learning">
+              <path class="philosophy-ray" pathLength="1" d="M250 250 L250 90"/>
+              <path class="philosophy-flow" pathLength="1" d="M250 250 L250 90"/>
             </g>
-            <g class="philosophy-connection" data-axis="robustness">
-              <path class="philosophy-ray" pathLength="1" d="M250 250 L410 90"/>
-              <path class="philosophy-flow" pathLength="1" d="M250 250 L410 90"/>
-            </g>
-            <g class="philosophy-connection" data-axis="interpretability">
+            <g class="philosophy-connection" data-axis="reasoning">
               <path class="philosophy-ray" pathLength="1" d="M250 250 L410 410"/>
               <path class="philosophy-flow" pathLength="1" d="M250 250 L410 410"/>
             </g>
-            <g class="philosophy-connection" data-axis="alignment-safety">
+            <g class="philosophy-connection" data-axis="behavior">
               <path class="philosophy-ray" pathLength="1" d="M250 250 L90 410"/>
               <path class="philosophy-flow" pathLength="1" d="M250 250 L90 410"/>
             </g>
           </svg>
 
-          <button id="axis-uncertainty" class="axis-node axis-node-uncertainty active" type="button" role="tab" aria-selected="true" aria-controls="axis-panel-uncertainty" tabindex="0" data-axis="uncertainty">
-            <span>01</span><strong>Uncertainty</strong>
+          <button id="axis-learning" class="axis-node axis-node-learning active" type="button" role="tab" aria-selected="true" aria-controls="axis-panel-learning" tabindex="0" data-axis="learning">
+            <span>01</span><strong>Learning</strong>
           </button>
-          <button id="axis-robustness" class="axis-node axis-node-robustness" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-robustness" tabindex="-1" data-axis="robustness">
-            <span>02</span><strong>Robustness</strong>
+          <button id="axis-reasoning" class="axis-node axis-node-reasoning" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-reasoning" tabindex="-1" data-axis="reasoning">
+            <span>02</span><strong>Reasoning</strong>
           </button>
-          <button id="axis-interpretability" class="axis-node axis-node-interpretability" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-interpretability" tabindex="-1" data-axis="interpretability">
-            <span>03</span><strong>Interpretability</strong>
-          </button>
-          <button id="axis-alignment-safety" class="axis-node axis-node-alignment-safety" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-alignment-safety" tabindex="-1" data-axis="alignment-safety">
-            <span>04</span><strong>Alignment<br> &amp; Safety</strong>
+          <button id="axis-behavior" class="axis-node axis-node-behavior" type="button" role="tab" aria-selected="false" aria-controls="axis-panel-behavior" tabindex="-1" data-axis="behavior">
+            <span>03</span><strong>Behavior</strong>
           </button>
 
           <div class="philosophy-core">
@@ -255,40 +249,45 @@
         </div>
 
         <div class="philosophy-reading">
-          <div class="philosophy-detail" id="axis-panel-uncertainty" role="tabpanel" aria-labelledby="axis-uncertainty" tabindex="0">
-            <span class="philosophy-detail-index">Axis 01 <span>/ 04</span></span>
-            <h4>Uncertainty as a Signal</h4>
-            <p>Use uncertainty not only to measure confidence, but to guide prediction, selection, and exploration.</p>
+          <div class="philosophy-detail" id="axis-panel-learning" role="tabpanel" aria-labelledby="axis-learning" tabindex="0">
+            <span class="philosophy-detail-index">Axis 01 <span>/ 03</span></span>
+            <h4>Learning under Uncertainty</h4>
+            <p>Learn useful distributions over models, representations, and solutions, using uncertainty to improve prediction and generalization.</p>
+            <a class="axis-paper" href="https://arxiv.org/abs/2406.15664" target="_blank" rel="noopener noreferrer">
+              <span class="axis-paper-label">Representative paper</span>
+              <span class="axis-paper-title">Flat Posterior Does Matter For Bayesian Model Averaging (FP-BMA) <i class="fa fa-external-link" aria-hidden="true"></i></span>
+              <span class="axis-paper-meta">UAI 2025</span>
+            </a>
             <a class="axis-paper" href="https://arxiv.org/abs/2507.20718" target="_blank" rel="noopener noreferrer">
               <span class="axis-paper-label">Representative paper</span>
               <span class="axis-paper-title">Uncertainty-driven Embedding Convolution <i class="fa fa-external-link" aria-hidden="true"></i></span>
               <span class="axis-paper-meta">ICLR 2026</span>
             </a>
           </div>
-          <div class="philosophy-detail" id="axis-panel-robustness" role="tabpanel" aria-labelledby="axis-robustness" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 02 <span>/ 04</span></span>
-            <h4>Reliability Beyond Training Data</h4>
-            <p>Build models that remain useful when distributions shift, environments change, or evidence is incomplete.</p>
-            <a class="axis-paper" href="https://arxiv.org/abs/2406.15664" target="_blank" rel="noopener noreferrer">
+          <div class="philosophy-detail" id="axis-panel-reasoning" role="tabpanel" aria-labelledby="axis-reasoning" tabindex="0" hidden>
+            <span class="philosophy-detail-index">Axis 02 <span>/ 03</span></span>
+            <h4>Reasoning and Decision-Making</h4>
+            <p>Generate and compare candidate solutions, and decide when further computation is worthwhile.</p>
+            <a class="axis-paper" href="#publication-fbi" data-publication-target="publication-fbi">
               <span class="axis-paper-label">Representative paper</span>
-              <span class="axis-paper-title">Flat Posterior Does Matter For Bayesian Model Averaging (FP-BMA) <i class="fa fa-external-link" aria-hidden="true"></i></span>
-              <span class="axis-paper-meta">UAI 2025</span>
+              <span class="axis-paper-title">Train for Many, Update with One (FBI) <i class="fa fa-arrow-down" aria-hidden="true"></i></span>
+              <span class="axis-paper-meta">Under review</span>
+            </a>
+            <a class="axis-paper" href="#publication-trajectory-mbr" data-publication-target="publication-trajectory-mbr">
+              <span class="axis-paper-label">Representative paper</span>
+              <span class="axis-paper-title">When to Stop and Which to Return (Trajectory-MBR) <i class="fa fa-arrow-down" aria-hidden="true"></i></span>
+              <span class="axis-paper-meta">Under review</span>
             </a>
           </div>
-          <div class="philosophy-detail" id="axis-panel-interpretability" role="tabpanel" aria-labelledby="axis-interpretability" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 03 <span>/ 04</span></span>
-            <h4>Faithful Interpretability</h4>
-            <p>Develop explanations that reflect internal model behavior rather than post-hoc stories.</p>
+          <div class="philosophy-detail" id="axis-panel-behavior" role="tabpanel" aria-labelledby="axis-behavior" tabindex="0" hidden>
+            <span class="philosophy-detail-index">Axis 03 <span>/ 03</span></span>
+            <h4>Understanding and Aligning Behavior</h4>
+            <p>Develop explanations faithful to internal model behavior and learn behavior aligned with human preferences.</p>
             <a class="axis-paper" href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer">
               <span class="axis-paper-label">Representative paper</span>
               <span class="axis-paper-title">Geometry-Adaptive Explainer (GAE) <i class="fa fa-external-link" aria-hidden="true"></i></span>
-              <span class="axis-paper-meta">Preprint 2026</span>
+              <span class="axis-paper-meta">NeurIPS 2026</span>
             </a>
-          </div>
-          <div class="philosophy-detail" id="axis-panel-alignment-safety" role="tabpanel" aria-labelledby="axis-alignment-safety" tabindex="0" hidden>
-            <span class="philosophy-detail-index">Axis 04 <span>/ 04</span></span>
-            <h4>Human-Aligned and Safe Behavior</h4>
-            <p>Align model behavior with human preferences, and assess safety risks and guardrail trade-offs.</p>
             <a class="axis-paper" href="https://arxiv.org/abs/2511.00040" target="_blank" rel="noopener noreferrer">
               <span class="axis-paper-label">Representative paper</span>
               <span class="axis-paper-title">Semi-Supervised Preference Optimization with Limited Feedback (SSPO) <i class="fa fa-external-link" aria-hidden="true"></i></span>
@@ -304,6 +303,7 @@
           </div>
         </div>
       </div>
+      <p class="research-approach">Across these questions, I care about robustness to changing conditions and the efficient use of data and computation.</p>
     </div>
   </section>
 
@@ -333,16 +333,33 @@
         <div class="news-filter-row">
           <span class="news-filter-label">Year</span>
           <div class="btn-group btn-group-sm news-filter-group" role="group" aria-label="Filter news by year">
-            <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="all" aria-pressed="false">All</button>
-            <button class="btn btn-outline-primary active news-filter-btn" type="button" data-filter-type="year" data-filter-value="2026" aria-pressed="true">2026</button>
+            <button class="btn btn-outline-primary active news-filter-btn" type="button" data-filter-type="year" data-filter-value="all" aria-pressed="true">All</button>
+            <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="2026" aria-pressed="false">2026</button>
             <button class="btn btn-outline-primary news-filter-btn" type="button" data-filter-type="year" data-filter-value="2025" aria-pressed="false">2025</button>
           </div>
         </div>
       </div>
 
-      <div class="news-timeline">
+      <!-- Keep news items in reverse chronological order. -->
+      <div class="news-timeline" id="news-timeline">
         <div class="news-year-group" data-year="2026">
           <h4 class="news-year reveal">2026</h4>
+
+          <article class="news-item reveal" data-category="publications" data-year="2026">
+            <time class="news-date" datetime="2026-09">Sep 2026</time>
+            <div class="news-marker"></div>
+            <div class="news-body">
+              <span class="news-badge news-badge-publications">Publications</span>
+              <h5>Geometry-Adaptive Explainer accepted to NeurIPS 2026</h5>
+              <p>Our work on faithful dictionary-based interpretability under distribution shift was accepted to NeurIPS 2026.</p>
+              <div class="news-links">
+                <a href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer"><i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv</a>
+                <a href="https://github.com/MLAI-Yonsei/GAE" target="_blank" rel="noopener noreferrer"><i class="fa fa-github" aria-hidden="true"></i> Code</a>
+                <a href="projects/gae/"><i class="fa fa-globe" aria-hidden="true"></i> Project page</a>
+                <a href="#publications" class="js-scroll"><i class="fa fa-book" aria-hidden="true"></i> Publications</a>
+              </div>
+            </div>
+          </article>
 
           <article class="news-item reveal" data-category="career" data-year="2026">
             <time class="news-date" datetime="2026-05">May 2026</time>
@@ -436,7 +453,12 @@
         </div>
       </div>
 
-      <p class="news-empty">No news in this category yet.</p>
+      <div class="news-pagination" hidden>
+        <p id="news-count" role="status"></p>
+        <button id="news-more" class="btn news-filter-btn" type="button" aria-controls="news-timeline">Show more</button>
+        <button id="news-less" class="btn news-filter-btn" type="button" aria-controls="news-timeline" hidden>Show less</button>
+      </div>
+      <p class="news-empty" role="status">No news matches these filters.</p>
     </div>
   </section>
 
@@ -852,6 +874,28 @@
                 </ul>
               </li>
 
+              <li class="peer-reviewed-item publication-featured reveal" data-year="2026" data-category="conference" data-selected-order="3">
+                <a class="publication-figure" href="projects/gae/img/intro_figure.jpg" target="_blank" rel="noopener noreferrer" aria-label="View the GAE method figure in full size">
+                  <img src="projects/gae/img/intro_figure.jpg" width="2001" height="640" loading="lazy" decoding="async" alt="Distribution shift misaligns an explainer dictionary with the model's active subspace; GAE realigns the dictionary to restore faithfulness.">
+                  <span class="publication-figure-hint" aria-hidden="true"><i class="fa fa-expand"></i> View figure</span>
+                </a>
+                <div class="publication-content">
+                  <div class="publication-venue">NeurIPS 2026</div>
+                  <h5><a href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer">Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift</a></h5>
+                  <p class="publication-summary">We realign explainer dictionaries to shifted activation geometry, restoring faithful explanations without gradient updates.</p>
+                  <p class="publication-authors"><b>Sungjun Lim</b>, Heedong Kim, Andrew Lee, Kyungwoo Song</p>
+                  <div class="pub-tags" role="group" aria-label="Research categories">
+                    <span class="pub-tag pub-tag-interpretability">Interpretability</span>
+                    <span class="pub-tag pub-tag-robustness">Robustness</span>
+                  </div>
+                  <div class="publication-links">
+                    <a href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer"><i class="fa fa-file-text-o" aria-hidden="true"></i> Paper</a>
+                    <a href="https://github.com/MLAI-Yonsei/GAE" target="_blank" rel="noopener noreferrer"><i class="fa fa-github" aria-hidden="true"></i> Code</a>
+                    <a href="projects/gae/"><i class="fa fa-globe" aria-hidden="true"></i> Project page</a>
+                  </div>
+                </div>
+              </li>
+
             </ol>
             <p class="peer-filter-empty">No peer-reviewed publications match the selected filters.</p>
           </div>
@@ -888,39 +932,47 @@
                 </ul>
               </li>
  
-              <li class="reveal">
+              <li id="publication-trajectory-mbr" class="reveal" tabindex="-1">
                 <h5>
-                  <strong>RRD: Routing-and-Residual Distillation for Efficient MoE Recovery in Large Language Models</strong>
+                  <strong>When to Stop and Which to Return: Trajectory-Level Minimum Bayes Risk Decoding for Diffusion Language Models</strong>
                 </h5>
                 <div class="pub-topics" role="group" aria-label="Additional research topics">
                   <span class="pub-topic">Efficiency</span>
                 </div>
                 <ul>
-                  <li>Hoyoon Byun, Kangjun Noh, SoMin Kim, Heedong Kim, Jaeyoon Shim, <b>Sungjun Lim</b>, Youngjun Choi, Kyungwoo Song</li>
-                  <!-- <li>Conference on Neural Information Processing Systems (NeurIPS) 2026</li> -->
+                  <li>Subeen Park, <b>Sungjun Lim</b>, Heejin Jung, Somin Kim, Gyeong-Moon Park, Kyungwoo Song</li>
+                  <!-- <li>International Conference on Learning Representations (ICLR) 2027</li> -->
                 </ul>
               </li>
 
-              <li class="publication-featured reveal" data-selected-order="3">
-                <a class="publication-figure" href="projects/gae/img/intro_figure.jpg" target="_blank" rel="noopener noreferrer" aria-label="View the GAE method figure in full size">
-                  <img src="projects/gae/img/intro_figure.jpg" width="2001" height="640" loading="lazy" decoding="async" alt="Distribution shift misaligns an explainer dictionary with the model's active subspace; GAE realigns the dictionary to restore faithfulness.">
-                  <span class="publication-figure-hint" aria-hidden="true"><i class="fa fa-expand"></i> View figure</span>
-                </a>
-                <div class="publication-content">
-                  <div class="publication-venue">Preprint 2026 <span class="publication-status">Under review</span></div>
-                  <h5><a href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer">Geometry-Adaptive Explainer for Faithful Dictionary-Based Interpretability under Distribution Shift</a></h5>
-                  <p class="publication-summary">We realign explainer dictionaries to shifted activation geometry, restoring faithful explanations without gradient updates.</p>
-                  <p class="publication-authors"><b>Sungjun Lim</b>, Heedong Kim, Andrew Lee, Kyungwoo Song</p>
-                  <div class="pub-tags" role="group" aria-label="Research categories">
-                    <span class="pub-tag pub-tag-interpretability">Interpretability</span>
-                    <span class="pub-tag pub-tag-robustness">Robustness</span>
-                  </div>
-                  <div class="publication-links">
-                    <a href="https://arxiv.org/abs/2605.21849" target="_blank" rel="noopener noreferrer"><i class="fa fa-file-text-o" aria-hidden="true"></i> Paper</a>
-                    <a href="https://github.com/MLAI-Yonsei/GAE" target="_blank" rel="noopener noreferrer"><i class="fa fa-github" aria-hidden="true"></i> Code</a>
-                    <a href="projects/gae/"><i class="fa fa-globe" aria-hidden="true"></i> Project page</a>
-                  </div>
+              <li class="reveal">
+                <h5>
+                  <strong>RRD: Routing-and-Residual Distillation for Recovery after Dense-to-MoE Conversion</strong>
+                </h5>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Efficiency</span>
                 </div>
+                <ul>
+                  <li>Hoyoon Byun, Kangjun Noh, Somin Kim, Heedong Kim, Jaeyoon Shim, <b>Sungjun Lim</b>, Youngjun Choi, Kyungwoo Song</li>
+                  <!-- <li>International Conference on Learning Representations (ICLR) 2027</li> -->
+                </ul>
+              </li>
+
+              <li id="publication-fbi" class="reveal" tabindex="-1">
+                <h5>
+                  <strong>Train for Many, Update with One: Improving Multi-Sample Reasoning via Fenchel-Bregman Posterior Learning</strong>
+                </h5>
+                <div class="pub-tags" role="group" aria-label="Research categories">
+                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                </div>
+                <div class="pub-topics" role="group" aria-label="Additional research topics">
+                  <span class="pub-topic">Reasoning</span>
+                  <span class="pub-topic">Efficiency</span>
+                </div>
+                <ul>
+                  <li><b>Sungjun Lim</b>, Adrian Robert Minut, Nico Daheim, Mohammad Emtiyaz Khan, Kyungwoo Song, Thomas Möllenhoff</li>
+                  <!-- <li>International Conference on Learning Representations (ICLR) 2027</li> -->
+                </ul>
               </li>
 
               <li class="reveal">
@@ -1076,14 +1128,19 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js?v=20260908-research-motion"></script>
-  <script src="js/portfolio.js?v=20260908-four-axes"></script>
+  <script src="js/portfolio.js?v=20260926-three-axes"></script>
 
 
   <!-- News filter script -->
   <script>
     (function () {
       var selectedCategories = [];
-      var selectedYears = ['2026'];
+      var selectedYears = [];
+      var visibleLimit = 3;
+      var pagination = document.querySelector('.news-pagination');
+      var count = document.getElementById('news-count');
+      var more = document.getElementById('news-more');
+      var less = document.getElementById('news-less');
 
       function toggleValue(list, value) {
         var index = list.indexOf(value);
@@ -1108,6 +1165,7 @@
 
       function applyNewsFilter() {
         var visibleCount = 0;
+        var matchingCount = 0;
         var items = document.querySelectorAll('.news-item');
 
         items.forEach(function (item) {
@@ -1115,7 +1173,8 @@
           var itemYear = item.getAttribute('data-year') || '';
           var categoryMatch = selectedCategories.length === 0 || selectedCategories.indexOf(itemCategory) !== -1;
           var yearMatch = selectedYears.length === 0 || selectedYears.indexOf(itemYear) !== -1;
-          var shouldShow = categoryMatch && yearMatch;
+          if (categoryMatch && yearMatch) matchingCount += 1;
+          var shouldShow = categoryMatch && yearMatch && matchingCount <= visibleLimit;
 
           item.classList.toggle('news-hidden', !shouldShow);
           if (shouldShow) visibleCount += 1;
@@ -1128,6 +1187,10 @@
 
         var empty = document.querySelector('.news-empty');
         if (empty) empty.style.display = visibleCount === 0 ? 'block' : 'none';
+        pagination.hidden = matchingCount === 0;
+        count.textContent = 'Showing ' + visibleCount + ' of ' + matchingCount;
+        more.hidden = visibleCount >= matchingCount;
+        less.hidden = visibleLimit <= 3;
       }
 
       function initNewsFilters() {
@@ -1154,7 +1217,20 @@
           }
 
           updateButtons(type, selectedValues);
+          visibleLimit = 3;
           applyNewsFilter();
+        });
+
+        more.addEventListener('click', function () {
+          visibleLimit += 3;
+          applyNewsFilter();
+          if (more.hidden) less.focus({ preventScroll: true });
+        });
+        less.addEventListener('click', function () {
+          visibleLimit = 3;
+          applyNewsFilter();
+          panel.querySelector('button').focus({ preventScroll: true });
+          document.getElementById('news').scrollIntoView({ block: 'start' });
         });
 
         updateButtons('category', selectedCategories);

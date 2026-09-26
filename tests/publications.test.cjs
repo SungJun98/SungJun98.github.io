@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 
 const baseURL = process.env.PORTFOLIO_BASE_URL || 'http://127.0.0.1:8765/';
 const sections = ['peerReviewed', 'underReview', 'workshop'];
-const axes = ['uncertainty', 'robustness', 'interpretability', 'alignment-safety'];
+const axes = ['learning', 'reasoning', 'behavior'];
 let browser;
 let page;
 let runtimeErrors;
@@ -46,12 +46,78 @@ async function assertExpanded(id, expanded) {
   assert.deepEqual(states, [String(expanded), String(expanded)], 'Heading and original button stay synchronized');
 }
 
-test('The four research axes each open the matching panel and connection', async () => {
+test('News expands in batches of three and folds back to the latest three', async () => {
+  const visibleNews = page.locator('#news .news-item:visible');
+  const titles = await page.locator('#news .news-item h5').allTextContents();
+  const more = page.getByRole('button', { name: 'Show more', exact: true });
+  const less = page.getByRole('button', { name: 'Show less', exact: true });
+  assert.deepEqual(await visibleNews.locator('h5').allTextContents(), titles.slice(0, 3));
+  assert.equal(await page.locator('#news-count').innerText(), 'Showing 3 of 7');
+  assert.equal(await page.locator('.news-year-group[data-year="2025"]').isVisible(), false);
+  assert.equal(await page.locator('#news [data-filter-type="year"][data-filter-value="all"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(await less.isVisible(), false);
+
+  await more.focus();
+  await page.keyboard.press('Enter');
+  assert.deepEqual(await visibleNews.locator('h5').allTextContents(), titles.slice(0, 6));
+  assert.equal(await page.locator('#news-count').innerText(), 'Showing 6 of 7');
+  assert.equal(await page.locator('.news-year-group[data-year="2025"]').isVisible(), true);
+  await page.keyboard.press('Space');
+  assert.equal(await visibleNews.count(), 7);
+  assert.equal(await page.locator('#news-count').innerText(), 'Showing 7 of 7');
+  assert.equal(await more.isVisible(), false);
+  assert.equal(await less.evaluate(node => node === document.activeElement), true);
+
+  await page.keyboard.press('Enter');
+  assert.equal(await visibleNews.count(), 3);
+  assert.equal(await less.isVisible(), false);
+  assert.equal(await page.locator('#news [data-filter-type="category"][data-filter-value="all"]').evaluate(node => node === document.activeElement), true);
+  const heading = await page.locator('#news .title-a').boundingBox();
+  assert(heading.y >= 0 && heading.y < 1000, 'Folding returns the visitor to News');
+});
+
+test('News filters reset the batch and handle short or empty results on mobile', async () => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  const filter = (type, value) => page.locator('#news [data-filter-type="' + type + '"][data-filter-value="' + value + '"]');
+  const more = page.getByRole('button', { name: 'Show more', exact: true });
+  const less = page.getByRole('button', { name: 'Show less', exact: true });
+  assert.equal(await page.locator('#news .news-item:visible').count(), 3);
+  await more.click();
+  await filter('category', 'publications').click();
+  assert.equal(await page.locator('#news .news-item:visible').count(), 3);
+  assert.equal(await page.locator('#news-count').innerText(), 'Showing 3 of 4');
+  assert.equal(await less.isVisible(), false);
+  await more.click();
+  assert.equal(await page.locator('#news .news-item:visible').count(), 4);
+  await filter('year', '2025').click();
+  assert.equal(await page.locator('#news-count').innerText(), 'Showing 1 of 1');
+  assert.equal(await more.isVisible(), false);
+  assert.equal(await less.isVisible(), false);
+  assert.equal(await page.locator('.news-year-group[data-year="2026"]').isVisible(), false);
+
+  await filter('category', 'all').click();
+  await filter('category', 'projects').click();
+  assert.equal(await page.locator('#news .news-item:visible').count(), 0);
+  assert.equal(await page.locator('.news-empty').isVisible(), true);
+  assert.equal(await page.locator('.news-pagination').isVisible(), false);
+  await filter('year', 'all').click();
+  await filter('category', 'all').click();
+  assert.equal(await page.locator('#news-count').innerText(), 'Showing 3 of 7');
+  assert.equal(await page.locator('.news-empty').isVisible(), false);
+  for (const theme of ['light', 'dark']) {
+    await page.evaluate(theme => document.documentElement.setAttribute('data-theme', theme), theme);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'No mobile overflow in ' + theme);
+    const size = await more.boundingBox();
+    assert(size.height >= 44 && size.width >= 44, 'The news button is a comfortable touch target');
+  }
+});
+
+test('The three research axes each open the matching panel and connection', async () => {
   assert.deepEqual(await page.locator('.axis-node strong').allTextContents(), [
-    'Uncertainty', 'Robustness', 'Interpretability', 'Alignment & Safety'
+    'Learning', 'Reasoning', 'Behavior'
   ]);
-  assert.equal(await page.locator('#research [role="tabpanel"]').count(), 4);
-  assert.equal(await page.locator('.philosophy-connection').count(), 4);
+  assert.equal(await page.locator('#research [role="tabpanel"]').count(), 3);
+  assert.equal(await page.locator('.philosophy-connection').count(), 3);
   for (const [index, axis] of axes.entries()) {
     const tab = page.locator('#axis-' + axis);
     await tab.click();
@@ -62,42 +128,75 @@ test('The four research axes each open the matching panel and connection', async
     assert.equal(await page.locator('#research [role="tabpanel"]:visible').count(), 1);
     assert.equal(await page.locator('.axis-node[tabindex="0"]').count(), 1);
     assert.equal(await page.locator('.philosophy-connection.active').getAttribute('data-axis'), axis);
-    assert.equal(await panel.locator('.philosophy-detail-index').innerText(), `Axis 0${index + 1} / 04`);
+    assert.equal(await panel.locator('.philosophy-detail-index').innerText(), `Axis 0${index + 1} / 03`);
+    assert.equal(await panel.locator('.axis-paper').count(), 2);
   }
 });
 
-test('Keyboard and previous/next navigation wrap across four axes', async () => {
-  assert.equal(await page.locator('.axis-node').count(), 4);
-  await page.locator('#axis-uncertainty').focus();
+test('Keyboard and previous/next navigation wrap across three axes', async () => {
+  assert.equal(await page.locator('.axis-node').count(), 3);
+  await page.locator('#axis-learning').focus();
   await page.keyboard.press('End');
-  assert.equal(await page.locator('#axis-alignment-safety').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('#axis-behavior').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('ArrowRight');
-  assert.equal(await page.locator('#axis-uncertainty').evaluate(node => node === document.activeElement), true);
+  assert.equal(await page.locator('#axis-learning').evaluate(node => node === document.activeElement), true);
   await page.keyboard.press('ArrowLeft');
-  assert.equal(await page.locator('#axis-alignment-safety').evaluate(node => node === document.activeElement), true);
+  assert.equal(await page.locator('#axis-behavior').evaluate(node => node === document.activeElement), true);
   await page.keyboard.press('Home');
   await page.locator('.philosophy-prev').click();
-  assert.equal(await page.locator('#axis-alignment-safety').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('#axis-behavior').getAttribute('aria-selected'), 'true');
   await page.locator('.philosophy-next').click();
-  assert.equal(await page.locator('#axis-uncertainty').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('#axis-learning').getAttribute('aria-selected'), 'true');
 });
 
 for (const [axis, href, acronym, venue] of [
-  ['uncertainty', 'https://arxiv.org/abs/2507.20718', 'Uncertainty-driven Embedding Convolution', 'ICLR 2026'],
-  ['robustness', 'https://arxiv.org/abs/2406.15664', 'FP-BMA', 'UAI 2025'],
-  ['interpretability', 'https://arxiv.org/abs/2605.21849', 'GAE', 'Preprint 2026'],
-  ['alignment-safety', 'https://arxiv.org/abs/2511.00040', 'SSPO', 'ICLR 2026 · Oral']
+  ['learning', 'https://arxiv.org/abs/2507.20718', 'Uncertainty-driven Embedding Convolution', 'ICLR 2026'],
+  ['learning', 'https://arxiv.org/abs/2406.15664', 'FP-BMA', 'UAI 2025'],
+  ['behavior', 'https://arxiv.org/abs/2605.21849', 'GAE', 'NeurIPS 2026'],
+  ['behavior', 'https://arxiv.org/abs/2511.00040', 'SSPO', 'ICLR 2026 · Oral']
 ]) {
-  test(axis + ' opens the requested representative paper', async () => {
+  test(axis + ' links to ' + acronym, async () => {
     assert.equal(await page.locator('#axis-' + axis).count(), 1);
     await page.locator('#axis-' + axis).click();
-    const link = page.locator('#axis-panel-' + axis + ' .axis-paper');
+    const link = page.locator('#axis-panel-' + axis + ' .axis-paper[href="' + href + '"]');
     assert.equal(await link.isVisible(), true);
     assert.equal(await link.getAttribute('href'), href);
     assert((await link.locator('.axis-paper-title').innerText()).includes(acronym), 'The link identifies the requested paper');
     assert.equal(await link.locator('.axis-paper-meta').innerText(), venue);
     assert.equal(await link.getAttribute('target'), '_blank');
     assert.match(await link.getAttribute('rel'), /noopener/);
+  });
+}
+
+for (const [id, title] of [
+  ['publication-fbi', 'Train for Many, Update with One'],
+  ['publication-trajectory-mbr', 'When to Stop and Which to Return']
+]) {
+  test('Reasoning paper link reveals and focuses ' + id, async () => {
+    await page.locator('#publications-toggle').click();
+    await originalButton('underReview').click();
+    await assertExpanded('underReview', false);
+    await page.locator('#publications-toggle').click();
+    await page.locator('#axis-reasoning').click();
+    await page.locator('#axis-panel-reasoning [data-publication-target="' + id + '"]').click();
+    await assertExpanded('underReview', true);
+    const paper = page.locator('#' + id);
+    await page.waitForFunction(id => document.activeElement.id === id, id);
+    assert.equal(await paper.isVisible(), true);
+    assert((await paper.locator('h5').innerText()).includes(title));
+    assert.equal(new URL(page.url()).hash, '#' + id);
+
+    await page.close();
+    page = await browser.newPage({ viewport: { width: 320, height: 900 }, reducedMotion: 'no-preference' });
+    page.on('pageerror', error => runtimeErrors.push(error.message));
+    await page.goto(baseURL + '#' + id, { waitUntil: 'networkidle' });
+    await assertExpanded('underReview', true);
+    const destination = page.locator('#' + id);
+    assert.equal(await destination.isVisible(), true, 'Direct links also reveal the publication');
+    await page.waitForTimeout(1500); // Let the animated scroll and reveal transition finish.
+    const top = await destination.evaluate(node => node.getBoundingClientRect().top);
+    const navBottom = await page.locator('#mainNav').evaluate(node => node.getBoundingClientRect().bottom);
+    assert(top >= navBottom && top < 900, `The linked heading lands in the mobile viewport (top ${top}, navigation ${navBottom})`);
   });
 }
 
@@ -144,7 +243,7 @@ test('Peer Reviewed filters do not collapse the section and keep their selection
   assert.deepEqual(await page.locator('.peer-reviewed-item:visible h5').allTextContents(), filteredTitles);
 });
 
-test('Publication categories match the four axes plus Applications', async () => {
+test('Publication categories retain the five existing categories', async () => {
   const categories = ['Uncertainty', 'Robustness', 'Interpretability', 'Alignment & Safety', 'Applications'];
   assert.deepEqual(await page.locator('.peer-theme-toggle [data-theme]:not([data-theme="all"])').allTextContents(), categories);
   assert((await page.locator('.pub-tag').allTextContents()).every(tag => categories.includes(tag)));
@@ -171,6 +270,12 @@ test('Reasoning, efficiency, and evaluation remain as secondary topics', async (
   }
   const guardrail = page.locator('#workshop .card-body > ol > li').filter({ hasText: 'A Double-Edged Sword' });
   assert.deepEqual(await guardrail.locator('.pub-topic').allTextContents(), ['Evaluation']);
+  const mbr = page.locator('#publication-trajectory-mbr');
+  assert.deepEqual(await mbr.locator('.pub-tag').allTextContents(), []);
+  assert.deepEqual(await mbr.locator('.pub-topic').allTextContents(), ['Efficiency']);
+  const fbi = page.locator('#publication-fbi');
+  assert.deepEqual(await fbi.locator('.pub-tag').allTextContents(), ['Uncertainty']);
+  assert.deepEqual(await fbi.locator('.pub-topic').allTextContents(), ['Reasoning', 'Efficiency']);
 });
 
 test('FP-BMA is discoverable under Robustness in selected papers and the full archive', async () => {
@@ -197,12 +302,12 @@ test('Workshop keeps only the two requested papers without removing peer-reviewe
     assert.equal(await paper.count(), 1, 'The peer-reviewed version is preserved: ' + title);
     assert.equal(await paper.isVisible(), true);
   }
-  assert.equal(await page.locator('#peerReviewed .peer-reviewed-item').count(), 14);
-  assert.equal(await page.locator('#underReview .card-body > ol > li').count(), 4);
+  assert.equal(await page.locator('#peerReviewed .peer-reviewed-item').count(), 15);
+  assert.equal(await page.locator('#underReview .card-body > ol > li').count(), 5);
 });
 
 test('Heading controls and representative links fit mobile and desktop layouts', async () => {
-  assert.equal(await page.locator('.axis-node').count(), 4);
+  assert.equal(await page.locator('.axis-node').count(), 3);
   for (const width of [320, 390, 820, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const axis of axes) {
@@ -220,7 +325,7 @@ test('Heading controls and representative links fit mobile and desktop layouts',
         return node.scrollWidth <= node.clientWidth + 1 && rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1 && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
       });
     });
-    assert(diagramFits, 'Four labels fit around the central goal without overlap at ' + width + 'px');
+    assert(diagramFits, 'Three labels fit around the central goal without overlap at ' + width + 'px');
     await page.locator('#publications-toggle').click();
     for (const id of sections) {
       const heading = sectionCard(id).getByRole('heading', { level: 4 });

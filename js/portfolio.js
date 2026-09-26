@@ -227,7 +227,9 @@
       if (id) revealPublication(id);
     }
     window.addEventListener('hashchange', revealLinkedPublication);
-    revealLinkedPublication();
+    // Initial filters and fonts must settle before scrolling to a publication.
+    if (document.readyState === 'complete') revealLinkedPublication();
+    else window.addEventListener('load', revealLinkedPublication, { once: true });
   }
 
   initResearch();
