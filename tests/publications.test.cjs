@@ -152,6 +152,7 @@ test('Keyboard and previous/next navigation wrap across three axes', async () =>
 for (const [axis, href, acronym, venue] of [
   ['learning', 'https://arxiv.org/abs/2507.20718', 'Uncertainty-driven Embedding Convolution', 'ICLR 2026'],
   ['learning', 'https://arxiv.org/abs/2406.15664', 'FP-BMA', 'UAI 2025'],
+  ['reasoning', 'https://arxiv.org/abs/2610.17735', 'FBI', 'arXiv 2026 · Under review'],
   ['behavior', 'https://arxiv.org/abs/2605.21849', 'GAE', 'NeurIPS 2026'],
   ['behavior', 'https://arxiv.org/abs/2511.00040', 'SSPO', 'ICLR 2026 · Oral']
 ]) {
@@ -169,7 +170,6 @@ for (const [axis, href, acronym, venue] of [
 }
 
 for (const [id, title] of [
-  ['publication-fbi', 'Train for Many, Update with One'],
   ['publication-trajectory-mbr', 'When to Stop and Which to Return']
 ]) {
   test('Reasoning paper link reveals and focuses ' + id, async () => {
@@ -199,6 +199,25 @@ for (const [id, title] of [
     assert(top >= navBottom && top < 900, `The linked heading lands in the mobile viewport (top ${top}, navigation ${navBottom})`);
   });
 }
+
+test('FBI shows its overview figure and paper resources in selected papers and the archive', async () => {
+  const selected = page.locator('#selected-publications article').filter({ hasText: 'Train for Many, Update with One' });
+  assert.equal(await selected.count(), 1, 'FBI is included in the default selected view');
+  await selected.scrollIntoViewIfNeeded();
+  const figure = selected.locator('.publication-figure img');
+  await figure.evaluate(image => image.decode());
+  assert.equal(await figure.evaluate(image => image.naturalWidth > 0), true, 'Figure 1 loads');
+  const original = selected.locator('.publication-figure');
+  assert.equal(await original.getAttribute('href'), await figure.getAttribute('src'), 'The figure opens at full size');
+  for (const paper of [selected, page.locator('#publication-fbi')]) {
+    assert.equal(await paper.locator('.publication-links a[href="https://arxiv.org/abs/2610.17735"]').count(), 1);
+    assert.equal(await paper.locator('.publication-links a[href="https://github.com/team-approx-bayes/Fenchel-Bregman"]').count(), 1);
+  }
+  await page.goto(baseURL + '#publication-fbi', { waitUntil: 'networkidle' });
+  await assertExpanded('underReview', true);
+  assert.equal(await page.locator('#publication-fbi').isVisible(), true, 'Existing direct links reveal the archive entry');
+  await page.waitForFunction(() => document.activeElement.id === 'publication-fbi');
+});
 
 for (const id of sections) {
   test(id + ' heading and original button both toggle only their section', async () => {
@@ -341,6 +360,6 @@ test('Heading controls and representative links fit mobile and desktop layouts',
     }
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'No horizontal page overflow');
     await page.locator('#publications-toggle').click();
-    assert.equal(await page.locator('#selected-publications article:visible').count(), 4, 'Selected view remains intact');
+    assert.equal(await page.locator('#selected-publications article:visible').count(), 5, 'Selected view remains intact');
   }
 });

@@ -268,10 +268,10 @@
             <span class="philosophy-detail-index">Axis 02 <span>/ 03</span></span>
             <h4>Reasoning and Decision-Making</h4>
             <p>Generate and compare candidate solutions, and decide when further computation is worthwhile.</p>
-            <a class="axis-paper" href="#publication-fbi" data-publication-target="publication-fbi">
+            <a class="axis-paper" href="https://arxiv.org/abs/2610.17735" target="_blank" rel="noopener noreferrer">
               <span class="axis-paper-label">Representative paper</span>
-              <span class="axis-paper-title">Train for Many, Update with One (FBI) <i class="fa fa-arrow-down" aria-hidden="true"></i></span>
-              <span class="axis-paper-meta">Under review</span>
+              <span class="axis-paper-title">Train for Many, Update with One (FBI) <i class="fa fa-external-link" aria-hidden="true"></i></span>
+              <span class="axis-paper-meta">arXiv 2026 · Under review</span>
             </a>
             <a class="axis-paper" href="#publication-trajectory-mbr" data-publication-target="publication-trajectory-mbr">
               <span class="axis-paper-label">Representative paper</span>
@@ -958,21 +958,28 @@
                 </ul>
               </li>
 
-              <li id="publication-fbi" class="reveal" tabindex="-1">
-                <h5>
-                  <strong>Train for Many, Update with One: Improving Multi-Sample Reasoning via Fenchel-Bregman Posterior Learning</strong>
-                </h5>
-                <div class="pub-tags" role="group" aria-label="Research categories">
-                  <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+              <li id="publication-fbi" class="publication-featured reveal" tabindex="-1" data-selected-order="5">
+                <a class="publication-figure" href="img/publications/fbi-overview.png" target="_blank" rel="noopener noreferrer" aria-label="View the FBI method figure in full size">
+                  <img src="img/publications/fbi-overview.png" width="2034" height="1017" loading="lazy" decoding="async" alt="FBI trains a posterior for K-candidate coverage, uses Fenchel reformulation for a one-draw IVON update, and reuses observed failures to track problem-specific weights.">
+                  <span class="publication-figure-hint" aria-hidden="true"><i class="fa fa-expand"></i> View figure</span>
+                </a>
+                <div class="publication-content">
+                  <div class="publication-venue">arXiv 2026 · Under review</div>
+                  <h5><a href="https://arxiv.org/abs/2610.17735" target="_blank" rel="noopener noreferrer">Train for Many, Update with One: Improving Multi-Sample Reasoning via Fenchel-Bregman Posterior Learning</a></h5>
+                  <p class="publication-summary">We learn a posterior over solver parameters for multi-sample candidate coverage using one posterior draw per update.</p>
+                  <p class="publication-authors"><b>Sungjun Lim</b>, Adrian Robert Minut, Nico Carlsen Daheim, Mohammad Emtiyaz Khan, Kyungwoo Song, Thomas Möllenhoff</p>
+                  <div class="pub-tags" role="group" aria-label="Research categories">
+                    <span class="pub-tag pub-tag-uncertainty">Uncertainty</span>
+                  </div>
+                  <div class="pub-topics" role="group" aria-label="Additional research topics">
+                    <span class="pub-topic">Reasoning</span>
+                    <span class="pub-topic">Efficiency</span>
+                  </div>
+                  <div class="publication-links">
+                    <a href="https://arxiv.org/abs/2610.17735" target="_blank" rel="noopener noreferrer"><i class="fa fa-file-text-o" aria-hidden="true"></i> Paper</a>
+                    <a href="https://github.com/team-approx-bayes/Fenchel-Bregman" target="_blank" rel="noopener noreferrer"><i class="fa fa-github" aria-hidden="true"></i> Code</a>
+                  </div>
                 </div>
-                <div class="pub-topics" role="group" aria-label="Additional research topics">
-                  <span class="pub-topic">Reasoning</span>
-                  <span class="pub-topic">Efficiency</span>
-                </div>
-                <ul>
-                  <li><b>Sungjun Lim</b>, Adrian Robert Minut, Nico Daheim, Mohammad Emtiyaz Khan, Kyungwoo Song, Thomas Möllenhoff</li>
-                  <!-- <li>International Conference on Learning Representations (ICLR) 2027</li> -->
-                </ul>
               </li>
 
               <li class="reveal">
