@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FBI — Train for Many, Update with One</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fenchel–Bregman posterior learning trains a distribution of solvers for multi-sample reasoning with one posterior draw per update.">
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (e) {}
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+  <link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="../gae/style.css" rel="stylesheet">
+  <link href="../../lib/katex/katex.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="../../lib/katex/katex.min.js" defer></script>
+  <script src="../../js/theme.js" defer></script>
+  <script src="../../js/reveal.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <header class="site-header">
+    <a href="../../index.html#publication-fbi" class="back-link">← Back to Portfolio</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+      <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"></circle>
+        <path d="M12 1v2m0 18v2M1 12h2m18 0h2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+      </svg>
+      <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero reveal" aria-labelledby="paper-title">
+      <span class="venue-badge">arXiv 2026</span>
+      <h1 id="paper-title">Train for Many, Update with One</h1>
+      <p class="paper-subtitle">Improving Multi-Sample Reasoning via<br>Fenchel–Bregman Posterior Learning</p>
+      <p class="hero-summary">Train for <strong>at least one correct candidate.</strong><br>Use <strong>one posterior draw</strong> per update.</p>
+      <p class="authors"><strong>Sungjun Lim</strong><sup>1,2</sup>, Adrian Robert Minut<sup>1,3</sup>, Nico Carlsen Daheim<sup>4,5</sup>,<br>Mohammad Emtiyaz Khan<sup>1,4,5</sup>, Kyungwoo Song<sup>2</sup>, Thomas Möllenhoff<sup>1</sup></p>
+      <p class="affiliation"><span><sup>1</sup> RIKEN AIP</span> · <span><sup>2</sup> Yonsei University</span> · <span><sup>3</sup> Sapienza University of Rome</span><br><span><sup>4</sup> TU Darmstadt</span> · <span><sup>5</sup> Hessian.AI</span></p>
+      <div class="hero-buttons">
+        <a href="https://arxiv.org/abs/2610.17735" class="hero-btn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M8 13h8M8 17h8"></path></svg>
+          Paper
+        </a>
+        <a href="https://github.com/team-approx-bayes/Fenchel-Bregman" class="hero-btn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+          Code
+        </a>
+        <a href="#citation" class="hero-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 6h5v7H5zM14 6h5v7h-5zM10 13c0 4-2 5-5 5M19 13c0 4-2 5-5 5"></path></svg>
+          Citation
+        </a>
+      </div>
+    </section>
+
+    <section id="overview" class="page-section container reveal" aria-labelledby="overview-heading" tabindex="-1">
+      <p class="section-kicker">Why multi-sample training?</p>
+      <h2 id="overview-heading">What matters is whether one candidate succeeds</h2>
+      <p class="section-lead">When a model gets K attempts, the useful outcome is a pool containing <strong class="key-point">at least one correct answer.</strong>
+        Training each sampled solver in isolation does not directly optimize that outcome.</p>
+      <p>We learn a <strong class="key-point">distribution over solver parameters</strong>, so independent draws produce different candidate solvers.
+        Finite-K posterior learning trains this distribution for the coverage of the whole candidate pool.
+        Fenchel–Bregman IVON (FBI) makes that training practical with <strong>one new parameter draw per update.</strong></p>
+      <figure class="paper-figure overview-figure">
+        <a href="../../img/publications/fbi-overview.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 1 in full size">
+          <img src="../../img/publications/fbi-overview.png" width="2034" height="1017" decoding="async" alt="Left: independent parameter draws produce K candidates and training targets at least one correct solution. Right: Fenchel weights enable one-draw posterior updates, while Bregman tracking reuses the same failure observations.">
+        </a>
+        <figcaption><strong>Figure 1.</strong> A posterior generates a pool of solvers; Fenchel–Bregman updates train it using one parameter draw per update.<span class="figure-hint">Click the figure to open the original at full size ↗</span></figcaption>
+      </figure>
+      <p class="source-note">Based on <a href="https://arxiv.org/html/2610.17735v1#S1" target="_blank" rel="noopener noreferrer">the paper’s introduction and Figure 1</a>.</p>
+    </section>
+
+    <section id="method" class="page-section container reveal" aria-labelledby="method-heading">
+      <p class="section-kicker">How it works</p>
+      <h2 id="method-heading">Train for K candidates. Update with one draw.</h2>
+      <p class="section-lead">FBI starts with the success criterion at inference, then separates the training objective into a weighted posterior step and a failure-tracking step.</p>
+
+      <ol class="method-explanation">
+        <li>
+          <span class="step-number" aria-hidden="true">01</span>
+          <div class="method-body">
+            <h3>Learn to avoid a pool of failed answers</h3>
+            <p>For independent candidates, raising the individual failure probability to K gives the probability that every candidate fails.
+              We <strong>minimize this all-fail probability</strong> across training problems, with KL regularization toward a reference prior.
+              K<sub>train</sub> sets the candidate-pool size we train for.</p>
+            <div class="equation-card">
+              <div class="math-display">\Pr\!\left(\text{all }K\text{ fail}\mid x\right) = \bar{F}_{\phi}(x)^K</div>
+              <p><span class="math-inline">\bar{F}_{\phi}(x)</span> is the failure probability of one sampled solver on problem x.</p>
+            </div>
+            <p class="method-takeaway">The learning signal puts more weight on <strong class="key-point">problems that the other candidates are unlikely to solve.</strong></p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number" aria-hidden="true">02</span>
+          <div class="method-body">
+            <h3>Fenchel: enable a weighted one-draw update</h3>
+            <p>A direct Monte Carlo update needs K parameter draws to estimate the pooled failure objective.
+              Fenchel duality rewrites this objective so that, with <strong>a problem’s weight held fixed</strong>, the posterior step can use one new draw.</p>
+            <div class="equation-card">
+              <div class="math-display">\lambda_{x,t} = K_{\mathrm{train}}\,\widehat{f}_{x,t}^{\,K_{\mathrm{train}}-1}</div>
+              <p>The running failure estimate <span class="math-inline">\widehat{f}_{x,t}</span> determines the weight <span class="math-inline">\lambda_{x,t}</span> for each problem.</p>
+            </div>
+            <p class="method-takeaway">FBI <strong class="key-point">samples the solver parameters once</strong> and uses these fixed weights in an IVON posterior update.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number" aria-hidden="true">03</span>
+          <div class="method-body">
+            <h3>Bregman: reuse the observed failure</h3>
+            <p>The failure probability changes as the posterior learns.
+              A closed-form Bregman update tracks that change through an <strong>exponential moving average</strong>, using the failure score already observed in the posterior step.</p>
+            <div class="equation-card">
+              <div class="math-display">\begin{aligned}\widehat{f}_{x,t+1} &amp;= \beta\,\widehat{f}_{x,t} \\ &amp;\quad + (1-\beta)\,f(\theta_t,x)\end{aligned}</div>
+              <p><span class="math-inline">\beta</span> controls how much history to retain; <span class="math-inline">f(\theta_t,x)</span> is the observed failure score.</p>
+            </div>
+            <p class="method-takeaway">The updated estimate supplies the next visit’s weight, <strong class="key-point">without drawing another solver</strong> to estimate it.</p>
+          </div>
+        </li>
+      </ol>
+      <details class="technical-details">
+        <summary>Fenchel identity and training details</summary>
+        <p>For a failure probability <span class="math-inline">r</span> and <span class="math-inline">K\geq 2</span>, Fenchel conjugacy gives the exact identity below, with optimal weight <span class="math-inline">\lambda^\star=Kr^{K-1}</span>.
+          The conjugate penalty <span class="math-inline">\psi_K</span> depends on the weight, so it is constant during a fixed-weight posterior step.</p>
+        <div class="equation-card">
+          <div class="math-display">r^K = \max_{0\leq\lambda\leq K}\!\left\{\lambda r-\psi_K(\lambda)\right\}</div>
+        </div>
+        <p><strong class="key-point">One draw means one parameter vector.</strong> In the language-model experiments, that vector is shared across eight responses per prompt during a training update.</p>
+        <p>In practice, f is a bounded failure score.
+          When it differs from binary failure, training uses a <strong>score-based surrogate</strong> of the exact all-fail objective.</p>
+        <p class="source-note">See <a href="https://arxiv.org/html/2610.17735v1#S3" target="_blank" rel="noopener noreferrer">Section 3 and Algorithm 1</a> for the full derivation.</p>
+      </details>
+    </section>
+
+    <section id="results" class="page-section container reveal" aria-labelledby="results-heading">
+      <p class="section-kicker">Results</p>
+      <h2 id="results-heading">Does the learned posterior improve candidate coverage?</h2>
+      <p class="section-lead">We test FBI on <strong>recursive solvers</strong> and an <strong>autoregressive language model.</strong>
+        The curves show how often at least one answer is correct as the number of candidates increases.</p>
+      <p class="source-note">Pass@K measures candidate coverage, rather than the accuracy of a selector’s final answer.
+        These curves compare equal numbers of candidate attempts.</p>
+      <div class="coverage-grid">
+        <figure class="paper-figure">
+          <a href="img/maze-hard-coverage.svg" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 2(a), Maze-Hard candidate coverage, in full size">
+            <img src="img/maze-hard-coverage.svg" width="190" height="176" loading="lazy" decoding="async" alt="Maze-Hard Pass@K curves compare FBI, Direct-10, PTRM and W-PTRM. FBI reaches 91.3% at ten candidates and gives higher coverage across the plotted budgets.">
+          </a>
+          <figcaption><strong>Recursive reasoning.</strong> Figure 2(a): TRM, depth 16, on 1,000 Maze-Hard test problems.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <a href="img/math-coverage.svg" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 2(b), mathematical reasoning candidate coverage, in full size">
+            <img src="img/math-coverage.svg" width="190" height="176" loading="lazy" decoding="async" alt="Mean mathematical reasoning Pass@K curves for Qwen3-4B-Base. FBI trails DMPO at one candidate, then achieves the highest plotted coverage at eight and sixteen candidates.">
+          </a>
+          <figcaption><strong>Mathematical reasoning.</strong> Figure 2(b): Qwen3-4B-Base, averaged across five benchmarks.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="result-heading">Recursive reasoning benchmarks</h3>
+      <p>FBI uses TRM for this comparison.
+        The table below reports candidate coverage; selected accuracy is reported separately in the paper.</p>
+      <div class="table-scroll" role="region" aria-label="Recursive reasoning results" tabindex="0">
+        <table id="recursive-results">
+          <caption>Selected coverage columns from Table 1 (%); — indicates an unreported value.</caption>
+          <thead><tr><th scope="col">Method</th><th scope="col">Sudoku-Extreme<br><span>Pass@10</span></th><th scope="col">Maze-Hard<br><span>Pass@10</span></th><th scope="col">ARC-AGI-1<br><span>Pass@100</span></th><th scope="col">ARC-AGI-2<br><span>Pass@100</span></th></tr></thead>
+          <tbody>
+            <tr><th scope="row">TRM</th><td>—</td><td>—</td><td>59.50</td><td>11.53</td></tr>
+            <tr><th scope="row">PTRM</th><td>97.38</td><td>88.40</td><td>60.25</td><td>11.94</td></tr>
+            <tr><th scope="row">W-PTRM</th><td>98.84</td><td>89.80</td><td>61.25</td><td>10.69</td></tr>
+            <tr class="fbi-row"><th scope="row">FBI (ours)</th><td>99.55</td><td>91.30</td><td>64.25</td><td>12.78</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source-note">Only methods with reported values in these coverage columns are shown.
+        FBI’s Sudoku-Extreme and Maze-Hard Pass@10 values are means over three training runs.
+        See <a href="https://arxiv.org/html/2610.17735v1#S4.T1" target="_blank" rel="noopener noreferrer">Table 1</a> for all metrics and protocols.</p>
+
+      <h3 class="result-heading">Mathematical reasoning benchmarks</h3>
+      <p>All methods use Qwen3-4B-Base.
+        FBI trains on MATH7.5K with K<sub>train</sub> = 8; the average below weights each evaluation benchmark equally.</p>
+      <div class="table-scroll" role="region" aria-label="Mathematical reasoning results" tabindex="0">
+        <table id="math-results">
+          <caption>Table 2: Pass@8 (%) across five mathematical reasoning benchmarks.</caption>
+          <thead><tr><th scope="col">Method</th><th scope="col">MATH500</th><th scope="col">OlymMATH</th><th scope="col">AMC23</th><th scope="col">AIME24</th><th scope="col">AIME25</th><th scope="col">Average</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Base</th><td>87.80</td><td>53.57</td><td>75.18</td><td>34.15</td><td>21.56</td><td>54.45</td></tr>
+            <tr><th scope="row">GRPO</th><td>90.17</td><td>61.96</td><td>79.07</td><td>27.96</td><td>24.95</td><td>56.82</td></tr>
+            <tr><th scope="row">Pass@K Training</th><td>92.48</td><td>62.24</td><td>82.64</td><td>34.64</td><td>25.76</td><td>59.55</td></tr>
+            <tr><th scope="row">DMPO</th><td>91.37</td><td>61.45</td><td>84.68</td><td>34.65</td><td>25.84</td><td>59.60</td></tr>
+            <tr><th scope="row">MaxRL</th><td>91.23</td><td>62.26</td><td>83.07</td><td>28.08</td><td>30.21</td><td>58.97</td></tr>
+            <tr><th scope="row">MMPO</th><td>89.91</td><td>58.99</td><td>81.87</td><td>26.89</td><td>25.17</td><td>56.56</td></tr>
+            <tr class="fbi-row"><th scope="row">FBI (ours)</th><td>91.64</td><td>60.68</td><td>85.20</td><td>31.00</td><td>33.70</td><td>60.44</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="result-summary">FBI has the <strong class="result-highlight">highest average Pass@8 (60.44%)</strong> among the evaluated methods.
+        See <a href="https://arxiv.org/html/2610.17735v1#S4.T2" target="_blank" rel="noopener noreferrer">Table 2</a> for the full comparison.</p>
+    </section>
+
+    <section id="efficiency" class="page-section container reveal" aria-labelledby="efficiency-heading">
+      <p class="section-kicker">Training efficiency</p>
+      <h2 id="efficiency-heading">Similar Pass@10. Lower cost per update.</h2>
+      <p class="section-lead">FBI targets the same ten-candidate objective as Direct-10 with <strong class="key-point">one parameter draw per update.</strong>
+        On matched Maze-Hard runs, it achieves comparable candidate coverage using <strong class="result-highlight">12.3% of Direct-10’s training time per update.</strong></p>
+      <div class="coverage-comparison" aria-label="Mean Maze-Hard Pass at 10">
+        <p><span>FBI</span><strong>91.3<span>%</span></strong></p>
+        <p><span>Direct-10</span><strong>91.0<span>%</span></strong></p>
+        <p class="comparison-context">Mean Pass@10<br><span>Repeated-run endpoint coverage</span></p>
+      </div>
+      <div class="resource-comparison">
+        <div class="resource-chart-heading"><h3>Resources per training update</h3><p>Direct-10 = 100% · shorter bars use fewer resources</p></div>
+        <div id="resource-chart"></div>
+      </div>
+      <template id="resource-bar-template">
+        <div class="resource-row">
+          <div class="resource-row-heading"><h4></h4><span class="resource-share"></span></div>
+          <div class="resource-bar"><span class="resource-method">Direct-10</span><span class="resource-track" aria-hidden="true"><span class="resource-fill resource-fill-direct"></span></span><span class="resource-value resource-value-direct"></span></div>
+          <div class="resource-bar"><span class="resource-method">FBI</span><span class="resource-track" aria-hidden="true"><span class="resource-fill resource-fill-fbi"></span></span><span class="resource-value resource-value-fbi"></span></div>
+        </div>
+      </template>
+      <p class="benchmark-context">Matched TRM comparison on Maze-Hard · K<sub>train</sub> = 10 · one RTX A6000 48 GB GPU · bfloat16 · compilation disabled.</p>
+      <details class="technical-details">
+      <summary>Exact measurements and benchmark setup</summary>
+      <div class="table-scroll" role="region" aria-label="Training resources" tabindex="0">
+        <table id="training-resources">
+          <caption>Table 9: matched one-GPU training resources on Maze-Hard.</caption>
+          <thead><tr><th scope="col">Resource</th><th scope="col">FBI</th><th scope="col">Direct-10</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Posterior draws / update</th><td>1</td><td>10</td></tr>
+            <tr><th scope="row">Time / update (s)</th><td>0.0692</td><td>0.5614</td></tr>
+            <tr><th scope="row">Counted FLOPs / update (×10<sup>12</sup>)</th><td>0.427</td><td>4.087</td></tr>
+            <tr><th scope="row">Peak allocated GPU memory (GB)</th><td>0.611</td><td>3.707</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source-note">Coverage uses repeated-run endpoint means; resources were measured separately in a 30-update benchmark.
+        The FLOP counter does not include every elementwise operation.
+        See <a href="https://arxiv.org/html/2610.17735v1#A2.SS6" target="_blank" rel="noopener noreferrer">Appendix B.6 and Table 9</a> for the measurement protocol.</p>
+      </details>
+    </section>
+
+    <section id="citation" class="page-section container reveal" aria-labelledby="citation-heading" tabindex="-1">
+      <p class="section-kicker">Reference</p>
+      <h2 id="citation-heading">Citation</h2>
+      <div class="bibtex-wrapper">
+        <div class="citation-toolbar"><span>BibTeX</span><button id="copy-citation" class="copy-btn" type="button">Copy BibTeX</button></div>
+        <pre tabindex="0" aria-label="BibTeX citation"><code id="bibtex">@misc{lim2026train,
+  title={Train for Many, Update with One: Improving Multi-Sample Reasoning via Fenchel-Bregman Posterior Learning},
+  author={Sungjun Lim and Adrian Robert Minut and Nico Carlsen Daheim and Mohammad Emtiyaz Khan and Kyungwoo Song and Thomas M{\"o}llenhoff},
+  year={2026},
+  eprint={2610.17735},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2610.17735}
+}</code></pre>
+      </div>
+      <p id="copy-status" class="copy-status" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Figures and results from <a href="https://arxiv.org/abs/2610.17735" target="_blank" rel="noopener noreferrer">Lim et al., 2026</a>, shared under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+    <a href="../../index.html#publication-fbi" class="back-link">← Back to Portfolio</a>
+  </footer>
+</body>
+</html>
