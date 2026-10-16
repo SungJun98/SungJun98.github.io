@@ -321,8 +321,8 @@ test('Workshop keeps only the two requested papers without removing peer-reviewe
     assert.equal(await paper.count(), 1, 'The peer-reviewed version is preserved: ' + title);
     assert.equal(await paper.isVisible(), true);
   }
-  assert.equal(await page.locator('#peerReviewed .peer-reviewed-item').count(), 15);
-  assert.equal(await page.locator('#underReview .card-body > ol > li').count(), 5);
+  assert.equal(await page.locator('#peerReviewed .peer-reviewed-item').count(), 16);
+  assert.equal(await page.locator('#underReview .card-body > ol > li').count(), 4);
 });
 
 test('Heading controls and representative links fit mobile and desktop layouts', async () => {
