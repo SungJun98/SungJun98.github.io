@@ -149,8 +149,8 @@
     var label = document.getElementById('publications-view-label');
     if (!toggle || !selected || !archive) return;
 
-    var papers = Array.prototype.slice.call(archive.querySelectorAll('[data-selected-order]'));
-    papers.sort(function (a, b) { return Number(a.dataset.selectedOrder) - Number(b.dataset.selectedOrder); });
+    var papers = Array.prototype.slice.call(archive.querySelectorAll('[data-selected-date]'));
+    papers.sort(function (a, b) { return b.dataset.selectedDate.localeCompare(a.dataset.selectedDate); });
     papers.forEach(function (paper) {
       var card = document.createElement('article');
       card.className = 'publication-featured reveal';

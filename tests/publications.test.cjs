@@ -46,6 +46,23 @@ async function assertExpanded(id, expanded) {
   assert.deepEqual(states, [String(expanded), String(expanded)], 'Heading and original button stay synchronized');
 }
 
+test('The homepage hides the learning curriculum and its navigation links', async () => {
+  assert.equal(await page.locator('#learning:visible, a[href="#learning"]:visible').count(), 0);
+});
+
+test('The RIKEN internship appears as a completed position', async () => {
+  const internship = page.locator('.career-entry').filter({ hasText: 'RIKEN AIP' });
+  assert.equal(await internship.locator('.career-date').innerText(), 'May 2026 – Nov 25, 2026');
+  assert.equal(await internship.locator('.career-current').count(), 0);
+  assert.equal(await internship.evaluate(node => node.classList.contains('current')), false);
+});
+
+test('Selected papers appear newest first by initial arXiv submission', async () => {
+  assert.deepEqual(await page.locator('#selected-publications h4 a').evaluateAll(
+    links => links.map(link => link.pathname)
+  ), ['/abs/2610.17735', '/abs/2605.21849', '/abs/2511.00040', '/abs/2507.20718', '/abs/2406.15664']);
+});
+
 test('News expands in batches of three and folds back to the latest three', async () => {
   const visibleNews = page.locator('#news .news-item:visible');
   const titles = await page.locator('#news .news-item h5').allTextContents();
@@ -302,7 +319,8 @@ test('FP-BMA is discoverable under Robustness in selected papers and the full ar
   assert.equal(await paper.locator('.pub-tag-robustness').count(), 1);
   await page.locator('#publications-toggle').click();
   await page.locator('.peer-theme-toggle [data-theme="robustness"]').click();
-  assert.equal(await page.locator('#peerReviewed [data-selected-order="4"]').isVisible(), true);
+  const archivedPaper = page.locator('#peerReviewed .peer-reviewed-item').filter({ hasText: 'Flat Posterior Does Matter' });
+  assert.equal(await archivedPaper.isVisible(), true);
 });
 
 test('Workshop keeps only the two requested papers without removing peer-reviewed versions', async () => {
